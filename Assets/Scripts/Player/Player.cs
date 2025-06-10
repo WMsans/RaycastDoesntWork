@@ -6,7 +6,8 @@ public class Player : MonoBehaviour
 {
     public ExampleCharacterCamera OrbitCamera;
     public Transform CameraFollowPoint;
-    public CharacterController Character;
+    public CharacterControllerStateMachine Character;
+    public HookController HookController;
 
     private InputSystem_Actions inputActions; // Reference to the generated input actions class
 
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 lookInput;
     private float scrollInput;
+    
 
     private void Awake()
     {
@@ -121,9 +123,12 @@ public class Player : MonoBehaviour
         characterInputs.JumpDown = inputActions.Player.Jump.WasPressedThisFrame();
         characterInputs.CrouchDown = inputActions.Player.Crouch.WasPressedThisFrame();
         characterInputs.CrouchUp = inputActions.Player.Crouch.WasReleasedThisFrame();
+        characterInputs.AttackDown = inputActions.Player.Attack.WasPressedThisFrame();
+        characterInputs.AttackHold = inputActions.Player.Attack.IsPressed();
 
         // Apply inputs to character
         Character.SetInputs(ref characterInputs);
+        HookController.SetInputs(ref characterInputs);
     }
 
     // This struct remains unchanged
@@ -135,5 +140,7 @@ public class Player : MonoBehaviour
         public bool JumpDown;
         public bool CrouchDown;
         public bool CrouchUp;
+        public bool AttackDown;
+        public bool AttackHold;
     }
 }

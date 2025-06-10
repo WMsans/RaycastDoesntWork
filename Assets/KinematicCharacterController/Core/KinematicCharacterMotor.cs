@@ -1155,7 +1155,7 @@ namespace KinematicCharacterController
             // Handle velocity
             CharacterController.UpdateVelocity(ref BaseVelocity, deltaTime);
 
-            //this.CharacterController.UpdateVelocity(ref BaseVelocity, deltaTime);
+            //this.NormalCharacterController.UpdateVelocity(ref BaseVelocity, deltaTime);
             if (BaseVelocity.magnitude < MinVelocityMagnitude)
             {
                 BaseVelocity = Vector3.zero;

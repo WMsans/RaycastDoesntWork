@@ -2,10 +2,8 @@ using KinematicCharacterController;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class CharacterController : MonoBehaviour, ICharacterController 
+public class NormalCharacterController : BaseCharacterController
 {
-    public KinematicCharacterMotor Motor ;
-    
     [Header("Stable Movement")]
     public float MaxStableMoveSpeed = 10f;
     public float StableMovementSharpness = 15;
@@ -18,7 +16,6 @@ public class CharacterController : MonoBehaviour, ICharacterController
 
     [Header("Jumping")]
     public bool AllowJumpingWhenSliding = false;
-    public bool AllowDoubleJump = false;
     public bool AllowWallJump = false;
     public float JumpSpeed = 10f;
     public float JumpPreGroundingGraceTime = 0f;
@@ -30,8 +27,6 @@ public class CharacterController : MonoBehaviour, ICharacterController
     public Transform MeshRoot;
 
     private Collider[] _probedColliders = new Collider[8];
-    private Vector3 _moveInputVector;
-    private Vector3 _lookInputVector;
     private bool _jumpRequested = false;
     private bool _jumpConsumed = false;
     private bool _jumpedThisFrame = false;
@@ -44,25 +39,12 @@ public class CharacterController : MonoBehaviour, ICharacterController
     private bool _shouldBeCrouching = false;
     private bool _isCrouching = false;
 
-    private void Start()
-    {
-        Motor.CharacterController = this;
-    }
-
-    /// <summary>
-        /// (Called by KinematicCharacterMotor during its update cycle)
-        /// This is called before the character begins its movement update
-        /// </summary>
-        public void BeforeCharacterUpdate(float deltaTime)
-        {
-        }
-
         /// <summary>
         /// (Called by KinematicCharacterMotor during its update cycle)
         /// This is where you tell your character what its rotation should be right now. 
         /// This is the ONLY place where you should set the character's rotation
         /// </summary>
-        public void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
+        public override void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
         {
             if (_lookInputVector != Vector3.zero && OrientationSharpness > 0f)
             {
@@ -85,7 +67,7 @@ public class CharacterController : MonoBehaviour, ICharacterController
         /// This is where you tell your character what its velocity should be right now. 
         /// This is the ONLY place where you can set the character's velocity
         /// </summary>
-        public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
+        public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
             Vector3 targetMovementVelocity = Vector3.zero;
             if (Motor.GroundingStatus.IsStableOnGround)
@@ -132,21 +114,6 @@ public class CharacterController : MonoBehaviour, ICharacterController
                 _timeSinceJumpRequested += deltaTime;
                 if (_jumpRequested)
                 {
-                    // Handle double jump
-                    if (AllowDoubleJump)
-                    {
-                        if (_jumpConsumed && !_doubleJumpConsumed && (AllowJumpingWhenSliding ? !Motor.GroundingStatus.FoundAnyGround : !Motor.GroundingStatus.IsStableOnGround))
-                        {
-                            Motor.ForceUnground(0.1f);
-
-                            // Add to the return velocity and reset jump state
-                            currentVelocity += (Motor.CharacterUp * JumpSpeed) - Vector3.Project(currentVelocity, Motor.CharacterUp);
-                            _jumpRequested = false;
-                            _doubleJumpConsumed = true;
-                            _jumpedThisFrame = true;
-                        }
-                    }
-
                     // See if we actually are allowed to jump
                     if (_canWallJump ||
                         (!_jumpConsumed && ((AllowJumpingWhenSliding ? Motor.GroundingStatus.FoundAnyGround : Motor.GroundingStatus.IsStableOnGround) || _timeSinceLastAbleToJump <= JumpPostGroundingGraceTime)))
@@ -190,7 +157,7 @@ public class CharacterController : MonoBehaviour, ICharacterController
         /// (Called by KinematicCharacterMotor during its update cycle)
         /// This is called after the character has finished its movement update
         /// </summary>
-        public void AfterCharacterUpdate(float deltaTime)
+        public override void AfterCharacterUpdate(float deltaTime)
         {
             // Handle jump-related values
             {
@@ -241,16 +208,7 @@ public class CharacterController : MonoBehaviour, ICharacterController
             }
         }
 
-        public bool IsColliderValidForCollisions(Collider coll)
-        {
-            return true;
-        }
-
-        public void OnGroundHit(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, ref HitStabilityReport hitStabilityReport)
-        {
-        }
-
-        public void OnMovementHit(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, ref HitStabilityReport hitStabilityReport)
+        public override void OnMovementHit(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, ref HitStabilityReport hitStabilityReport)
         {
             // We can wall jump only if we are not stable on ground and are moving against an obstruction
             if (AllowWallJump && !Motor.GroundingStatus.IsStableOnGround && !hitStabilityReport.IsStable)
@@ -260,62 +218,38 @@ public class CharacterController : MonoBehaviour, ICharacterController
             }
         }
 
-        public void ProcessHitStabilityReport(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, Vector3 atCharacterPosition, Quaternion atCharacterRotation, ref HitStabilityReport hitStabilityReport)
-        {
-        }
 
-        public void PostGroundingUpdate(float deltaTime)
-        {
-        }
 
         public void AddVelocity(Vector3 velocity)
         {
             _internalVelocityAdd += velocity;
         }
 
-        public void OnDiscreteCollisionDetected(Collider hitCollider)
-        {
-        }
-    
-    public void SetInputs(ref Player.PlayerCharacterInputs inputs)
+        public override void SetInputs(ref Player.PlayerCharacterInputs inputs) 
     {
-        // Clamp input
-        Vector3 moveInputVector = Vector3.ClampMagnitude(new Vector3(inputs.MoveAxisRight, 0f, inputs.MoveAxisForward), 1f);
-
-        // Calculate camera direction and rotation on the character plane
-        Vector3 cameraPlanarDirection = Vector3.ProjectOnPlane(inputs.CameraRotation * Vector3.forward, Motor.CharacterUp).normalized;
-        if (cameraPlanarDirection.sqrMagnitude == 0f)
-        {
-            cameraPlanarDirection = Vector3.ProjectOnPlane(inputs.CameraRotation * Vector3.up, Motor.CharacterUp).normalized;
-        }
-        Quaternion cameraPlanarRotation = Quaternion.LookRotation(cameraPlanarDirection, Motor.CharacterUp);
-
-        // Move and look inputs
-        _moveInputVector = cameraPlanarRotation * moveInputVector;
-        _lookInputVector = cameraPlanarDirection;
-
-        // Jumping input
-        if (inputs.JumpDown)
-        {
-            _timeSinceJumpRequested = 0f;
-            _jumpRequested = true;
-        }
-
-        // Crouching input
-        if (inputs.CrouchDown)
-        {
-            _shouldBeCrouching = true;
-
-            if (!_isCrouching)
+            base.SetInputs(ref inputs);
+            // Jumping input
+            if (inputs.JumpDown)
             {
-                _isCrouching = true;
-                Motor.SetCapsuleDimensions(0.5f, 1f, 0.5f);
-                MeshRoot.localScale = new Vector3(1f, 0.5f, 1f);
+                _timeSinceJumpRequested = 0f;
+                _jumpRequested = true;
             }
-        }
-        else if (inputs.CrouchUp)
-        {
-            _shouldBeCrouching = false;
-        }
+
+            // Crouching input
+            if (inputs.CrouchDown)
+            {
+                _shouldBeCrouching = true;
+
+                if (!_isCrouching)
+                {
+                    _isCrouching = true;
+                    Motor.SetCapsuleDimensions(0.5f, 1f, 0.5f);
+                    MeshRoot.localScale = new Vector3(1f, 0.5f, 1f);
+                }
+            }
+            else if (inputs.CrouchUp)
+            {
+                _shouldBeCrouching = false;
+            }
     }
 }
