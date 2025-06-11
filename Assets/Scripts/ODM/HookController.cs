@@ -8,7 +8,9 @@ public class HookController : MonoBehaviour
     [SerializeField] private float coyoteTime = 0.2f;
     [SerializeField] private Transform hookSpawnPoint;
     [SerializeField] private CharacterControllerStateMachine controllerStateMachine;
-    [SerializeField] private OmniCHaracterController omniCCharacterController;
+    [SerializeField] private OmniCharacterController omniCCharacterController;
+    [SerializeField] private NormalCharacterController normalCharacterController; 
+    [SerializeField] private KinematicCharacterController.KinematicCharacterMotor motor;
     private float _attackDownTime;
     private float _attackUpTime;
     
@@ -27,18 +29,19 @@ public class HookController : MonoBehaviour
 
     public void OnHookHit(Vector3 hitPoint)
     {
-        // TODO: Implement hook hit
-        // controllerStateMachine.SetCharacterController(omniCCharacterController);
+        controllerStateMachine.SetCharacterController(omniCCharacterController);
+        omniCCharacterController.StartReeling(hitPoint);
     }
 
     private void Update()
     {
-        if (Time.time - _attackDownTime < coyoteTime)
+        if (Time.time - _attackDownTime < coyoteTime && _hook == null)
         {
-            var hook = Instantiate(hookPrefab, hookSpawnPoint.position, transform.rotation);
-            var hookBehaviour = hook.GetComponent<Hook>();
+            var hookGo = Instantiate(hookPrefab, hookSpawnPoint.position, transform.rotation);
+            var hookBehaviour = hookGo.GetComponent<Hook>();
             hookBehaviour.Init(this, hookSpawnPoint, Camera.main.transform.forward);
             _attackDownTime = -coyoteTime;
+            _hook?.SetHookState(Hook.HookState.In);
             _hook = hookBehaviour;
         }
 
@@ -46,6 +49,15 @@ public class HookController : MonoBehaviour
         {
             _hook.SetHookState(Hook.HookState.In);
             _hook = null;
+            OnHookDetached(); // Call OnHookDetached
+            _attackUpTime = -coyoteTime;
         }
+    }
+
+    public void OnHookDetached()
+    {
+        omniCCharacterController.StopReeling();
+        controllerStateMachine.SetCharacterController(normalCharacterController);
+        _hook = null;
     }
 }

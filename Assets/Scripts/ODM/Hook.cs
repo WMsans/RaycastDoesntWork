@@ -13,7 +13,7 @@ public class Hook : MonoBehaviour
     [SerializeField] private Rigidbody hookRigidbody;
     [SerializeField] private Collider hookCollider;
     [SerializeField] private float hookSpeed = 10f;
-    [SerializeField] private float hookDistance = 0.5f;
+    [SerializeField] private float hookDistance = 100f; // Increased distance
     [SerializeField] private LayerMask hookColliderLayers;
     [SerializeField] private float hookRadius = .3f;
     [SerializeField] private LineRenderer hookLineRenderer;
@@ -40,7 +40,6 @@ public class Hook : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(CurrentState);
         if (CurrentState == HookState.Out)
         {
             OutUpdate();
@@ -63,7 +62,6 @@ public class Hook : MonoBehaviour
         if (Vector3.Distance(hookRigidbody.position, _startPosition.position) > hookDistance)
         {
             CurrentState = HookState.In;
-            hookRigidbody.linearVelocity = (hookRigidbody.position - _startPosition.position).normalized * hookSpeed;
         }
 
         if (Physics.CheckSphere(hookRigidbody.position, hookRadius, hookColliderLayers,
@@ -76,18 +74,19 @@ public class Hook : MonoBehaviour
     }
     private void InUpdate()
     {
+        hookRigidbody.isKinematic = false;
         hookRigidbody.linearVelocity = Vector3.zero;
         hookRigidbody.position = Vector3.MoveTowards(hookRigidbody.position, _startPosition.position, hookSpeed * Time.deltaTime);
         if(Vector3.Distance(hookRigidbody.position, _startPosition.position) < 1f)
         {
+            _hookController.OnHookDetached();
             Destroy(gameObject);
-            return;
         }
     }
 
     private void StabilizedUpdate()
     {
-        
+        hookRigidbody.isKinematic = true;
     }
 
     public void SetHookState(HookState state)

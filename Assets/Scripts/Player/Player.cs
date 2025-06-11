@@ -121,10 +121,16 @@ public class Player : MonoBehaviour
         
         // Read button presses directly in the frame they occur
         characterInputs.JumpDown = inputActions.Player.Jump.WasPressedThisFrame();
+        characterInputs.JumpHold = inputActions.Player.Jump.IsPressed();
         characterInputs.CrouchDown = inputActions.Player.Crouch.WasPressedThisFrame();
         characterInputs.CrouchUp = inputActions.Player.Crouch.WasReleasedThisFrame();
+        characterInputs.CrouchHold = inputActions.Player.Crouch.IsPressed();
         characterInputs.AttackDown = inputActions.Player.Attack.WasPressedThisFrame();
         characterInputs.AttackUp = inputActions.Player.Attack.WasReleasedThisFrame();
+        characterInputs.AttackHold = inputActions.Player.Attack.IsPressed();
+        characterInputs.ReelOutDown = inputActions.Player.Interact.WasPressedThisFrame();
+        characterInputs.ReelOutUp = inputActions.Player.Interact.WasReleasedThisFrame();
+        characterInputs.ReelOutHold = inputActions.Player.Interact.IsPressed();
 
         // Apply inputs to character
         Character.SetInputs(ref characterInputs);
@@ -138,9 +144,15 @@ public class Player : MonoBehaviour
         public float MoveAxisRight;
         public Quaternion CameraRotation;
         public bool JumpDown;
+        public bool JumpHold;
         public bool CrouchDown;
         public bool CrouchUp;
+        public bool CrouchHold;
         public bool AttackDown;
         public bool AttackUp;
+        public bool AttackHold;
+        public bool ReelOutDown;
+        public bool ReelOutUp;
+        public bool ReelOutHold;
     }
 }
