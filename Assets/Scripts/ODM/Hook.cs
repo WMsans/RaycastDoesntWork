@@ -11,6 +11,7 @@ public class Hook : MonoBehaviour
         Stabilized,
     }
     [SerializeField] private Rigidbody hookRigidbody;
+    [SerializeField] private Collider hookCollider;
     [SerializeField] private float hookSpeed = 10f;
     [SerializeField] private float hookDistance = 0.5f;
     [SerializeField] private LayerMask hookColliderLayers;
@@ -39,6 +40,7 @@ public class Hook : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(CurrentState);
         if (CurrentState == HookState.Out)
         {
             OutUpdate();
@@ -74,6 +76,8 @@ public class Hook : MonoBehaviour
     }
     private void InUpdate()
     {
+        hookRigidbody.linearVelocity = Vector3.zero;
+        hookRigidbody.position = Vector3.MoveTowards(hookRigidbody.position, _startPosition.position, hookSpeed * Time.deltaTime);
         if(Vector3.Distance(hookRigidbody.position, _startPosition.position) < 1f)
         {
             Destroy(gameObject);
@@ -84,6 +88,11 @@ public class Hook : MonoBehaviour
     private void StabilizedUpdate()
     {
         
+    }
+
+    public void SetHookState(HookState state)
+    {
+        CurrentState = state;
     }
 
     private void OnDrawGizmosSelected()

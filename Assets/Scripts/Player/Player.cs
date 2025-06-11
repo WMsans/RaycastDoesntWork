@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
         characterInputs.CrouchDown = inputActions.Player.Crouch.WasPressedThisFrame();
         characterInputs.CrouchUp = inputActions.Player.Crouch.WasReleasedThisFrame();
         characterInputs.AttackDown = inputActions.Player.Attack.WasPressedThisFrame();
-        characterInputs.AttackHold = inputActions.Player.Attack.IsPressed();
+        characterInputs.AttackUp = inputActions.Player.Attack.WasReleasedThisFrame();
 
         // Apply inputs to character
         Character.SetInputs(ref characterInputs);
@@ -141,6 +141,6 @@ public class Player : MonoBehaviour
         public bool CrouchDown;
         public bool CrouchUp;
         public bool AttackDown;
-        public bool AttackHold;
+        public bool AttackUp;
     }
 }

@@ -300,6 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hookRigidbody: {fileID: 7312059324984239989}
+  hookCollider: {fileID: 109847708487389605}
   hookSpeed: 50
   hookDistance: 50
   hookColliderLayers:
