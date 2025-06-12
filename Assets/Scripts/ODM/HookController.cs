@@ -29,8 +29,14 @@ public class HookController : MonoBehaviour
 
     public void OnHookHit(Vector3 hitPoint)
     {
+        // Get the character's velocity the moment the hook hits
+        Vector3 lastVelocity = motor.BaseVelocity;
+        
         controllerStateMachine.SetCharacterController(omniCCharacterController);
         omniCCharacterController.StartReeling(hitPoint);
+        
+        // Add that velocity to the new controller to preserve momentum
+        omniCCharacterController.AddVelocity(lastVelocity);
     }
 
     private void Update()
@@ -58,6 +64,9 @@ public class HookController : MonoBehaviour
     {
         omniCCharacterController.StopReeling();
         controllerStateMachine.SetCharacterController(normalCharacterController);
+        Vector3 lastVelocity = motor.BaseVelocity;
+        normalCharacterController.AddVelocity(lastVelocity * 0.5f);
+        _hook?.SetHookState(Hook.HookState.In);
         _hook = null;
     }
 }

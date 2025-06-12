@@ -12,6 +12,10 @@ public abstract class BaseCharacterController : MonoBehaviour, ICharacterControl
 
     public virtual void OnEnableController() {}
     public virtual void OnDisableController(){}
+    
+    // This new method allows external scripts to add velocity to the controller.
+    public virtual void AddVelocity(Vector3 velocity) {}
+    
     public virtual void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
     {
     }

@@ -6,11 +6,7 @@ public class OmniCharacterController : BaseCharacterController
     public float ReelInSpeed = 25f;
     public float ReelOutSpeed = 15f;
 
-    [Header("Burst")]
-    public float BurstSpeed = 50f;
-    public float SustainedBurstDuration = 0.4f;
-
-    [Header("Redirect")]
+    [Header("Swinging")]
     public float RedirectSpeed = 12f;
 
     [Header("Misc")]
@@ -19,81 +15,82 @@ public class OmniCharacterController : BaseCharacterController
 
     private Vector3 _hookPoint;
     private bool _isReeling = false;
-
-    // Burst related
-    private float _lastJumpRequestTime = -1f;
-    private bool _isBursting = false;
-    private float _burstSustainTime = 0f;
+    private float _ropeDistance; // The current length of the rope tether
+    private Vector3 _internalVelocityAdd = Vector3.zero; // Stores velocity to be added
 
     // Inputs
     private bool _jumpHold;
-    private bool _jumpDown;
     private bool _reelOutHold;
     private bool _crouchHold;
     private float _moveAxisRight;
-
+    
     public override void SetInputs(ref Player.PlayerCharacterInputs inputs)
     {
         base.SetInputs(ref inputs);
 
-        _jumpDown = inputs.JumpDown;
         _jumpHold = inputs.JumpHold;
         _reelOutHold = inputs.ReelOutHold;
         _crouchHold = inputs.CrouchHold;
         _moveAxisRight = inputs.MoveAxisRight;
-
-        if (_jumpDown && Time.time - _lastJumpRequestTime < 0.25f && !_isReeling)
-        {
-            _isBursting = true;
-            _burstSustainTime = Time.time;
-        }
-        _lastJumpRequestTime = Time.time;
+    }
+    
+    public override void AddVelocity(Vector3 velocity)
+    {
+        // Store the velocity to be applied in the next update
+        _internalVelocityAdd += velocity;
     }
 
     public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
     {
-        if (_isBursting)
+        // Apply any externally added velocity (from the state transition)
+        if (_internalVelocityAdd.sqrMagnitude > 0f)
         {
-            currentVelocity = _lookInputVector * BurstSpeed;
-
-            if ((!_jumpHold && Time.time - _burstSustainTime > 0.1f) || Time.time - _burstSustainTime >= SustainedBurstDuration)
-            {
-                _isBursting = false;
-            }
-            Debug.Log("Burst: " + (Time.time - _burstSustainTime));
+            currentVelocity += _internalVelocityAdd;
+            _internalVelocityAdd = Vector3.zero;
         }
-        else if (_isReeling)
+
+        if (!_isReeling)
         {
-            Vector3 directionToHook = (_hookPoint - Motor.TransientPosition).normalized;
-            Vector3 targetVelocity = Vector3.zero;
+            currentVelocity += Gravity * deltaTime; // Apply gravity if not hooked
+            return;
+        }
 
-            if (_jumpHold)
-            {
-                targetVelocity = directionToHook * ReelInSpeed;
-            }
-            else if (_reelOutHold)
-            {
-                targetVelocity = -directionToHook * ReelOutSpeed;
-            }
+        // Properties of the tether
+        Vector3 vectorToHook = _hookPoint - Motor.TransientPosition;
+        float distanceToHook = vectorToHook.magnitude;
 
-            // Redirection
-            Vector3 right = Motor.transform.right;
-            targetVelocity += right * (_moveAxisRight * RedirectSpeed);
+        // Auto-shorten the rope if the player moves closer to the hook point
+        _ropeDistance = Mathf.Min(_ropeDistance, distanceToHook);
 
-            if (_jumpHold && !_reelOutHold)
-            {
-                targetVelocity += Motor.CharacterUp * RedirectSpeed;
-            }
-            else if (_crouchHold)
-            {
-                targetVelocity -= Motor.CharacterUp * RedirectSpeed;
-            }
+        // Player input for side-to-side swinging
+        Vector3 sideInputVelocity = Motor.transform.right * (_moveAxisRight * RedirectSpeed);
+
+        if (_jumpHold) // Reeling IN
+        {
+            // No gravity while actively reeling in
+            Vector3 targetVelocity = vectorToHook.normalized * ReelInSpeed;
+            targetVelocity += sideInputVelocity; // Allow strafing while reeling
 
             currentVelocity = Vector3.Lerp(currentVelocity, targetVelocity, 1 - Mathf.Exp(-10 * deltaTime));
         }
-        else
+        else // Swinging or Hanging
         {
+            // Apply gravity to create a natural swinging arc
             currentVelocity += Gravity * deltaTime;
+
+            // Add player-controlled side velocity
+            currentVelocity += sideInputVelocity * deltaTime;
+
+            // Check if the next position would exceed the rope's length
+            float futureDistance = Vector3.Distance(Motor.TransientPosition + currentVelocity * deltaTime, _hookPoint);
+            if (futureDistance > _ropeDistance)
+            {
+                // If the rope is taut, project the velocity onto the tangent of the sphere.
+                // This removes any velocity component that would stretch the rope further,
+                // creating a swinging motion.
+                Vector3 radialDir = vectorToHook.normalized;
+                currentVelocity = Vector3.ProjectOnPlane(currentVelocity, radialDir);
+            }
         }
     }
 
@@ -110,6 +107,8 @@ public class OmniCharacterController : BaseCharacterController
     {
         _isReeling = true;
         _hookPoint = hookPoint;
+        // Initialize the rope's starting length
+        _ropeDistance = Vector3.Distance(Motor.TransientPosition, hookPoint);
     }
 
     public void StopReeling()
@@ -120,7 +119,7 @@ public class OmniCharacterController : BaseCharacterController
     public override void AfterCharacterUpdate(float deltaTime)
     {
         base.AfterCharacterUpdate(deltaTime);
-        if (_isBursting || _isReeling)
+        if (_isReeling)
         {
             Motor.ForceUnground();
         }

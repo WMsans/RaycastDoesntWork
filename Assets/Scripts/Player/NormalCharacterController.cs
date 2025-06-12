@@ -97,7 +97,7 @@ public class NormalCharacterController : BaseCharacterController
             return;
         }
         
-        Vector3 targetMovementVelocity = Vector3.zero;
+        var targetMovementVelocity = Vector3.zero;
         if (Motor.GroundingStatus.IsStableOnGround)
         {
             // Reorient velocity on slope
@@ -116,7 +116,7 @@ public class NormalCharacterController : BaseCharacterController
             // Add move input
             if (_moveInputVector.sqrMagnitude > 0f)
             {
-                targetMovementVelocity = _moveInputVector * MaxAirMoveSpeed;
+                targetMovementVelocity = _moveInputVector * Mathf.Max(MaxAirMoveSpeed, currentVelocity.magnitude);
 
                 // Prevent climbing on un-stable slopes with air movement
                 if (Motor.GroundingStatus.FoundAnyGround)
@@ -251,7 +251,7 @@ public class NormalCharacterController : BaseCharacterController
         }
     }
 
-    public void AddVelocity(Vector3 velocity)
+    public override void AddVelocity(Vector3 velocity)
     {
         _internalVelocityAdd += velocity;
     }
