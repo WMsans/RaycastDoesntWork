@@ -301,8 +301,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hookRigidbody: {fileID: 7312059324984239989}
   hookCollider: {fileID: 109847708487389605}
-  hookSpeed: 75
-  hookDistance: 50
+  hookSpeed: 100
+  hookDistance: 75
   hookColliderLayers:
     serializedVersion: 2
     m_Bits: 64

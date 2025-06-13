@@ -85,7 +85,7 @@ public class NormalCharacterController : BaseCharacterController
         if (_isBursting)
         {
             // Set velocity to burst in the look direction
-            currentVelocity = _lookInputVector * BurstSpeed;
+            currentVelocity = Camera.main.transform.forward * BurstSpeed;
 
             // Stop bursting if the button is released or the duration expires
             if ((!_jumpHold && Time.time - _burstSustainTime > 0.1f) || Time.time - _burstSustainTime >= SustainedBurstDuration)

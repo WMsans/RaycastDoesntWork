@@ -81,6 +81,11 @@ public class OmniCharacterController : BaseCharacterController
             // Add player-controlled side velocity
             currentVelocity += sideInputVelocity * deltaTime;
 
+            if (_reelOutHold)
+            {
+                _ropeDistance += ReelOutSpeed * deltaTime;
+            }
+
             // Check if the next position would exceed the rope's length
             float futureDistance = Vector3.Distance(Motor.TransientPosition + currentVelocity * deltaTime, _hookPoint);
             if (futureDistance > _ropeDistance)

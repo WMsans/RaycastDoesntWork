@@ -354,16 +354,16 @@ MonoBehaviour:
   MaxAirMoveSpeed: 10
   AirAccelerationSpeed: 5
   Drag: 0.05
-  AllowJumpingWhenSliding: 0
-  AllowWallJump: 0
+  AllowJumpingWhenSliding: 1
+  AllowWallJump: 1
   JumpSpeed: 10
-  JumpPreGroundingGraceTime: 0
-  JumpPostGroundingGraceTime: 0
+  JumpPreGroundingGraceTime: 0.5
+  JumpPostGroundingGraceTime: 0.3
   BurstSpeed: 30
-  SustainedBurstDuration: 4
+  SustainedBurstDuration: 1
   Gravity: {x: 0, y: -30, z: 0}
   OrientTowardsGravity: 1
-  MeshRoot: {fileID: 0}
+  MeshRoot: {fileID: 823913181}
 --- !u!114 &171517665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,10 +376,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ef6ba8b4a648aaa2c72061b442f9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReelInSpeed: 25
-  ReelOutSpeed: 15
-  BurstSpeed: 50
-  SustainedBurstDuration: 4
+  ReelInSpeed: 50
+  ReelOutSpeed: 50
   RedirectSpeed: 12
   Gravity: {x: 0, y: -25, z: 0}
   OrientationSharpness: 12
