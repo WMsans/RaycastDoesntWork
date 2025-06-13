@@ -8,6 +8,10 @@ public class OmniCharacterController : BaseCharacterController
 
     [Header("Swinging")]
     public float RedirectSpeed = 12f;
+    
+    [Header("Burst")]
+    public float BurstSpeed = 20f;
+    public float SustainedBurstDuration = 0.4f;
 
     [Header("Misc")]
     public Vector3 Gravity = new Vector3(0, -25f, 0);
@@ -17,12 +21,17 @@ public class OmniCharacterController : BaseCharacterController
     private bool _isReeling = false;
     private float _ropeDistance; // The current length of the rope tether
     private Vector3 _internalVelocityAdd = Vector3.zero; // Stores velocity to be added
+    
+    // Burst state
+    private bool _isBursting = false;
+    private float _burstSustainTime = 0f;
 
     // Inputs
     private bool _jumpHold;
     private bool _reelOutHold;
     private bool _crouchHold;
     private float _moveAxisRight;
+    private bool _dashHold;
     
     public override void SetInputs(ref Player.PlayerCharacterInputs inputs)
     {
@@ -32,6 +41,14 @@ public class OmniCharacterController : BaseCharacterController
         _reelOutHold = inputs.ReelOutHold;
         _crouchHold = inputs.CrouchHold;
         _moveAxisRight = inputs.MoveAxisRight;
+        _dashHold = inputs.DashHold;
+        
+        // Handle Burst inputs
+        if (inputs.DashDown && !_isBursting)
+        {
+            _isBursting = true;
+            _burstSustainTime = Time.time;
+        }
     }
     
     public override void AddVelocity(Vector3 velocity)
@@ -47,6 +64,19 @@ public class OmniCharacterController : BaseCharacterController
         {
             currentVelocity += _internalVelocityAdd;
             _internalVelocityAdd = Vector3.zero;
+        }
+        
+        // Handle Sustained Burst
+        if (_isBursting)
+        {
+            // Add burst acceleration in the camera's forward direction
+            currentVelocity += Camera.main.transform.forward * BurstSpeed * deltaTime;
+
+            // Stop bursting if the dash button is released or the duration expires
+            if (!_dashHold || Time.time - _burstSustainTime >= SustainedBurstDuration)
+            {
+                _isBursting = false;
+            }
         }
 
         if (!_isReeling)
@@ -124,7 +154,7 @@ public class OmniCharacterController : BaseCharacterController
     public override void AfterCharacterUpdate(float deltaTime)
     {
         base.AfterCharacterUpdate(deltaTime);
-        if (_isReeling)
+        if (_isReeling || _isBursting)
         {
             Motor.ForceUnground();
         }

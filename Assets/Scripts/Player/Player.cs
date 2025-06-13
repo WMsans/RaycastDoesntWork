@@ -94,20 +94,7 @@ public class Player : MonoBehaviour
         // (as explained in Awake), you can uncomment this part.
         // float scrollThisFrame = scrollInput * 0.1f; // Adjust sensitivity as needed
         
-        // Apply inputs to the camera
-        // OrbitCamera.UpdateWithInput(Time.deltaTime, scrollThisFrame, lookInputVector);
-        
-        // Temporarily passing 0 for scroll until you add the action
         OrbitCamera.UpdateWithInput(Time.deltaTime, 0f, lookInputVector);
-
-        // Handle toggling zoom level
-        // --- NOTE: You need to decide which button toggles zoom. ---
-        // The original used Right Mouse Button. You could bind this to the "Interact" action,
-        // or create a new "ToggleZoom" action. Here's an example using "Interact":
-        if (inputActions.Player.Interact.WasPressedThisFrame())
-        {
-            OrbitCamera.TargetDistance = (OrbitCamera.TargetDistance == 0f) ? OrbitCamera.DefaultDistance : 0f;
-        }
     }
 
     private void HandleCharacterInput()
@@ -131,6 +118,9 @@ public class Player : MonoBehaviour
         characterInputs.ReelOutDown = inputActions.Player.Interact.WasPressedThisFrame();
         characterInputs.ReelOutUp = inputActions.Player.Interact.WasReleasedThisFrame();
         characterInputs.ReelOutHold = inputActions.Player.Interact.IsPressed();
+        characterInputs.DashDown = inputActions.Player.Dash.WasPressedThisFrame();
+        characterInputs.DashUp = inputActions.Player.Dash.WasReleasedThisFrame();
+        characterInputs.DashHold = inputActions.Player.Dash.IsPressed();
 
         // Apply inputs to character
         Character.SetInputs(ref characterInputs);
@@ -154,5 +144,8 @@ public class Player : MonoBehaviour
         public bool ReelOutDown;
         public bool ReelOutUp;
         public bool ReelOutHold;
+        public bool DashDown;
+        public bool DashUp;
+        public bool DashHold;
     }
 }

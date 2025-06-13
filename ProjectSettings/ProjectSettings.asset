@@ -542,6 +542,7 @@ PlayerSettings:
   - serializedVersion: 2
     m_BuildTarget: Android
     m_EncodingQuality: 1
+  m_BuildTargetGroupHDRCubemapEncodingQuality: []
   m_BuildTargetGroupLightmapSettings: []
   m_BuildTargetGroupLoadStoreDebugModeSettings: []
   m_BuildTargetNormalMapEncoding:
@@ -816,7 +817,26 @@ PlayerSettings:
   webGLWebAssemblyBigInt: 0
   webGLCloseOnQuit: 0
   webWasm2023: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    EmbeddedLinux: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    GameCoreScarlett: DOTWEEN
+    GameCoreXboxOne: DOTWEEN
+    Kepler: DOTWEEN
+    LinuxHeadlessSimulation: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    Nintendo Switch: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    PS4: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    PS5: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    QNX: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    ReservedCFE: DOTWEEN
+    Server: UNITY_VISUAL_SCRIPTING
+    Standalone: DOTWEEN;UNITY_VISUAL_SCRIPTING;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;PMS_URP
+    VisionOS: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    WebGL: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    Windows Store Apps: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    XboxOne: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    iPhone: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    tvOS: DOTWEEN;UNITY_VISUAL_SCRIPTING
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

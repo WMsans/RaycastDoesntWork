@@ -24,7 +24,6 @@ public class NormalCharacterController : BaseCharacterController
     [Header("Burst")]
     public float BurstSpeed = 20f;
     public float SustainedBurstDuration = 0.4f; // How long the burst can be sustained
-    private float _lastJumpRequestTime = -1f;
     
     // Burst state variables
     private bool _isBursting = false;
@@ -50,6 +49,7 @@ public class NormalCharacterController : BaseCharacterController
 
     // Input state
     private bool _jumpHold = false;
+    private bool _dashHold = false;
 
     /// <summary>
     /// (Called by KinematicCharacterMotor during its update cycle)
@@ -88,7 +88,7 @@ public class NormalCharacterController : BaseCharacterController
             currentVelocity = Camera.main.transform.forward * BurstSpeed;
 
             // Stop bursting if the button is released or the duration expires
-            if ((!_jumpHold && Time.time - _burstSustainTime > 0.1f) || Time.time - _burstSustainTime >= SustainedBurstDuration)
+            if ((!_dashHold && Time.time - _burstSustainTime > 0.1f) || Time.time - _burstSustainTime >= SustainedBurstDuration)
             {
                 _isBursting = false;
             }
@@ -260,27 +260,24 @@ public class NormalCharacterController : BaseCharacterController
     {
         base.SetInputs(ref inputs);
         
-        // Store jump hold state
+        // Store jump and dash hold state
         _jumpHold = inputs.JumpHold;
+        _dashHold = inputs.DashHold;
         
         // Handle Jump and Burst inputs
         if (inputs.JumpDown)
         {
-            // Check for double-tap to trigger burst
-            if(Time.time - _lastJumpRequestTime < 0.25f)
-            {
-                _isBursting = true;
-                _burstSustainTime = Time.time;
-                _jumpRequested = false; // Cancel any pending jump request
-            }
-            else
-            {
-                // Regular jump
-                _timeSinceJumpRequested = 0f;
-                _jumpRequested = true;
-            }
-            // Record the time of this jump press for double-tap detection
-            _lastJumpRequestTime = Time.time;
+            // Regular jump
+            _timeSinceJumpRequested = 0f;
+            _jumpRequested = true;
+        }
+        
+        // Handle Burst inputs
+        if (inputs.DashDown)
+        {
+            _isBursting = true;
+            _burstSustainTime = Time.time;
+            _jumpRequested = false; // Cancel any pending jump request
         }
 
         // Crouching input

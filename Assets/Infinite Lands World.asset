@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a11e3c0087717a4e9f7535909651365, type: 3}
+  m_Name: Infinite Lands World
+  m_EditorClassIdentifier: 
+  AutoUpdate: 1
+  position: {x: 0, y: 0}
+  scale: {x: 1, y: 1}
+  output:
+    rid: 8515386916509581563
+  nodes:
+  - rid: 8515386916509581563
+  - rid: 8515386916509581564
+  groups: []
+  stickyNotes: []
+  edges:
+  - outputPort:
+      nodeGuid: c083d5ffe98d5f248a1f2aaeef202cf3
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: b340e8b013401ac4d97682e6030eef42
+      fieldName: HeightMap
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  PreviouslyConnected: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 8515386916509581563
+      type: {class: HeightOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: b340e8b013401ac4d97682e6030eef42
+        name: HeightOutputNode
+        expanded: 0
+        position: {x: 0, y: 0}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+    - rid: 8515386916509581564
+      type: {class: SimplexNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: c083d5ffe98d5f248a1f2aaeef202cf3
+        name: SimplexNoiseNode
+        expanded: 1
+        position: {x: -235, y: 0}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        NoiseType: 1
+        MinMaxHeight: {x: 0, y: 250}
+        TileSize: 200
+        Octaves: 5
+        Rotation: {x: 0, y: 0, z: 0}
+        Lacunarity: 2
+        Persistence: 0.5
+        RidgeMode: 0
