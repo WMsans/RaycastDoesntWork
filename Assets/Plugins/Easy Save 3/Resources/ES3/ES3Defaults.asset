@@ -40,6 +40,7 @@ MonoBehaviour:
     - Lofelt.NiceVibrations.Demo
     - MoreMountains.Tools
     - sapra.InfiniteLands
+    - sapra.InfiniteLands.GenerationBuiltin
     - sapra.InfiniteLands.PlayTests
     - SingularityGroup.HotReload.Runtime
     - SingularityGroup.HotReload.Runtime.Public

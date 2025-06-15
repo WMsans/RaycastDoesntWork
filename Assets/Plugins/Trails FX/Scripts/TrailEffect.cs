@@ -365,7 +365,7 @@ namespace TrailsFX {
             if (cam == null) {
                 cam = Camera.main;
                 if (cam == null) {
-                    cam = FindObjectOfType<Camera>();
+                    cam = FindFirstObjectByType<Camera>();
                     if (cam == null)
                         return;
                 }
