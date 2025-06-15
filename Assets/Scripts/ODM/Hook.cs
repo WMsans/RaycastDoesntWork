@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,14 +64,6 @@ public class Hook : MonoBehaviour
         {
             CurrentState = HookState.In;
         }
-
-        if (Physics.CheckSphere(hookRigidbody.position, hookRadius, hookColliderLayers,
-                QueryTriggerInteraction.Ignore))
-        {
-            CurrentState = HookState.Stabilized;
-            _hookController.OnHookHit(hookRigidbody.position);
-            hookRigidbody.linearVelocity = Vector3.zero;
-        }
     }
     private void InUpdate()
     {
@@ -91,6 +84,17 @@ public class Hook : MonoBehaviour
     public void SetHookState(HookState state)
     {
         CurrentState = state;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.isTrigger) return;
+        if (CurrentState == HookState.Out && ( hookColliderLayers & (1 << other.gameObject.layer)) != 0)
+        {
+            CurrentState = HookState.Stabilized;
+            _hookController.OnHookHit(hookRigidbody.position);
+            hookRigidbody.linearVelocity = Vector3.zero;
+        }
     }
 
     private void OnDrawGizmosSelected()
