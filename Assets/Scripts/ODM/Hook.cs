@@ -79,7 +79,6 @@ public class Hook : MonoBehaviour
         hookRigidbody.position = Vector3.MoveTowards(hookRigidbody.position, _startPosition.position, hookSpeed * Time.deltaTime);
         if(Vector3.Distance(hookRigidbody.position, _startPosition.position) < 1f)
         {
-            _hookController.OnHookDetached();
             Destroy(gameObject);
         }
     }

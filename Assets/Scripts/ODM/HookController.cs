@@ -17,11 +17,11 @@ public class HookController : MonoBehaviour
     private Hook _hook;
     public void SetInputs(ref Player.PlayerCharacterInputs inputs)
     {
-        if (inputs.AttackDown)
+        if (inputs.HookDown)
         {
             _attackDownTime = Time.time;
         }
-        else if(inputs.AttackUp)
+        else if(inputs.HookUp)
         {
             _attackUpTime = Time.time;
         }
@@ -41,7 +41,7 @@ public class HookController : MonoBehaviour
             var hookBehaviour = hookGo.GetComponent<Hook>();
             hookBehaviour.Init(this, hookSpawnPoint, Camera.main.transform.forward);
             _attackDownTime = -coyoteTime;
-            _hook?.SetHookState(Hook.HookState.In);
+            if(_hook!=null) Destroy(_hook.gameObject);
             _hook = hookBehaviour;
         }
 

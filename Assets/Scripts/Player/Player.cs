@@ -115,6 +115,9 @@ public class Player : MonoBehaviour
         characterInputs.AttackDown = inputActions.Player.Attack.WasPressedThisFrame();
         characterInputs.AttackUp = inputActions.Player.Attack.WasReleasedThisFrame();
         characterInputs.AttackHold = inputActions.Player.Attack.IsPressed();
+        characterInputs.HookDown = inputActions.Player.Hook.WasPressedThisFrame();
+        characterInputs.HookUp = inputActions.Player.Hook.WasReleasedThisFrame();
+        characterInputs.HookHold = inputActions.Player.Hook.IsPressed();
         characterInputs.ReelOutDown = inputActions.Player.Interact.WasPressedThisFrame();
         characterInputs.ReelOutUp = inputActions.Player.Interact.WasReleasedThisFrame();
         characterInputs.ReelOutHold = inputActions.Player.Interact.IsPressed();
@@ -141,6 +144,9 @@ public class Player : MonoBehaviour
         public bool AttackDown;
         public bool AttackUp;
         public bool AttackHold;
+        public bool HookDown;
+        public bool HookUp;
+        public bool HookHold;
         public bool ReelOutDown;
         public bool ReelOutUp;
         public bool ReelOutHold;

@@ -435,6 +435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ReelInSpeed: 50
   ReelOutSpeed: 50
+  BurstReelInSpeed: 25
   RedirectSpeed: 12
   BurstSpeed: 20
   SustainedBurstDuration: 0.4

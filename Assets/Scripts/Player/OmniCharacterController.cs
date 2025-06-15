@@ -5,6 +5,7 @@ public class OmniCharacterController : BaseCharacterController
     [Header("Reeling")]
     public float ReelInSpeed = 25f;
     public float ReelOutSpeed = 15f;
+    public float BurstReelInSpeed = 8f;
 
     [Header("Swinging")]
     public float RedirectSpeed = 12f;
@@ -95,7 +96,19 @@ public class OmniCharacterController : BaseCharacterController
         // Player input for side-to-side swinging
         Vector3 sideInputVelocity = Motor.transform.right * (_moveAxisRight * RedirectSpeed);
 
-        if (_jumpHold) // Reeling IN
+        if (_isBursting)
+        {
+            currentVelocity += vectorToHook.normalized * (BurstReelInSpeed * deltaTime);
+
+            // The rope must still act as a constraint to maintain the swing's arc.
+            float futureDistance = Vector3.Distance(Motor.TransientPosition + currentVelocity * deltaTime, _hookPoint);
+            if (futureDistance > _ropeDistance)
+            {
+                Vector3 radialDir = vectorToHook.normalized;
+                currentVelocity = Vector3.ProjectOnPlane(currentVelocity, radialDir);
+            }
+        }
+        else if (_jumpHold) // Reeling IN
         {
             // No gravity while actively reeling in
             Vector3 targetVelocity = vectorToHook.normalized * ReelInSpeed;
