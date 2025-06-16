@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Infinite Lands World 2
   m_EditorClassIdentifier: 
   AutoUpdate: 1
-  position: {x: 44, y: -77.333336}
-  scale: {x: 0.65751624, y: 0.65751624}
+  position: {x: -410.66666, y: -881.3333}
+  scale: {x: 0.57175326, y: 0.57175326}
   output:
     rid: 8515386934871982080
   nodes:
@@ -29,6 +29,31 @@ MonoBehaviour:
   - rid: 8515386967779442713
   - rid: 8515386967779442714
   - rid: 8515386967779442715
+  - rid: 8515386983025213505
+  - rid: 8515386983025213506
+  - rid: 8515386983025213508
+  - rid: 8515386983025213509
+  - rid: 8515386983025213510
+  - rid: 8515386983025213511
+  - rid: 8515386983025213512
+  - rid: 8515386983025213513
+  - rid: 8515386984576057344
+  - rid: 8515386984576057346
+  - rid: 8515386984576057347
+  - rid: 8515386984576057348
+  - rid: 8515386984576057349
+  - rid: 8515386984576057350
+  - rid: 8515386984576057354
+  - rid: 8515386986210263106
+  - rid: 8515386986210263107
+  - rid: 8515386986210263108
+  - rid: 8515386986210263109
+  - rid: 8515386986210263110
+  - rid: 8515386986210263111
+  - rid: 8515386986210263112
+  - rid: 8515386986210263113
+  - rid: 8515386986210263114
+  - rid: 8515386986210263115
   groups: []
   stickyNotes: []
   edges:
@@ -141,7 +166,103 @@ MonoBehaviour:
       itemIsRearrangable: 0
       isAddItem: 0
   - outputPort:
+      nodeGuid: 3aaefb8d916cb2e40ade14666d638793
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: 0ab1ac1ef2eeee4439e880dbf70b1a45
+      fieldName: Input
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: dae78b12df33df64b887d4c1e8b1a2b3
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: e6aad6423113b7847a36651b6cbbcde3
+      fieldName: Points
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 31d63b2c051d9094cb221d26af18f9fc
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: e6aad6423113b7847a36651b6cbbcde3
+      fieldName: Position
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: f67da4ae168b9b041a98d6982d919851
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: e6aad6423113b7847a36651b6cbbcde3
+      fieldName: Rotation
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 3c9a6e9cd1bbaf749ad25bdd3175b5e4
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: e6aad6423113b7847a36651b6cbbcde3
+      fieldName: Scale
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: c9d9a915a44a3cc419e43046de18f96e
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: 8bb181bd2da19694cb6fafcea0492b97
+      fieldName: Texture
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: e6aad6423113b7847a36651b6cbbcde3
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: 8bb181bd2da19694cb6fafcea0492b97
+      fieldName: Points
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
       nodeGuid: 4b98bb8e9b5374549ae7ec93033faa0f
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: d1572a5d80236284caae03e50bb8b1b6
+      fieldName: Input
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: d1572a5d80236284caae03e50bb8b1b6
       fieldName: Output
       listIndex: -1
       itemIsRearrangable: 0
@@ -153,14 +274,218 @@ MonoBehaviour:
       itemIsRearrangable: 1
       isAddItem: 0
   - outputPort:
-      nodeGuid: 3aaefb8d916cb2e40ade14666d638793
+      nodeGuid: ca2a4cc3a5d5f2e438c6f0d8e884408b
       fieldName: Output
       listIndex: -1
       itemIsRearrangable: 0
       isAddItem: 0
     inputPort:
-      nodeGuid: 0ab1ac1ef2eeee4439e880dbf70b1a45
+      nodeGuid: 89e70698e6d4bea4e813bfa772e328d3
       fieldName: Input
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: ca2a4cc3a5d5f2e438c6f0d8e884408b
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: 2d46b1387aae58044b6d239df1e2b86f
+      fieldName: Input
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 2d46b1387aae58044b6d239df1e2b86f
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: 59a6c2aeb2c0f814da2d5121554cfbce
+      fieldName: Input
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 59a6c2aeb2c0f814da2d5121554cfbce
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: 94fbe2718528bb742b9d23cacf6b348e
+      fieldName: Input
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 8bb181bd2da19694cb6fafcea0492b97
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: 5b5219416776f044594b71a31f434e22
+      fieldName: Input
+      listIndex: 0
+      itemIsRearrangable: 1
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 94fbe2718528bb742b9d23cacf6b348e
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: a0b3f054d1ba4584db8bae52f3eeb7a0
+      fieldName: Input
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: a0b3f054d1ba4584db8bae52f3eeb7a0
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: 5b5219416776f044594b71a31f434e22
+      fieldName: Input
+      listIndex: 1
+      itemIsRearrangable: 1
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 2b41fe6da488b5041a85d57e27c120de
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: 86971defb2aeb2c4f975726102e365ed
+      fieldName: Input
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 2b41fe6da488b5041a85d57e27c120de
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: 6f12f5b6fc5a13b47828bdafdb34b76d
+      fieldName: Input
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 2b41fe6da488b5041a85d57e27c120de
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: 538d091c7c088344bb0d8d21687071a9
+      fieldName: Input
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 2b41fe6da488b5041a85d57e27c120de
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: bf1d228defcf7084da593de6caa95f02
+      fieldName: Input
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 5b5219416776f044594b71a31f434e22
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: 7cc6c3b2eff0bfa41963003037a31f63
+      fieldName: Input
+      listIndex: 0
+      itemIsRearrangable: 1
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 20394e3cedba5d5489a9a268252da715
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: 7cc6c3b2eff0bfa41963003037a31f63
+      fieldName: Input
+      listIndex: 1
+      itemIsRearrangable: 1
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 7cc6c3b2eff0bfa41963003037a31f63
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: 2b41fe6da488b5041a85d57e27c120de
+      fieldName: Input
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 86971defb2aeb2c4f975726102e365ed
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: b99e751160078a84ea4fcebe41544ed6
+      fieldName: Density
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 6f12f5b6fc5a13b47828bdafdb34b76d
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: b492733902a3aef4f889b3c880e876b0
+      fieldName: Density
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 538d091c7c088344bb0d8d21687071a9
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: 70803f9af931103498b6b081d4d94795
+      fieldName: Density
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: bf1d228defcf7084da593de6caa95f02
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: 5e73fe6f2d9fa1046902ba026841b119
+      fieldName: Density
       listIndex: -1
       itemIsRearrangable: 0
       isAddItem: 0
@@ -174,7 +499,7 @@ MonoBehaviour:
         guid: e0d65a6f6a539da4584403ab8b950966
         name: HeightOutputNode
         expanded: 0
-        position: {x: 874.12885, y: 380}
+        position: {x: 758.50165, y: 380}
         previewPort:
           nodeGuid: 
           fieldName: 
@@ -258,7 +583,7 @@ MonoBehaviour:
           itemIsRearrangable: 0
           isAddItem: 0
         isValid: 1
-        Range: {x: 0, y: 1}
+        Range: {x: 0, y: 0.7584543}
         BlendFactor: 0.1
     - rid: 8515386966036447317
       type: {class: SimplexNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
@@ -351,3 +676,466 @@ MonoBehaviour:
         Lacunarity: 2
         Persistence: 0.5
         RidgeMode: 0
+    - rid: 8515386983025213505
+      type: {class: JitterPointsNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: e6aad6423113b7847a36651b6cbbcde3
+        name: JitterPointsNode
+        expanded: 1
+        position: {x: -384.00006, y: 1265.3733}
+        previewPort:
+          nodeGuid: e6aad6423113b7847a36651b6cbbcde3
+          fieldName: Output
+          listIndex: -1
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+    - rid: 8515386983025213506
+      type: {class: GridPointsNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: dae78b12df33df64b887d4c1e8b1a2b3
+        name: GridPointsNode
+        expanded: 1
+        position: {x: -774.5118, y: 1281.3334}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        GridSize: 5000
+    - rid: 8515386983025213508
+      type: {class: SimplexNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: 31d63b2c051d9094cb221d26af18f9fc
+        name: SimplexNoiseNode
+        expanded: 1
+        position: {x: -774.6666, y: 1440}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        NoiseType: 1
+        MinMaxHeight: {x: 0, y: 400}
+        TileSize: 1000
+        Octaves: 1
+        Rotation: {x: 0, y: 0, z: 0}
+        Lacunarity: 2
+        Persistence: 0.5
+        RidgeMode: 0
+    - rid: 8515386983025213509
+      type: {class: SimplexNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: f67da4ae168b9b041a98d6982d919851
+        name: SimplexNoiseNode
+        expanded: 1
+        position: {x: -774.6666, y: 1726.4696}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        NoiseType: 1
+        MinMaxHeight: {x: 0, y: 360}
+        TileSize: 250
+        Octaves: 1
+        Rotation: {x: 0, y: 0, z: 0}
+        Lacunarity: 2
+        Persistence: 0.5
+        RidgeMode: 0
+    - rid: 8515386983025213510
+      type: {class: SimplexNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: 3c9a6e9cd1bbaf749ad25bdd3175b5e4
+        name: SimplexNoiseNode
+        expanded: 1
+        position: {x: -785.3333, y: 2047.4337}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        NoiseType: 1
+        MinMaxHeight: {x: 0.8, y: 1.2}
+        TileSize: 125
+        Octaves: 1
+        Rotation: {x: 0, y: 0, z: 0}
+        Lacunarity: 2
+        Persistence: 0.5
+        RidgeMode: 0
+    - rid: 8515386983025213511
+      type: {class: PointsToHeight, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: 8bb181bd2da19694cb6fafcea0492b97
+        name: PointsToHeight
+        expanded: 1
+        position: {x: -69.973495, y: 1265.3334}
+        previewPort:
+          nodeGuid: 8bb181bd2da19694cb6fafcea0492b97
+          fieldName: Output
+          listIndex: -1
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        Size: 1000
+        AffectedByScale: 1
+        AffectedByRotation: 1
+        TextureHeightAffectedByScale: 0
+        FallofDistance: 1
+    - rid: 8515386983025213512
+      type: {class: ShapesNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: c9d9a915a44a3cc419e43046de18f96e
+        name: ShapesNode
+        expanded: 1
+        position: {x: -383.99997, y: 1692}
+        previewPort:
+          nodeGuid: c9d9a915a44a3cc419e43046de18f96e
+          fieldName: Output
+          listIndex: -1
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        Shape: 0
+        MinMaxHeight: {x: 0, y: 1}
+        Origin: {x: 0, y: 0}
+        YRotation: 0
+        Size: 2000
+    - rid: 8515386983025213513
+      type: {class: CurveNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: d1572a5d80236284caae03e50bb8b1b6
+        name: CurveNode
+        expanded: 1
+        position: {x: 254.00005, y: 1031.3334}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        Function:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        GlobalCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 100
+            value: 100
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        curveMode: 0
+    - rid: 8515386984576057344
+      type: {class: LocalOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: 89e70698e6d4bea4e813bfa772e328d3
+        name: LocalOutputNode
+        expanded: 0
+        position: {x: 758.00006, y: 499.33334}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        InputName: Height
+    - rid: 8515386984576057346
+      type: {class: GetSlopeNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: 2d46b1387aae58044b6d239df1e2b86f
+        name: GetSlopeNode
+        expanded: 1
+        position: {x: 758, y: 593.3333}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        FeatureMode: 0
+    - rid: 8515386984576057347
+      type: {class: LocalOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: 59a6c2aeb2c0f814da2d5121554cfbce
+        name: LocalOutputNode
+        expanded: 0
+        position: {x: 1020.60333, y: 593.3333}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        InputName: Slope
+    - rid: 8515386984576057348
+      type: {class: LocalInputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: 94fbe2718528bb742b9d23cacf6b348e
+        name: LocalInputNode
+        expanded: 0
+        position: {x: -88.40286, y: 1712.6666}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+    - rid: 8515386984576057349
+      type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: 5b5219416776f044594b71a31f434e22
+        name: CombineNode
+        expanded: 1
+        position: {x: 287.9165, y: 1265.3334}
+        previewPort:
+          nodeGuid: 5b5219416776f044594b71a31f434e22
+          fieldName: Output
+          listIndex: -1
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        CalculateWeights: 0
+        BlendFactor: 10
+        operation: 2
+    - rid: 8515386984576057350
+      type: {class: SelectMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: a0b3f054d1ba4584db8bae52f3eeb7a0
+        name: SelectMaskNode
+        expanded: 1
+        position: {x: 51.18092, y: 1712.5217}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        Range: {x: 0, y: 0.25}
+        BlendFactor: 0.1
+    - rid: 8515386984576057354
+      type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: b99e751160078a84ea4fcebe41544ed6
+        name: AssetOutputNode
+        expanded: 1
+        position: {x: 1546.0751, y: 1485.3334}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        Asset: {fileID: 11400000, guid: 9416192b0b35cdc42b0f610571a59db6, type: 2}
+        <action>k__BackingField: 0
+    - rid: 8515386986210263106
+      type: {class: SelectMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: 86971defb2aeb2c4f975726102e365ed
+        name: SelectMaskNode
+        expanded: 1
+        position: {x: 1219.8406, y: 1485.3334}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        Range: {x: 0.08, y: 0.2}
+        BlendFactor: 0.1
+    - rid: 8515386986210263107
+      type: {class: SelectMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: 6f12f5b6fc5a13b47828bdafdb34b76d
+        name: SelectMaskNode
+        expanded: 1
+        position: {x: 1219.8406, y: 1667.3334}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        Range: {x: 0.3, y: 0.4}
+        BlendFactor: 0.1
+    - rid: 8515386986210263108
+      type: {class: SelectMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: 538d091c7c088344bb0d8d21687071a9
+        name: SelectMaskNode
+        expanded: 1
+        position: {x: 1219.8406, y: 1840.6667}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        Range: {x: 0.5, y: 0.6}
+        BlendFactor: 0.01
+    - rid: 8515386986210263109
+      type: {class: SelectMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: bf1d228defcf7084da593de6caa95f02
+        name: SelectMaskNode
+        expanded: 1
+        position: {x: 1219.8406, y: 2015.3333}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        Range: {x: 0.7, y: 0.8}
+        BlendFactor: 0.01
+    - rid: 8515386986210263110
+      type: {class: NormalizeNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: 2b41fe6da488b5041a85d57e27c120de
+        name: NormalizeNode
+        expanded: 1
+        position: {x: 901.3334, y: 1662.6666}
+        previewPort:
+          nodeGuid: 2b41fe6da488b5041a85d57e27c120de
+          fieldName: Output
+          listIndex: -1
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+    - rid: 8515386986210263111
+      type: {class: RandomNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: 20394e3cedba5d5489a9a268252da715
+        name: RandomNoiseNode
+        expanded: 1
+        position: {x: 287.3333, y: 1823.8102}
+        previewPort:
+          nodeGuid: 20394e3cedba5d5489a9a268252da715
+          fieldName: Output
+          listIndex: -1
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        MinMaxHeight: {x: 0, y: 1}
+        Size: 20
+    - rid: 8515386986210263112
+      type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: 7cc6c3b2eff0bfa41963003037a31f63
+        name: CombineNode
+        expanded: 1
+        position: {x: 614.495, y: 1567.9999}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        CalculateWeights: 0
+        BlendFactor: 10
+        operation: 2
+    - rid: 8515386986210263113
+      type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: b492733902a3aef4f889b3c880e876b0
+        name: AssetOutputNode
+        expanded: 1
+        position: {x: 1546, y: 1667.3335}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        Asset: {fileID: 11400000, guid: 590b0fb992ee96741b9e867def96b4d6, type: 2}
+        <action>k__BackingField: 0
+    - rid: 8515386986210263114
+      type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: 70803f9af931103498b6b081d4d94795
+        name: AssetOutputNode
+        expanded: 1
+        position: {x: 1546, y: 1840.6666}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        Asset: {fileID: 11400000, guid: ee75df2d359ac4049aa0bece6b82d6ee, type: 2}
+        <action>k__BackingField: 0
+    - rid: 8515386986210263115
+      type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: 5e73fe6f2d9fa1046902ba026841b119
+        name: AssetOutputNode
+        expanded: 1
+        position: {x: 1532.6666, y: 2018}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        Asset: {fileID: 11400000, guid: 9d661fe8c3b8f2f4c9a2d259f335063f, type: 2}
+        <action>k__BackingField: 0

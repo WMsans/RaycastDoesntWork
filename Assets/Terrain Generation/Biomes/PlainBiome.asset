@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PlainBiome
   m_EditorClassIdentifier: 
   AutoUpdate: 1
-  position: {x: -313.33334, y: 269.33334}
-  scale: {x: 0.8695652, y: 0.8695652}
+  position: {x: 208.66667, y: 244.66667}
+  scale: {x: 0.43232757, y: 0.43232757}
   output:
     rid: 8515386966036447297
   nodes:
@@ -499,7 +499,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        curveMode: 1
+        curveMode: 0
     - rid: 8515386966036447309
       type: {class: PerlinNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:

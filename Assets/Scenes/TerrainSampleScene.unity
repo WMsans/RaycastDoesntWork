@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
-  m_FogDensity: 0.01
+  m_Fog: 1
+  m_FogColor: {r: 0.19340603, g: 0.7432913, b: 0.7987421, a: 1}
+  m_FogMode: 2
+  m_FogDensity: 0.001
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 923086224}
   - component: {fileID: 923086223}
   - component: {fileID: 923086226}
+  - component: {fileID: 923086227}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -358,7 +359,7 @@ Transform:
   m_GameObject: {fileID: 923086222}
   serializedVersion: 2
   m_LocalRotation: {x: -0.06409692, y: 0, z: 0, w: 0.9979437}
-  m_LocalPosition: {x: -20.4, y: 41.3, z: -10}
+  m_LocalPosition: {x: -195, y: 41.3, z: 119}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -408,6 +409,22 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &923086227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923086222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b5c09afa7bd174d8a9581c7c5363b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 50
+  fastMoveSpeed: 100
+  verticalSpeed: 50
+  lookSensitivity: 0.1
 --- !u!1 &947818963
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,7 +462,7 @@ MonoBehaviour:
     Resolution: 255
     CustomSplatMapResolution: 0
     _textureResolution: 255
-    MeshScale: 1000
+    MeshScale: 500
     meshType: 0
     generationMode: 1
     CoreGridSpacing: 6
@@ -556,7 +573,7 @@ MonoBehaviour:
         DisposeAfterSeconds: 5
         ChunkRequests: []
         GenerationCalls: []
-        CompletedInitalization: 0
+        CompletedInitalization: 1
         DrawChunks: 0
         DrawDistances: 0
 --- !u!4 &947818965
@@ -568,7 +585,7 @@ Transform:
   m_GameObject: {fileID: 947818963}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -220, y: 0, z: 184}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -707,7 +724,7 @@ Transform:
   m_GameObject: {fileID: 1353347507}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.217978, y: 50, z: 57.26907}
+  m_LocalPosition: {x: 69.9, y: 25.1, z: -70.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

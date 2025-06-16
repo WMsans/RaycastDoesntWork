@@ -23,6 +23,15 @@ MonoBehaviour:
       isFolder: 0
       isAsset: 1
       _id: 1050874333
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-3-9416192b0b35cdc42b0f610571a59db6-11400000-0
+      _typeString: sapra.InfiniteLands.VegetationAsset, sapra.InfiniteLands, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 11400000, guid: 9416192b0b35cdc42b0f610571a59db6, type: 2}
+      isSceneGameObject: 0
+      isFolder: 0
+      isAsset: 1
+      _id: 1063769614
     name: Page 1
     _id: 1059710427
   - items: []

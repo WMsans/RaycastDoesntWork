@@ -40,7 +40,7 @@ public class NormalCharacterController : BaseCharacterController
     private bool _jumpedThisFrame = false;
     private float _timeSinceJumpRequested = Mathf.Infinity;
     private float _timeSinceLastAbleToJump = 0f;
-    private bool _doubleJumpConsumed = false;
+    // private bool _doubleJumpConsumed = false;
     private bool _canWallJump = false;
     private Vector3 _wallJumpNormal;
     private Vector3 _internalVelocityAdd = Vector3.zero;
@@ -205,7 +205,7 @@ public class NormalCharacterController : BaseCharacterController
                 // If we're on a ground surface, reset jumping values
                 if (!_jumpedThisFrame)
                 {
-                    _doubleJumpConsumed = false;
+                    // _doubleJumpConsumed = false;
                     _jumpConsumed = false;
                 }
                 _timeSinceLastAbleToJump = 0f;

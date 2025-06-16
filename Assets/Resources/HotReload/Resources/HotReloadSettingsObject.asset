@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adb9c12a8c6c949f7af83a3d238359d0, type: 3}
-  m_Name: vFolders Data
+  m_Script: {fileID: 11500000, guid: 324c6fd3c103e0f418eb4b98c46bf63c, type: 3}
+  m_Name: HotReloadSettingsObject
   m_EditorClassIdentifier: 
-  folderDatas_byGuid:
-    keys: []
-    values: []
-  bookmarks:
-  - guid: 0ca5e81f95238a344b806d9cc9d04415
-  - guid: 3ba259a035ce49d4abf11f7e165d7073
-  - guid: 7b896c442ffbe4a81ab737643fcf2fc4
+  IncludeInBuild: 1
+  AllowAndroidAppToMakeHttpRequests: 1
+  PromptsPrefab: {fileID: 4967086677379066170, guid: 0dc8d7047b14c44b7970c5d35665dbe1, type: 3}

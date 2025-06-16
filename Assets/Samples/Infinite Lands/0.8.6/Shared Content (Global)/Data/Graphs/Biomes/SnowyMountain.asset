@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SnowyMountain
   m_EditorClassIdentifier: 
   AutoUpdate: 0
-  position: {x: 902, y: 172.66667}
-  scale: {x: 0.57175326, y: 0.57175326}
+  position: {x: 1196, y: -554.6667}
+  scale: {x: 0.65751624, y: 0.65751624}
   output:
     rid: 7932463566981955653
   nodes:
@@ -1333,7 +1333,7 @@ MonoBehaviour:
         guid: e482640cc09bf8d4686803de41da92a6
         name: SelectMaskNode
         expanded: 1
-        position: {x: -1782, y: 1245}
+        position: {x: -1763.3331, y: 1389.3334}
         previewPort:
           nodeGuid: e482640cc09bf8d4686803de41da92a6
           fieldName: Output
@@ -1632,7 +1632,7 @@ MonoBehaviour:
         guid: 6bbd694b8de3e8f40bf55b2db8a85f3e
         name: SimplexNoiseNode
         expanded: 1
-        position: {x: -2451, y: 998}
+        position: {x: -2453.333, y: 998}
         previewPort:
           nodeGuid: 
           fieldName: 

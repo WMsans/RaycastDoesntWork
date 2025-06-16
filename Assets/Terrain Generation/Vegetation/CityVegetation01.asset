@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c0eef85b7bf50a4ca45eddcaeaf22bc, type: 3}
+  m_Name: CityVegetation01
+  m_EditorClassIdentifier: 
+  skipRendering: 0
+  spawnMode: 0
+  GenerateColliders: 1
+  ColliderObject: {fileID: 29138489412221081, guid: 102f7e4b9a9e8c146b84f2bdbc94b69d, type: 3}
+  LodGroups: {fileID: 0}
+  LOD:
+  - mesh: {fileID: 19178292735365542, guid: 61b51620960ade3479a0da3526182658, type: 3}
+    materials:
+    - {fileID: 2100000, guid: 1d6d9223de0666540bbdb593c42f73f9, type: 2}
+    - {fileID: 2100000, guid: dcf995358fdc2e143a38a14926eb73c6, type: 2}
+    - {fileID: 2100000, guid: 0d40f327d63699246a4b74676c56750d, type: 2}
+    - {fileID: 2100000, guid: 16815cb3a908bdb45aa319593f14a00b, type: 2}
+  HighLodDistance: 1000
+  CrossFadeLODDithering: 1
+  InstanceObject: {fileID: 0}
+  Materials: []
+  ViewDistance: 1000
+  DistanceBetweenItems: 45
+  PositionRandomness: 0
+  VerticalPosition: -5
+  AlignToGround: 1
+  HeightVariation: 1
+  SimplexNoiseSize: 1
+  DensityAffectsHeight: 0
+  MinimumScale: 1
+  MaximumScale: 1
+  HalfInstancesAtDistance: 0
+  HalfInstancesDistance: 30
+  CastShadows: 0
+  ShadowsLODOffset: 0
+  _shadowDistance: 100
+  HowToSampleColor: 0
+  SamplingRandomness: 0
+  RemoveAtTextures: []
+  DrawDistances: 0
+  drawBoundingBox: 0
