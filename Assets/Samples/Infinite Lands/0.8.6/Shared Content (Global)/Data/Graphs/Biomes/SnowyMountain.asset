@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SnowyMountain
   m_EditorClassIdentifier: 
   AutoUpdate: 0
-  position: {x: 824.6667, y: -126.666664}
-  scale: {x: 0.2842624, y: 0.2842624}
+  position: {x: 902, y: 172.66667}
+  scale: {x: 0.57175326, y: 0.57175326}
   output:
     rid: 7932463566981955653
   nodes:
@@ -95,7 +95,6 @@ MonoBehaviour:
     - 87c31ba035e25dc44bb0a2139fb37ee3
     - 45e4ecfe0aac07248b34adcbcd40dbc0
     - 4bb2f687cd3fd0d4d88b477f8608962a
-    - 0e529a5bbb3d1f04f92fe7ada6dcf95c
     - 7b5445aec37b9964290c5700f8175035
     - f1914895c5aedee479c06e4749557b63
     - 83e7b617b574a9744b1f815a8457946c
@@ -1545,7 +1544,7 @@ MonoBehaviour:
         guid: 0e529a5bbb3d1f04f92fe7ada6dcf95c
         name: SimplexNoiseNode
         expanded: 1
-        position: {x: -2454.522, y: -429.68222}
+        position: {x: -2377.2732, y: -533.99994}
         previewPort:
           nodeGuid: 
           fieldName: 
@@ -1847,7 +1846,7 @@ MonoBehaviour:
         guid: 652f4a2dd38a4d6438d308b5e2bbb143
         name: ApplyMaskNode
         expanded: 1
-        position: {x: 127.99996, y: -41.00003}
+        position: {x: 139.50002, y: -33.33341}
         previewPort:
           nodeGuid: 
           fieldName: 

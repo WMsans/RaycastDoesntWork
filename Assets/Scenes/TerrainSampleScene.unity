@@ -459,6 +459,7 @@ MonoBehaviour:
     BaseTransforms: []
     AllCameras:
     - {fileID: 923086224}
+    - {fileID: 0}
     AllTransforms:
     - {fileID: 1353347512}
   GenerationSettings:

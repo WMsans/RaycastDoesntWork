@@ -57,12 +57,13 @@ Material:
     - Boolean_a9df790d218641baba0114eca691b226: 1
     - ENUM_33717FA208404E76B3A37D5A9B225D0C: 0
     - ENUM_33AFC9722114471784288762972196A0: 0
-    - Vector1_b83bfac42dd9445c91d4c92c29113349: 0.95
+    - Vector1_b83bfac42dd9445c91d4c92c29113349: 0.9
+    - _DifferDistance: 1000
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
     - Color_4e5f204fd5f64ed299f6b622e64c15a9: {r: 0.05929919, g: 0, b: 0.18867922, a: 0}
     - Color_5741e0a7b6e24d9881c17eadeabc70c3: {r: 0, g: 1.2256346, b: 2, a: 0}
-    - Vector2_fb6a8e1a90ea4826b5f00fdfee1c4bbc: {r: 300, g: 300, b: 0, a: 0}
+    - Vector2_fb6a8e1a90ea4826b5f00fdfee1c4bbc: {r: 150, g: 150, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
