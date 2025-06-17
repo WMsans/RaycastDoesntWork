@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CityVegetation02
   m_EditorClassIdentifier: 
   skipRendering: 0
-  spawnMode: 0
+  spawnMode: 1
   GenerateColliders: 1
   ColliderObject: {fileID: 7884710657276134403, guid: d0c84dd0b9bb2024195b7f643893f105, type: 3}
   LodGroups: {fileID: 0}
@@ -26,7 +26,7 @@ MonoBehaviour:
     - {fileID: 2100000, guid: 0d40f327d63699246a4b74676c56750d, type: 2}
   HighLodDistance: 1000
   CrossFadeLODDithering: 1
-  InstanceObject: {fileID: 0}
+  InstanceObject: {fileID: 1901537234494504, guid: d0c84dd0b9bb2024195b7f643893f105, type: 3}
   Materials: []
   ViewDistance: 1000
   DistanceBetweenItems: 45
