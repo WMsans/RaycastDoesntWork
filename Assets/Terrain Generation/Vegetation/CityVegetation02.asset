@@ -28,7 +28,7 @@ MonoBehaviour:
   CrossFadeLODDithering: 1
   InstanceObject: {fileID: 1901537234494504, guid: d0c84dd0b9bb2024195b7f643893f105, type: 3}
   Materials: []
-  ViewDistance: 1000
+  ViewDistance: 500
   DistanceBetweenItems: 45
   PositionRandomness: 0
   VerticalPosition: -5

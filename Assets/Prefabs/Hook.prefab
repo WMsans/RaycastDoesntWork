@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9059014488204824255}
   - component: {fileID: 7524801117001813244}
   - component: {fileID: 5616958763957794827}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1584638476954818657}
   - component: {fileID: 6143997885054996375}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 7312059324984239989}
   - component: {fileID: 1762216009518495409}
   - component: {fileID: 109847708487389605}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +305,7 @@ MonoBehaviour:
   hookDistance: 100
   hookColliderLayers:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 448
   hookRadius: 0.3
   hookLineRenderer: {fileID: 6143997885054996375}
 --- !u!135 &109847708487389605
@@ -338,7 +338,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7098268196351103247}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
