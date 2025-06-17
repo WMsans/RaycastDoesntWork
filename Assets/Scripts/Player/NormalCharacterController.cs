@@ -113,7 +113,6 @@ public class NormalCharacterController : BaseCharacterController
         }
         else
         {
-            // Add move input
             if (_moveInputVector.sqrMagnitude > 0f)
             {
                 targetMovementVelocity = _moveInputVector * Mathf.Max(MaxAirMoveSpeed, currentVelocity.magnitude);
@@ -126,7 +125,7 @@ public class NormalCharacterController : BaseCharacterController
                 }
 
                 Vector3 velocityDiff = Vector3.ProjectOnPlane(targetMovementVelocity - currentVelocity, Gravity);
-                currentVelocity += velocityDiff * AirAccelerationSpeed * deltaTime;
+                currentVelocity += velocityDiff * (AirAccelerationSpeed * deltaTime);
             }
 
             // Gravity
