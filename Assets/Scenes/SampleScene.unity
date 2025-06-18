@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 135100b33dbac2945a0259302716f7cc, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -297,15 +297,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4353896453404184, guid: c75e91cf060bbf04e89204fa400606df, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -147.4
       objectReference: {fileID: 0}
     - target: {fileID: 4353896453404184, guid: c75e91cf060bbf04e89204fa400606df, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 115.35
+      value: 115.1
       objectReference: {fileID: 0}
     - target: {fileID: 4353896453404184, guid: c75e91cf060bbf04e89204fa400606df, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -72.14
+      value: -138.1
       objectReference: {fileID: 0}
     - target: {fileID: 4353896453404184, guid: c75e91cf060bbf04e89204fa400606df, type: 3}
       propertyPath: m_LocalRotation.w
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18966dabdb13f194f878a9be170d5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxStableMoveSpeed: 10
+  MaxStableMoveSpeed: 15
   StableMovementSharpness: 15
   OrientationSharpness: 10
   MaxAirMoveSpeed: 10
@@ -469,7 +469,8 @@ MonoBehaviour:
   JumpSpeed: 10
   JumpPreGroundingGraceTime: 0.5
   JumpPostGroundingGraceTime: 0.3
-  BurstSpeed: 50
+  BurstSpeed: 20
+  BurstAcceleration: 2
   SustainedBurstDuration: 1
   Gravity: {x: 0, y: -30, z: 0}
   OrientTowardsGravity: 1
@@ -491,6 +492,7 @@ MonoBehaviour:
   BurstReelInSpeed: 25
   RedirectSpeed: 12
   BurstSpeed: 20
+  BurstAcceleration: 2
   SustainedBurstDuration: 0.4
   Gravity: {x: 0, y: -25, z: 0}
   OrientationSharpness: 12

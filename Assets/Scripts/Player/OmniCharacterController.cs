@@ -11,7 +11,8 @@ public class OmniCharacterController : BaseCharacterController
     public float RedirectSpeed = 12f;
     
     [Header("Burst")]
-    public float BurstSpeed = 20f;
+    public float BurstSpeed = 50f;
+    public float BurstAcceleration = 10f;
     public float SustainedBurstDuration = 0.4f;
 
     [Header("Misc")]
@@ -25,6 +26,7 @@ public class OmniCharacterController : BaseCharacterController
     
     // Burst state
     private bool _isBursting = false;
+    private bool _burstDown = false;
     private float _burstSustainTime = 0f;
 
     // Inputs
@@ -66,19 +68,6 @@ public class OmniCharacterController : BaseCharacterController
             currentVelocity += _internalVelocityAdd;
             _internalVelocityAdd = Vector3.zero;
         }
-        
-        // Handle Sustained Burst
-        if (_isBursting)
-        {
-            // Add burst acceleration in the camera's forward direction
-            currentVelocity += Camera.main.transform.forward * BurstSpeed * deltaTime;
-
-            // Stop bursting if the dash button is released or the duration expires
-            if (!_dashHold || Time.time - _burstSustainTime >= SustainedBurstDuration)
-            {
-                _isBursting = false;
-            }
-        }
 
         if (!_isReeling)
         {
@@ -98,7 +87,18 @@ public class OmniCharacterController : BaseCharacterController
 
         if (_isBursting)
         {
-            currentVelocity += vectorToHook.normalized * (BurstReelInSpeed * deltaTime);
+            if (_burstDown)
+            {
+                _burstDown = false;
+                currentVelocity += Camera.main.transform.forward * BurstSpeed;
+            }
+            currentVelocity += Camera.main.transform.forward * BurstAcceleration;
+
+            // Stop bursting if the button is released or the duration expires
+            if ((!_dashHold && Time.time - _burstSustainTime > 0.1f) || Time.time - _burstSustainTime >= SustainedBurstDuration)
+            {
+                _isBursting = false;
+            }
 
             // The rope must still act as a constraint to maintain the swing's arc.
             float futureDistance = Vector3.Distance(Motor.TransientPosition + currentVelocity * deltaTime, _hookPoint);

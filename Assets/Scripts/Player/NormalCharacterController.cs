@@ -23,10 +23,12 @@ public class NormalCharacterController : BaseCharacterController
 
     [Header("Burst")]
     public float BurstSpeed = 20f;
+    public float BurstAcceleration = 10f;
     public float SustainedBurstDuration = 0.4f; // How long the burst can be sustained
     
     // Burst state variables
     private bool _isBursting = false;
+    private bool _burstDown = false;
     private float _burstSustainTime = 0f;
 
     [Header("Misc")]
@@ -84,8 +86,13 @@ public class NormalCharacterController : BaseCharacterController
         // Handle Sustained Burst
         if (_isBursting)
         {
+            if (_burstDown)
+            {
+                _burstDown = false;
+                currentVelocity += Camera.main.transform.forward * BurstSpeed;
+            }
             // Set velocity to burst in the look direction
-            currentVelocity = Camera.main.transform.forward * BurstSpeed;
+            currentVelocity += Camera.main.transform.forward * BurstAcceleration;
 
             // Stop bursting if the button is released or the duration expires
             if ((!_dashHold && Time.time - _burstSustainTime > 0.1f) || Time.time - _burstSustainTime >= SustainedBurstDuration)
@@ -276,7 +283,8 @@ public class NormalCharacterController : BaseCharacterController
         {
             _isBursting = true;
             _burstSustainTime = Time.time;
-            _jumpRequested = false; // Cancel any pending jump request
+            _jumpRequested = false; 
+            _burstDown = true;
         }
 
         // Crouching input
