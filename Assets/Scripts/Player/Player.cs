@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public Transform CameraFollowPoint;
     public CharacterControllerStateMachine Character;
     public HookController HookController;
+    public WeaponController WeaponController; // Reference to the weapon controller
 
     private InputSystem_Actions inputActions; // Reference to the generated input actions class
 
@@ -31,12 +32,6 @@ public class Player : MonoBehaviour
         // Read value for Look action (continuous)
         inputActions.Player.Look.performed += ctx => lookInput = ctx.ReadValue<Vector2>();
         inputActions.Player.Look.canceled += ctx => lookInput = Vector2.zero;
-
-        // --- NOTE: You will need to create a "Zoom" action for the scroll wheel ---
-        // For example, create a new Action named "Zoom" of type "Value" with a "Vector2" control type.
-        // Then bind the "Scroll [Mouse]" path to it.
-        // inputActions.Player.Zoom.performed += ctx => scrollInput = ctx.ReadValue<Vector2>().y;
-        // inputActions.Player.Zoom.canceled += ctx => scrollInput = 0f;
     }
 
     private void OnEnable()
@@ -63,7 +58,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        // Use the "Attack" action (typically bound to Left Mouse Button) to re-lock the cursor
         if (inputActions.Player.Attack.WasPressedThisFrame())
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -88,12 +82,6 @@ public class Player : MonoBehaviour
             lookInputVector = Vector3.zero;
         }
         
-        // --- NOTE: Camera Zooming ---
-        // The original code used the scroll wheel. The line below is commented out
-        // because your Action Map doesn't have a "Zoom" action yet. Once you add it
-        // (as explained in Awake), you can uncomment this part.
-        // float scrollThisFrame = scrollInput * 0.1f; // Adjust sensitivity as needed
-        
         OrbitCamera.UpdateWithInput(Time.deltaTime, 0f, lookInputVector);
     }
 
@@ -101,20 +89,21 @@ public class Player : MonoBehaviour
     {
         PlayerCharacterInputs characterInputs = new PlayerCharacterInputs();
 
-        // Build the CharacterInputs struct from our stored and direct-read input values
         characterInputs.MoveAxisForward = moveInput.y;
         characterInputs.MoveAxisRight = moveInput.x;
         characterInputs.CameraRotation = OrbitCamera.Transform.rotation;
         
-        // Read button presses directly in the frame they occur
         characterInputs.JumpDown = inputActions.Player.Jump.WasPressedThisFrame();
         characterInputs.JumpHold = inputActions.Player.Jump.IsPressed();
         characterInputs.CrouchDown = inputActions.Player.Crouch.WasPressedThisFrame();
         characterInputs.CrouchUp = inputActions.Player.Crouch.WasReleasedThisFrame();
         characterInputs.CrouchHold = inputActions.Player.Crouch.IsPressed();
+        
+        // Primary Attack Inputs
         characterInputs.AttackDown = inputActions.Player.Attack.WasPressedThisFrame();
         characterInputs.AttackUp = inputActions.Player.Attack.WasReleasedThisFrame();
         characterInputs.AttackHold = inputActions.Player.Attack.IsPressed();
+        
         characterInputs.HookDown = inputActions.Player.Hook.WasPressedThisFrame();
         characterInputs.HookUp = inputActions.Player.Hook.WasReleasedThisFrame();
         characterInputs.HookHold = inputActions.Player.Hook.IsPressed();
@@ -125,12 +114,12 @@ public class Player : MonoBehaviour
         characterInputs.DashUp = inputActions.Player.Dash.WasReleasedThisFrame();
         characterInputs.DashHold = inputActions.Player.Dash.IsPressed();
 
-        // Apply inputs to character
-        Character.SetInputs(ref characterInputs);
-        HookController.SetInputs(ref characterInputs);
+        // Apply inputs to controllers
+        Character?.SetInputs(ref characterInputs);
+        HookController?.SetInputs(ref characterInputs);
+        WeaponController?.SetInputs(ref characterInputs);
     }
 
-    // This struct remains unchanged
     public struct PlayerCharacterInputs
     {
         public float MoveAxisForward;

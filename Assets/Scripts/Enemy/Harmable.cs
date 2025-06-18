@@ -10,6 +10,8 @@ public class Harmable : MonoBehaviour
     [Tooltip("The maximum health of this object.")]
     [SerializeField] private int maxHealth = 100;
 
+    [SerializeField] private bool dieOnDeath = true;
+
     // The current health of the object. Readonly property to prevent outside modification.
     public int CurrentHealth { get; private set; }
 
@@ -72,6 +74,7 @@ public class Harmable : MonoBehaviour
         if (CurrentHealth <= 0)
         {
             OnDeath?.Invoke();
+            if(dieOnDeath) Destroy(gameObject);
         }
     }
 

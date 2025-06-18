@@ -12,6 +12,7 @@ TagManager:
   - Grass
   - Mud
   - Boost
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -119,6 +119,59 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &2462823
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2462824}
+  - component: {fileID: 2462825}
+  m_Layer: 3
+  m_Name: Weapons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2462824
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2462823}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1208883864}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2462825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2462823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d3b847c2c6464196d6e78ecabf35fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slashPrefab: {fileID: 1294101409476956, guid: 231e3be01ac50c047bb16d07fd8d2ba5, type: 3}
+  slashDuration: 0.3
+  damage: 9999
+  attackCooldown: 0.5
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  slashOffset: {x: 0, y: 0, z: 0.9}
+  slashHalfExtents: {x: 1.75, y: 1.5, z: 1.5}
 --- !u!1 &48758399
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +599,7 @@ MonoBehaviour:
   CameraFollowPoint: {fileID: 1395118516}
   Character: {fileID: 1208883867}
   HookController: {fileID: 1208883868}
+  WeaponController: {fileID: 1208883869}
 --- !u!1 &823913180
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,7 +1070,7 @@ GameObject:
   - component: {fileID: 1147514310}
   m_Layer: 7
   m_Name: TestEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1150,6 +1204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  dieOnDeath: 1
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -1172,6 +1227,7 @@ GameObject:
   - component: {fileID: 1208883865}
   - component: {fileID: 1208883867}
   - component: {fileID: 1208883868}
+  - component: {fileID: 1208883869}
   m_Layer: 3
   m_Name: Character
   m_TagString: Untagged
@@ -1194,6 +1250,7 @@ Transform:
   m_Children:
   - {fileID: 823913181}
   - {fileID: 171517663}
+  - {fileID: 2462824}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1208883865
@@ -1294,6 +1351,20 @@ MonoBehaviour:
   omniCCharacterController: {fileID: 171517665}
   normalCharacterController: {fileID: 171517664}
   motor: {fileID: 1208883865}
+--- !u!114 &1208883869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208883860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e39f03966a4247866716dfdd932550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingWeapon: {fileID: 2462825}
+  weaponHoldSocket: {fileID: 2462824}
 --- !u!1 &1395118515
 GameObject:
   m_ObjectHideFlags: 0
