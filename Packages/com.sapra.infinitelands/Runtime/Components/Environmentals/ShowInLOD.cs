@@ -9,11 +9,10 @@ namespace sapra.InfiniteLands{
 
         public IControlTerrain infiniteLands;
         private PointStore store;
-        public override void Awake()
+        public void Awake()
         {
             if(Target != null)
                 Target.SetActive(false);
-            base.Awake();
         }
 
         void OnChunkChanges(CoordinateDataHolder data){

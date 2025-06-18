@@ -55,8 +55,11 @@ namespace sapra.InfiniteLands.Editor
             if(asset.spawnMode == SpawnMode.GPUInstancing){
                 var generateCollidersProperty = serializedObject.FindProperty(nameof(VegetationAsset.GenerateColliders));
                 container.Add(CreateNormal(generateCollidersProperty, RedrawView));
-                if(generateCollidersProperty.boolValue){
+                if (generateCollidersProperty.boolValue)
+                {
                     container.Add(CreateIndented(nameof(VegetationAsset.ColliderObject)));
+                    container.Add(CreateIndented(nameof(VegetationAsset.ColliderMode)));
+                    container.Add(CreateIndented(nameof(VegetationAsset.CollisionDistance)));
                 }
 
                 container.Add(CreateNormal(nameof(VegetationAsset.LodGroups), RedrawView));
@@ -174,6 +177,11 @@ namespace sapra.InfiniteLands.Editor
         private VisualElement Debugging(){
             VisualElement container = new VisualElement();
             container.Add(CreateNormal(nameof(VegetationAsset.DrawDistances)));
+            container.Add(CreateNormal(nameof(VegetationAsset.DrawLODBoundaries)));
+            container.Add(CreateNormal(nameof(VegetationAsset.DrawTransitions)));
+            container.Add(CreateNormal(nameof(VegetationAsset.DrawShadowBoundaries)));
+            container.Add(CreateNormal(nameof(VegetationAsset.DrawItAsSpheres)));
+            container.Add(CreateNormal(nameof(VegetationAsset.DrawSpawnedColliders)));
             container.Add(CreateNormal(nameof(VegetationAsset.drawBoundingBox)));
             return container;
         }

@@ -38,12 +38,27 @@ namespace sapra.InfiniteLands{
             ChunksManager = instancesHolder;
             objectData = asset.GetObjectData();
 
-            CheckUpSize = objectData.loadAllObjects ? settings.ChunkSize : settings.DistanceBetweenItems;
-            VisibleChunks = Mathf.CeilToInt((objectData.loadAllObjects ? settings.ViewDistance : settings.DistanceBetweenItems)/CheckUpSize);
-            this.infiniteLandsController = infiniteLandsController;
+            switch (objectData.ColliderMode)
+            {
+                case IHoldVegetation.ColliderMode.Minimal:
+                    CheckUpSize = settings.DistanceBetweenItems;
+                    VisibleChunks = 1;
+                    FullInstanceMode = false;
+                    break;
+                case IHoldVegetation.ColliderMode.ByDistance:
+                    CheckUpSize = settings.DistanceBetweenItems;
+                    VisibleChunks = Mathf.Max(1, Mathf.CeilToInt(objectData.CollisionDistance / CheckUpSize));
+                    FullInstanceMode = false;
+                    break;
+                case IHoldVegetation.ColliderMode.AllObjects:
+                    CheckUpSize = settings.ChunkSize;
+                    VisibleChunks = Mathf.CeilToInt(settings.ViewDistance / CheckUpSize);
+                    FullInstanceMode = true;
+                    break;
 
+            }
+            this.infiniteLandsController = infiniteLandsController;
             ResizeFactor = CheckUpSize/settings.ChunkSize;
-            FullInstanceMode = objectData.loadAllObjects;
 
             var renderer = infiniteLandsController.GetInternalComponent<VegetationRenderer>();
             var targetParentObject = renderer.GetVegetationParent();

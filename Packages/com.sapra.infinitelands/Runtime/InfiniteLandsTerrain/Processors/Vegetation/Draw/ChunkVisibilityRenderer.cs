@@ -124,7 +124,7 @@ namespace sapra.InfiniteLands{
             if(camera == null)
                 return;
             
-            RuntimeTools.GetFrustrumPlanes(camera, settings.ViewDistance,ref frustrumPlanes);
+            RuntimeTools.GetFrustrumPlanes(camera, settings.ViewDistance, ref frustrumPlanes);
             for(int p = 0; p < frustrumPlanes.Length; p++){
                 frustrumPlanes[p] = TransformPlaneFast(frustrumPlanes[p], infiniteLandsController.localToWorldMatrix); //we need to use the inverse, but is actually doing world to local
             }
@@ -133,7 +133,7 @@ namespace sapra.InfiniteLands{
                 group.Value.Clear();
             }
 
-            Vector3 cameraPosition = camera.transform.position;
+            Vector3 cameraPosition = CamPosition();
             foreach(var chunk in CachedVisibleChunks){
                 var vegetationChunk = chunk.Value;
                 var bufferIndex = vegetationChunk.bufferData;
@@ -148,11 +148,15 @@ namespace sapra.InfiniteLands{
                 list.Add(bufferIndex.chunkIndex);
             }
         }
-        static Comparison<int> compare_int = (a,b) => {
-            if (a < b){
+        private Vector3 CamPosition() => infiniteLandsController.worldToLocalMatrix.MultiplyPoint(camera.transform.position);
+        static Comparison<int> compare_int = (a, b) =>
+        {
+            if (a < b)
+            {
                 return -1;
             }
-            if (a > b){
+            if (a > b)
+            {
                 return 1;
             }
             return 0;
@@ -213,22 +217,43 @@ namespace sapra.InfiniteLands{
             }
         }
 
-        public void OnDrawGizmos(){
+        public void OnDrawGizmos()
+        {
             Gizmos.color = Color.red;
-            if(camera == null)
+            if (camera == null)
                 return;
-            foreach(Vector2Int previousChunkID in TransformInGrid.VisibleChunks){
+
+            List<Bounds> visible = ListPoolLight<Bounds>.Get();
+            List<Bounds> notVisible = ListPoolLight<Bounds>.Get();
+            Vector3 cameraPosition = CamPosition();
+
+            foreach (Vector2Int previousChunkID in TransformInGrid.VisibleChunks)
+            {
                 var chunk = ChunksManager.GetChunk(previousChunkID, out BufferIndex index);
-                if(chunk == null)
+                if (chunk == null)
                     continue;
 
-                bool isVisible = chunk.IsVisible(camera.transform.position, frustrumPlanes);
-                if(isVisible)
-                    Gizmos.color = Color.blue;
-
-                Gizmos.DrawWireCube(chunk.Bounds.center, chunk.Bounds.size);
-
+                bool isVisible = chunk.IsVisible(cameraPosition, frustrumPlanes);
+                if (isVisible)
+                    visible.Add(chunk.Bounds);
+                else
+                    notVisible.Add(chunk.Bounds);
             }
+
+            Gizmos.color = Color.red;
+            foreach (Bounds bnd in notVisible)
+            {
+                Gizmos.DrawWireCube(bnd.center, bnd.size);
+            }
+
+            Gizmos.color = Color.blue;
+            foreach (Bounds bnd in visible)
+            {
+                Gizmos.DrawWireCube(bnd.center, bnd.size);
+            }
+
+            ListPoolLight<Bounds>.Release(visible);
+            ListPoolLight<Bounds>.Release(notVisible);
         }
         #endregion
     }

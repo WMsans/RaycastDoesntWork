@@ -12,6 +12,7 @@ namespace sapra.InfiniteLands{
         public enum AlignmentMode { Up, Terrain, Ground }
         public enum ColorSamplingMode { HeightMapBlend, WeightBlend }
         public enum SpawnMode{GPUInstancing, CPUInstancing}
+        public enum ColliderMode{Minimal, ByDistance, AllObjects}
         public SpawnMode GetSpawningMode();
         
         // Identification
@@ -19,6 +20,7 @@ namespace sapra.InfiniteLands{
 
         public bool SkipRendering();
         public bool DrawBoundingBox();
+        public bool DrawColliderData();
 
         // Object Handling
         public ObjectData GetObjectData();

@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace sapra.InfiniteLands{
     [ExecuteAlways]
@@ -21,7 +24,7 @@ namespace sapra.InfiniteLands{
         [Disabled] public List<ChunkControl> childs = new List<ChunkControl>();
 
         public sealed override void Disable()
-        {               
+        {
             DisableChunk();
             UnsubscribeEvents();
             if(generator != null)
@@ -47,6 +50,9 @@ namespace sapra.InfiniteLands{
         }
         public bool VisibilityCheck(List<Vector3> positions,float GenerationDistance, bool parentDisabled)
         {
+            if (generator == null)
+                return false;
+
             IsVisible = InView(positions, GenerationDistance);
             float distance = DistanceToBounds(positions);
             if (distance < MeshScale / 2 && config.ID.z > 0) //If inside the chunk but can be divided
@@ -104,6 +110,7 @@ namespace sapra.InfiniteLands{
             bool allLoaded = true;
             foreach (ChunkControl chunk in childs)
             {
+                if (chunk == null) continue;
                 allLoaded = chunk.VisibilityCheck(playerPosition, GenDistance, parentDisable) && allLoaded;
             }
 
@@ -236,18 +243,24 @@ namespace sapra.InfiniteLands{
             DrawBound(IsVisible);
         }
 
-        protected void DrawBound(bool visible){
-            if(!ChunkGenerated)
+        protected void DrawBound(bool visible)
+        {
+            if (!ChunkGenerated)
                 return;
 
-            if(visible)
-                Gizmos.color = Color.HSVToRGB(config.ID.z/10.0f, 1f, 1f);
-            else
-                Gizmos.color = new Color(0,0,0,.5f);
+            var color = new Color(0, 0, 0, .5f);
+            if (visible)
+                color = Color.HSVToRGB(config.ID.z / 10.0f, 1f, 1f);
 
+            Gizmos.color = color;
+            GUI.color = color;
             var bounds = chunk.WorldSpaceBounds;
-            var position = Equals(infiniteLands.GetChunkRenderer()) ? transform.parent.position+Vector3.up*bounds.center.y:bounds.center;
+            var position = Equals(infiniteLands.GetChunkRenderer()) ? transform.parent.position + Vector3.up * bounds.center.y : bounds.center;
             Gizmos.DrawWireCube(position, bounds.size);
+#if UNITY_EDITOR
+            Handles.Label(position, config.ID.ToString());
+#endif
+            
         }
 
         #region Methods

@@ -1,3 +1,31 @@
+# [0.8.7] - 2025-06-17
+## Added
+- Core: New debugging options for Vegetation Asset, including labels with better information
+	- DrawLODBoundaries: Draws a circle around the maximum distance where an LOD is active
+	- DrawTransitions: Draws circles where CrossFade transitions happen for LODs, Shadows and Maximum render Distance
+	- DrawShadowBoundaries: Draws a circle where the shadows end
+	- DrawSpawnedColliders:  Draws the place where a collider is spawned, their instanceID and the chunk where it is located
+	- DrawItAsSpheres: Draws all the previous circles as spheres for better 3D 
+- Core: Infinite Visualizer Draw Chunks will also draw their labels
+- Core: Vegetation renderer allows to toggle the option to spawn colliders around the camera
+- Core: Vegetation Asset allows customization of Collider Distance again
+	- Minimal: Only 9 colliders will be generated around the player
+	- By Distance: It will vary the amount according to **Collision Distance**
+	- AllObjects: It will spawn all the colliders that it can for all the objects drawn
+- Graph: Extra synonims into nodes
+
+## Changed
+- Core: Mesh Type configuration moved into the Mesh Maker 
+- Core: More settings into View Settings configuration
+- Documentation: Improved references to the vegetation renderer requirements to work properly
+
+## Fixed
+- Backend: Rotating the terrain will properly handle vegetation rendering
+- Backend: Multiple terrain generators will no longer throw warnings
+- Backend: Having Infinite Lands Terrain in a child will no longer be unresponsive
+- Backend: Not having textures in the biome will no longer throw errors for vegetation
+- Backend: Opening in big mode any window in the editor will no longer throw errors from the cameras
+
 # [0.8.6] - 2025-06-09
 ## Added
 - NEW NODE! Layers Node, allows organizing height maps with a priority ordering

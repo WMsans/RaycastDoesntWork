@@ -38,10 +38,6 @@ namespace sapra.InfiniteLands.UnityTerrain{
             newTerrain.heightmapResolution = (int)TerrainResolution;
 
             WorldFinalData worldFinalData = chunk.GetData<WorldFinalData>();
-
-            Debug.Log(worldFinalData.MinMaxHeight.x);
-            Debug.Log(worldFinalData.MinMaxHeight.y);
-
             newTerrain.size = new Vector3(chunk.meshSettings.MeshScale, worldFinalData.MinMaxHeight.y-worldFinalData.MinMaxHeight.x, chunk.meshSettings.MeshScale);
 
             worldFinalData.AddProcessor(this);

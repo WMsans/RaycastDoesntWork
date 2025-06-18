@@ -13,7 +13,7 @@ namespace sapra.InfiniteLands
             new AnimationCurve(new Keyframe[] { new Keyframe(0, 0, 0, 0), new Keyframe(1, 1, 0, 0) });
         [HideIf(nameof(showBoundedCurve))]
         public AnimationCurve GlobalCurve =
-            new AnimationCurve(new Keyframe[] { new Keyframe(0, 0, 0, 0), new Keyframe(100, 100, 0, 0) });
+            new AnimationCurve(new Keyframe[] { new Keyframe(0, 0, 0.5f, 0.5f), new Keyframe(100, 100, 0.5f, 0.5f) });
 
         public enum CurveMode { Normalized, Global }
         public CurveMode curveMode = CurveMode.Normalized;

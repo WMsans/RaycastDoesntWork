@@ -7,12 +7,6 @@ namespace sapra.InfiniteLands
     [Serializable]
     public struct MeshSettings
     {
-        public enum MeshType
-        {
-            Normal,
-            Decimated
-        };
-
         public enum GenerationMode
         {
             RelativeToWorld,
@@ -27,11 +21,8 @@ namespace sapra.InfiniteLands
         public int TextureResolution => CustomSplatMapResolution ? _textureResolution : Resolution;
         public bool SeparatedBranch => CustomSplatMapResolution && TextureResolution != Resolution;
         [Min(100)] public float MeshScale;
-        public MeshType meshType;
         public GenerationMode generationMode;
-        [ShowIf(nameof(isDecimated))][Min(1)] public int CoreGridSpacing;
-        public int coreGridSpacing => Mathf.CeilToInt(Resolution/(float)Mathf.CeilToInt(Resolution/(float)CoreGridSpacing));
-        [ShowIf(nameof(isDecimated))][Range(0,1)]public float NormalReduceThreshold;
+
         public float ratio => Resolution/MeshScale;
         public static MeshSettings Default => new MeshSettings
         {
@@ -40,12 +31,8 @@ namespace sapra.InfiniteLands
             _textureResolution = 255,
             CustomSplatMapResolution = false,
             MeshScale = 1000,
-            CoreGridSpacing = 6,
-            NormalReduceThreshold = .5f,
-            meshType = MeshType.Normal,
             generationMode = GenerationMode.RelativeToTerrain,
         };
-        private bool isDecimated => meshType == MeshType.Decimated;
         public MeshSettings ModifyResolution(int resolution){
             float initialRatio = ratio;
             this.Resolution = resolution;

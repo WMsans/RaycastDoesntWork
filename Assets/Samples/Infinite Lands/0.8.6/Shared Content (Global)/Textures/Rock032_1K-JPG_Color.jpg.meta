@@ -125,3 +125,10 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 276010
+  packageName: 'Infinite Lands: Node-Based Procedural World Generator'
+  packageVersion: 0.8.7
+  assetPath: Assets/Samples/Infinite Lands/0.8.6/Shared Content (Global)/Textures/Rock032_1K-JPG_Color.jpg
+  uploadId: 765887

@@ -38,12 +38,17 @@ namespace sapra.InfiniteLands{
     {
         [SerializeField] private Transform originReference;
         [SerializeField] private float MaxDistance = 1000;
-        [SerializeField] private Vector3Double CurrentOrigin;
-
         public Action<Vector3Double, Vector3Double> OnOriginMove;
+        public bool GlobalLockX;
+        public bool GlobalLockY;
+        public bool GlobalLockZ;
 
+        [Header("Debug")]
+        [SerializeField] private Vector3Double CurrentOrigin;
         [SerializeField][Range(0,1)] private float ClosenessToEdge;
         [SerializeField] private bool DrawMovementSpace;
+
+        private Vector3 limiter;
 
         // Start is called before the first frame update
         void Start()
@@ -51,6 +56,11 @@ namespace sapra.InfiniteLands{
             transform.position = Vector3.zero;
             if(originReference == null)
                 Debug.LogErrorFormat("Missing {0}, no origin shifts will happen", nameof(originReference));
+
+            limiter = new Vector3(GlobalLockX?1:0, GlobalLockY?1:0, GlobalLockZ?1:0);
+        }
+        private Vector3 Multiply(Vector3 a, Vector3 b){
+            return new Vector3(a.x*b.x, a.y*b.y, a.z*b.z);
         }
 
         // Update is called once per frame
@@ -58,10 +68,11 @@ namespace sapra.InfiniteLands{
         {
             if(originReference == null)
                 return;
-            float distance = Vector3.Distance(originReference.position, Vector3.zero);
+            var limitedPosition = originReference.position-Multiply(limiter,originReference.position);
+            float distance = Vector3.Distance(limitedPosition, Vector3.zero);
             if(distance > MaxDistance){
                 Vector3Double old = CurrentOrigin;
-                CurrentOrigin += originReference.position;
+                CurrentOrigin += limitedPosition;
                 OnOriginMove?.Invoke(CurrentOrigin, old);
             }   
 
@@ -76,10 +87,11 @@ namespace sapra.InfiniteLands{
         private void OnDrawGizmos()
         {
             if(DrawMovementSpace){
+                var limitedPosition = originReference.position-Multiply(limiter,originReference.position);
                 Handles.DrawWireDisc(Vector3.zero,Vector3.up, MaxDistance);
                 Gizmos.color = Color.red;
                 if(originReference != null)
-                    Gizmos.DrawCube(originReference.position, Vector3.one*10);
+                    Gizmos.DrawCube(limitedPosition, Vector3.one*10);
 
             }
         }

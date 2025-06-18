@@ -43,8 +43,8 @@ namespace sapra.InfiniteLands
 
         protected override void Process(BranchData branch)
         {
-            if (MinMaxHeight.x >= MinMaxHeight.y)
-                MinMaxHeight.x = MinMaxHeight.y - 0.1f;
+/*             if (MinMaxHeight.x >= MinMaxHeight.y)
+                MinMaxHeight.x = MinMaxHeight.y - 0.1f; */
             
             GridBranch gridBranch = branch.GetData<GridBranch>();
             GridData gridData = gridBranch.GetGridData();

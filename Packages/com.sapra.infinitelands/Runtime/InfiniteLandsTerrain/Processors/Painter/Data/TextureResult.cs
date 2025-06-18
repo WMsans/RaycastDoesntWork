@@ -8,7 +8,6 @@ namespace sapra.InfiniteLands
     public readonly struct TextureResult{
         private static readonly int 
             splatMapsID = Shader.PropertyToID("_splatMap"),
-            splatMapCountID = Shader.PropertyToID("_splatMapCount"),
             offsetID = Shader.PropertyToID("_MeshOffset"),
             resolutionID = Shader.PropertyToID("_Resolution"),
             textureMaskID = Shader.PropertyToID("_TextureMask"),
@@ -43,7 +42,6 @@ namespace sapra.InfiniteLands
             if(TextureMasksArray != null){
                 TextureMasksArray.wrapMode = TextureWrapMode.Clamp;
                 groundMaterial.SetTexture(splatMapsID, TextureMasksArray);
-                groundMaterial.SetInt(splatMapCountID, TextureMasksArray.depth);
                 groundMaterial.EnableKeyword("_PROCEDURALTEXTURING");
             }
             else{
@@ -56,11 +54,12 @@ namespace sapra.InfiniteLands
             }
         }
 
-        public void DynamicMeshResultApply(CommandBuffer bf, ComputeShader compute, int kernelIndex){            
-            if(TextureMasksArray != null){
-                bf.SetComputeIntParam(compute, splatMapCountID, TextureMasksArray.depth); 
+        public void DynamicMeshResultApply(CommandBuffer bf, ComputeShader compute, int kernelIndex){
+            if (TextureMasksArray != null)
+            {
                 bf.SetComputeTextureParam(compute, kernelIndex, splatMapsID, TextureMasksArray);
             }
+
             bf.SetComputeFloatParam(compute, meshScaleID, MeshSettings.MeshScale);
             bf.SetComputeIntParam(compute, resolutionID,  MeshSettings.TextureResolution);
             bf.SetComputeVectorParam(compute, offsetID, TerrainConfiguration.Position);

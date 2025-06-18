@@ -227,9 +227,6 @@ MonoBehaviour:
     title: New note
     content: Add content here
     position: {x: -1515, y: -432.52087}
-    size: {x: 0, y: 0}
-    theme: 0
-    fontsize: 1
   edges:
   - outputPort:
       nodeGuid: cce97e0da3fafe7469c1c5f1cc76a2ac
@@ -1486,6 +1483,7 @@ MonoBehaviour:
       type: {class: BlurNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 997338fc710c2e04da387b14b66eb55a
+        isValid: 1
         name: BlurNode
         expanded: 0
         position: {x: -816, y: -827}
@@ -1495,12 +1493,12 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         BlurSize: 10
     - rid: 7932463389744562178
       type: {class: HeightOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 8298ee67822c0354b92e4cfb7c168d7e
+        isValid: 1
         name: HeightOutputNode
         expanded: 0
         position: {x: 1571, y: -558}
@@ -1510,11 +1508,11 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
     - rid: 7932463389744562179
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 362e6bc3415fd7d4ba6666dca4845b9a
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: -750, y: 2274.4792}
@@ -1524,13 +1522,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: 2dfe4b962f795404dba816ca7a1f3390, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562180
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 5fa9882b5e16a1843ba02a61192ca3ce
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: -523, y: 1915.4791}
@@ -1540,13 +1538,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: 086b42d31400c3a4eaf2407ff36c2fa0, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562181
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 89519d9d95abf944da8cc4db4c555b6a
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: -750, y: 1469.4791}
@@ -1556,13 +1554,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: 276063451bd71d047bcb4858d9c2c56f, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562182
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 014113b2e570201498f29a6fc96c3ca2
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: -750, y: 1096.4791}
@@ -1572,13 +1570,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: c679d9669d25b6447bd4748efe6b10e8, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562183
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 6cfcc459d71c911438669fbcb35991dc
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: -750, y: 817.4791}
@@ -1588,13 +1586,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: 9dcffdeb93aaa07489e6eabbdf5840f3, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562184
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: cb223ebce815d5445a0906e7c5e8a047
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: -526, y: 421.47913}
@@ -1604,13 +1602,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: d6f7bcb4682a25843aeb15a99714efcd, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562185
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 16e9a32159488a249b6af2c290463c64
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: -536, y: 56.479137}
@@ -1620,13 +1618,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: 7c6b2632d628f0942a10190e89e252df, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562186
       type: {class: LocalInputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 76b03c13b92ff2340b66e6cb77d163d8
+        isValid: 1
         name: LocalInputNode
         expanded: 0
         position: {x: -1559, y: 1917.4791}
@@ -1636,11 +1634,11 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
     - rid: 7932463389744562187
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: a28d8c5356faf074fab3d23de55c971b
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: 1153.0002, y: 1935.2175}
@@ -1650,13 +1648,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: 539bd6eb6b827784b8054e36528253e2, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562188
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: f981ff11f227de747abd842e670d3456
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: 1374.0001, y: 1576.1305}
@@ -1666,13 +1664,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: c68fa09103fe70649977759caa1a48a8, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562189
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 32d7e1ffd1aea494b983711698892ce7
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: 1153, y: 1576}
@@ -1682,13 +1680,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: 1e65d5c86adec6f4a869d717b4b4bf6a, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562190
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 36c3337378217894fbe854759c35f479
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: 1377.9658, y: 1420.6252}
@@ -1698,13 +1696,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: c7313ddf9eb02ae46b35b378ab41fd57, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562191
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 7fa8be89bec2a644790a5cafebb7169a
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: 1592, y: 1283}
@@ -1714,13 +1712,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: a0fc108fc1d687d40971bb7bdd194d24, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562192
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 112619e677b7aaf48bf8ce031d79c4f6
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: 1152.9658, y: 1420.6252}
@@ -1730,13 +1728,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: 5c8607933a12f194dbc774e736e42b5c, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562193
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 2e13dd14036344d4f8588da08ce3b2e4
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: 1366.9658, y: 1282.6252}
@@ -1746,13 +1744,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: 0195991792927b145aef11f193d648fc, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562194
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 73caa3dcb1f84c34699d391d2678beb2
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: 1152.9658, y: 1282.6252}
@@ -1762,13 +1760,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: bec9c7a5303de0647bdead448a87934a, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562195
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 826bcc1426b09994983a2679f8c37841
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: 1410.9658, y: 172.62518}
@@ -1778,13 +1776,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: 945d9a5c730a9d0459534322605af0d4, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562196
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: c98469f3e9c751045845053004fff09b
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: 391.96588, y: 46.625187}
@@ -1794,13 +1792,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: ab5b0337877725445997a635cd03cb04, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562197
       type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 2aab265b7ddb966469753ef143476c87
+        isValid: 1
         name: AssetOutputNode
         expanded: 1
         position: {x: 463, y: 829.8375}
@@ -1810,13 +1808,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Asset: {fileID: 11400000, guid: 587d188ef0580c0488b37684b079d924, type: 2}
         <action>k__BackingField: 0
     - rid: 7932463389744562198
       type: {class: ApplyMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: b2cf8c85be6495140bb445ed3dd6a055
+        isValid: 1
         name: ApplyMaskNode
         expanded: 1
         position: {x: -983, y: 2274.4792}
@@ -1826,12 +1824,12 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         ValueAtZero: 0
     - rid: 7932463389744562199
       type: {class: GetSlopeNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: f62bcf27c64291d41aeced4f05902a0c
+        isValid: 1
         name: GetSlopeNode
         expanded: 1
         position: {x: 1799, y: -564}
@@ -1841,12 +1839,12 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         FeatureMode: 0
     - rid: 7932463389744562200
       type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: f6c6a3b2b2ba26f47b0109d6c4c3c8d3
+        isValid: 1
         name: CombineNode
         expanded: 1
         position: {x: 1099, y: -660.5209}
@@ -1856,7 +1854,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         CalculateWeights: 0
         BlendFactor: 10
         operation: 0
@@ -1864,6 +1861,7 @@ MonoBehaviour:
       type: {class: ApplyMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 8f15db5f75de52f4e9c03b8b4f10e27f
+        isValid: 1
         name: ApplyMaskNode
         expanded: 1
         position: {x: 862, y: -587.5209}
@@ -1873,12 +1871,12 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         ValueAtZero: 2
     - rid: 7932463389744562202
       type: {class: SimplexNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 60635b3a1d3850248a30d8eda3e48f73
+        isValid: 1
         name: SimplexNoiseNode
         expanded: 1
         position: {x: 616, y: -771.5209}
@@ -1888,7 +1886,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         NoiseType: 1
         MinMaxHeight: {x: -10, y: 20}
         TileSize: 31.3
@@ -1901,6 +1898,7 @@ MonoBehaviour:
       type: {class: SelectMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 42e6f6e662059dc4ba2ec8e78bd73857
+        isValid: 1
         name: SelectMaskNode
         expanded: 1
         position: {x: 616, y: -514.5209}
@@ -1910,13 +1908,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Range: {x: 0.5277362, y: 1}
         BlendFactor: 0.258
     - rid: 7932463389744562204
       type: {class: ConstantNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 4bd35f9240110a14dab09b0c45989d87
+        isValid: 1
         name: ConstantNode
         expanded: 1
         position: {x: -983, y: 2093.4792}
@@ -1926,12 +1924,12 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Value: -0.11
     - rid: 7932463389744562205
       type: {class: SimplexNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 0cf7483c61c9a624ab04dd2a2f037579
+        isValid: 1
         name: SimplexNoiseNode
         expanded: 1
         position: {x: -1265, y: 2377.4792}
@@ -1941,7 +1939,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         NoiseType: 1
         MinMaxHeight: {x: 0, y: 1}
         TileSize: 95.5
@@ -1954,6 +1951,7 @@ MonoBehaviour:
       type: {class: SimplexNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 71eba1b5df50a9141b8b36e6d1d2bc86
+        isValid: 1
         name: SimplexNoiseNode
         expanded: 1
         position: {x: -330, y: -491.52087}
@@ -1963,7 +1961,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         NoiseType: 1
         MinMaxHeight: {x: -80, y: 40}
         TileSize: 200
@@ -1976,6 +1973,7 @@ MonoBehaviour:
       type: {class: SimplexNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 46fb74a95063a9149897ea3ab093004c
+        isValid: 1
         name: SimplexNoiseNode
         expanded: 1
         position: {x: -602, y: -628.5209}
@@ -1985,7 +1983,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         NoiseType: 1
         MinMaxHeight: {x: -60, y: 201.37}
         TileSize: 10000
@@ -1998,6 +1995,7 @@ MonoBehaviour:
       type: {class: PerlinNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: ae2bb7151d021e040ae6c9d31843928b
+        isValid: 1
         name: PerlinNoiseNode
         expanded: 1
         position: {x: -831, y: -726}
@@ -2007,7 +2005,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         NoiseType: 1
         MinMaxHeight: {x: 0, y: 4.2}
         TileSize: 20
@@ -2020,6 +2017,7 @@ MonoBehaviour:
       type: {class: SimplexNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: a7aa144a14b03ca44aa71e4bab01864c
+        isValid: 1
         name: SimplexNoiseNode
         expanded: 1
         position: {x: -831, y: -1148.5209}
@@ -2029,7 +2027,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         NoiseType: 1
         MinMaxHeight: {x: -20, y: 40}
         TileSize: 200
@@ -2042,6 +2039,7 @@ MonoBehaviour:
       type: {class: VoronoiNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 8e3432c7c44304441bf2a87cdc3c66cb
+        isValid: 1
         name: VoronoiNoiseNode
         expanded: 1
         position: {x: -1790, y: -1283.5209}
@@ -2051,7 +2049,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         NoiseType: 0
         MinMaxHeight: {x: -150, y: 800}
         TileSize: 2000
@@ -2067,6 +2064,7 @@ MonoBehaviour:
       type: {class: SimplexNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 80569b7944e04d34c9c841b7002d6ad0
+        isValid: 1
         name: SimplexNoiseNode
         expanded: 1
         position: {x: -1790, y: -966.5209}
@@ -2076,7 +2074,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         NoiseType: 1
         MinMaxHeight: {x: -75, y: 75}
         TileSize: 200
@@ -2089,6 +2086,7 @@ MonoBehaviour:
       type: {class: SimplexNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 05f25d23124848e48b431ab6c87f804a
+        isValid: 1
         name: SimplexNoiseNode
         expanded: 1
         position: {x: -1790, y: -387.52087}
@@ -2098,7 +2096,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         NoiseType: 1
         MinMaxHeight: {x: -75, y: 107}
         TileSize: 200
@@ -2111,6 +2108,7 @@ MonoBehaviour:
       type: {class: VoronoiNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 929d60a5ffa6bba4491e249709087dce
+        isValid: 1
         name: VoronoiNoiseNode
         expanded: 1
         position: {x: -1790, y: -689.5209}
@@ -2120,7 +2118,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         NoiseType: 0
         MinMaxHeight: {x: -150, y: 1060.5}
         TileSize: 2688
@@ -2136,6 +2133,7 @@ MonoBehaviour:
       type: {class: SimplexNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: cd5759a79aaf83b47906f15a78ea1d15
+        isValid: 1
         name: SimplexNoiseNode
         expanded: 1
         position: {x: -1269, y: 538.4791}
@@ -2145,7 +2143,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         NoiseType: 1
         MinMaxHeight: {x: -0.56, y: -0.19}
         TileSize: 2
@@ -2158,6 +2155,7 @@ MonoBehaviour:
       type: {class: SimplexNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: aad11c77120ab564881180dbf0b2b3ff
+        isValid: 1
         name: SimplexNoiseNode
         expanded: 1
         position: {x: -1269, y: 217.47914}
@@ -2167,7 +2165,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         NoiseType: 1
         MinMaxHeight: {x: -0.5, y: -0.1}
         TileSize: 100
@@ -2180,6 +2177,7 @@ MonoBehaviour:
       type: {class: SelectMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 295cb0e4b37a07b4f81297b8b1dbc952
+        isValid: 1
         name: SelectMaskNode
         expanded: 1
         position: {x: 968.9659, y: 173.62518}
@@ -2189,13 +2187,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Range: {x: 0.27446276, y: 0.58140934}
         BlendFactor: 0.172
     - rid: 7932463389744562217
       type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: e68957281e8fcd940848b8b6dcc252f7
+        isValid: 1
         name: CombineNode
         expanded: 1
         position: {x: 1182.9658, y: 172.62518}
@@ -2205,7 +2203,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         CalculateWeights: 0
         BlendFactor: 10
         operation: 4
@@ -2213,6 +2210,7 @@ MonoBehaviour:
       type: {class: CurveNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: ff1d10ed34dccc243a10c58d8d5a9dc2
+        isValid: 1
         name: CurveNode
         expanded: 1
         position: {x: 724.9659, y: 173.62518}
@@ -2222,7 +2220,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Function:
           serializedVersion: 2
           m_Curve:
@@ -2256,35 +2253,11 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        GlobalCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 100
-            value: 100
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        curveMode: 0
     - rid: 7932463389744562219
       type: {class: PerlinNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 40fa17d391fc7e94c87a7a77170c5dae
+        isValid: 1
         name: PerlinNoiseNode
         expanded: 1
         position: {x: 462.96588, y: 173.62518}
@@ -2294,7 +2267,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         NoiseType: 1
         MinMaxHeight: {x: 0, y: 1}
         TileSize: 245.9
@@ -2307,6 +2279,7 @@ MonoBehaviour:
       type: {class: LocalInputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: d13fa34834990814e8d33a83186da7ff
+        isValid: 1
         name: LocalInputNode
         expanded: 0
         position: {x: 990.3044, y: 1568}
@@ -2316,11 +2289,11 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
     - rid: 7932463389744562221
       type: {class: LocalOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 0a1826b04dbf8b948accb711d29fbe47
+        isValid: 1
         name: LocalOutputNode
         expanded: 0
         position: {x: 724.9659, y: 1066.6252}
@@ -2330,12 +2303,12 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         InputName: HighZone
     - rid: 7932463389744562222
       type: {class: LocalInputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 058bae2da10e5ab40867f4416e0795bd
+        isValid: 1
         name: LocalInputNode
         expanded: 0
         position: {x: 1006.9659, y: 1282.6252}
@@ -2345,11 +2318,11 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
     - rid: 7932463389744562223
       type: {class: LocalOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: e1a43ca004946474aa42922ca5a40c90
+        isValid: 1
         name: LocalOutputNode
         expanded: 0
         position: {x: 947.9659, y: 478.62518}
@@ -2359,12 +2332,12 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         InputName: Low Zone
     - rid: 7932463389744562224
       type: {class: CurveNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: bba7cb3cd2ef71448a595b989f9656d8
+        isValid: 1
         name: CurveNode
         expanded: 1
         position: {x: 404.96588, y: 452.62518}
@@ -2374,7 +2347,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Function:
           serializedVersion: 2
           m_Curve:
@@ -2417,35 +2389,11 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        GlobalCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 100
-            value: 100
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        curveMode: 0
     - rid: 7932463389744562225
       type: {class: SimplexNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 70e24b09fd6884442a263245d429f836
+        isValid: 1
         name: SimplexNoiseNode
         expanded: 1
         position: {x: 150.96587, y: 452.62518}
@@ -2455,7 +2403,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         NoiseType: 1
         MinMaxHeight: {x: 0, y: 1}
         TileSize: 279.66
@@ -2468,6 +2415,7 @@ MonoBehaviour:
       type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 28a6fb9169cf22a4f9b094284a1be22b
+        isValid: 1
         name: CombineNode
         expanded: 1
         position: {x: 442.96588, y: 1028.6252}
@@ -2477,7 +2425,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         CalculateWeights: 0
         BlendFactor: 10
         operation: 4
@@ -2485,6 +2432,7 @@ MonoBehaviour:
       type: {class: RangeMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: c2f9f960b13287440b237e3565409926
+        isValid: 1
         name: RangeMaskNode
         expanded: 1
         position: {x: 150.96587, y: 1245.6252}
@@ -2494,13 +2442,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         MinMaxHeight: {x: 45, y: 300}
         BlendFactor: 5
     - rid: 7932463389744562228
       type: {class: RangeMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 0ab81e9926a13b641b253fd89958d63f
+        isValid: 1
         name: RangeMaskNode
         expanded: 1
         position: {x: 150.96587, y: 46.625187}
@@ -2510,13 +2458,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         MinMaxHeight: {x: 10, y: 25.7}
         BlendFactor: 5
     - rid: 7932463389744562229
       type: {class: CurveNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: c44d8b935653ae74c8cba5968527240b
+        isValid: 1
         name: CurveNode
         expanded: 1
         position: {x: -330, y: -628.5209}
@@ -2526,7 +2474,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Function:
           serializedVersion: 2
           m_Curve:
@@ -2551,35 +2498,11 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        GlobalCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 100
-            value: 100
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        curveMode: 0
     - rid: 7932463389744562230
       type: {class: CurveNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: ebd01143ba467754983ff3deec7a0df0
+        isValid: 1
         name: CurveNode
         expanded: 1
         position: {x: -1336, y: -619.5209}
@@ -2589,7 +2512,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Function:
           serializedVersion: 2
           m_Curve:
@@ -2614,35 +2536,11 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        GlobalCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 100
-            value: 100
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        curveMode: 0
     - rid: 7932463389744562231
       type: {class: CurveNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 623b6b963d46bc64f8f5d4119b2da551
+        isValid: 1
         name: CurveNode
         expanded: 1
         position: {x: -1304, y: -1046.5209}
@@ -2652,7 +2550,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Function:
           serializedVersion: 2
           m_Curve:
@@ -2677,35 +2574,11 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        GlobalCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 100
-            value: 100
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        curveMode: 0
     - rid: 7932463389744562232
       type: {class: LocalInputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 010d6259d044301478bc73f3d4f0f87e
+        isValid: 1
         name: LocalInputNode
         expanded: 0
         position: {x: -1575, y: 2153.4792}
@@ -2715,11 +2588,11 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
     - rid: 7932463389744562233
       type: {class: LocalInputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: a861208fac880d940bacf28ac143900b
+        isValid: 1
         name: LocalInputNode
         expanded: 0
         position: {x: -91.034134, y: 1028.6252}
@@ -2729,11 +2602,11 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
     - rid: 7932463389744562234
       type: {class: GetSlopeNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 87f108a611be8d84d81c001f35e510d8
+        isValid: 1
         name: GetSlopeNode
         expanded: 1
         position: {x: 385, y: -587.5209}
@@ -2743,12 +2616,12 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         FeatureMode: 0
     - rid: 7932463389744562235
       type: {class: LocalOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 630be30c09f7b6b4cb75e0e056a69418
+        isValid: 1
         name: LocalOutputNode
         expanded: 0
         position: {x: 2040, y: -551}
@@ -2758,12 +2631,12 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         InputName: Slope
     - rid: 7932463389744562236
       type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: d80ce87282f29ed43a49adf466e5cbf0
+        isValid: 1
         name: CombineNode
         expanded: 1
         position: {x: 694.9659, y: 421.62518}
@@ -2773,7 +2646,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         CalculateWeights: 0
         BlendFactor: 10
         operation: 4
@@ -2781,6 +2653,7 @@ MonoBehaviour:
       type: {class: RangeMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 377e39ece48386d4b9f1a998b85a3720
+        isValid: 1
         name: RangeMaskNode
         expanded: 1
         position: {x: 165.96587, y: 262.62518}
@@ -2790,13 +2663,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         MinMaxHeight: {x: 10, y: 45}
         BlendFactor: 5
     - rid: 7932463389744562238
       type: {class: WarpNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 997a0a413acc281419ce426bf87027ed
+        isValid: 1
         name: WarpNode
         expanded: 1
         position: {x: -1549, y: -620.5209}
@@ -2806,11 +2679,11 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
     - rid: 7932463389744562239
       type: {class: WarpNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: cce97e0da3fafe7469c1c5f1cc76a2ac
+        isValid: 1
         name: WarpNode
         expanded: 1
         position: {x: -1531, y: -1076.5209}
@@ -2820,11 +2693,11 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
     - rid: 7932463389744562240
       type: {class: RangeMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: f4d702e74b422244091cd9bb6e9f136f
+        isValid: 1
         name: RangeMaskNode
         expanded: 1
         position: {x: -1269, y: 47.479137}
@@ -2834,13 +2707,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         MinMaxHeight: {x: 6, y: 150}
         BlendFactor: 10
     - rid: 7932463389744562241
       type: {class: ApplyMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: aa49bd8b0bc534447af093385770f7c7
+        isValid: 1
         name: ApplyMaskNode
         expanded: 1
         position: {x: -740, y: 421.47913}
@@ -2850,12 +2723,12 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         ValueAtZero: 0
     - rid: 7932463389744562242
       type: {class: ApplyMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 14c0d3cde4c155f4caf36374ad34a433
+        isValid: 1
         name: ApplyMaskNode
         expanded: 1
         position: {x: -760, y: 56.479137}
@@ -2865,12 +2738,12 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         ValueAtZero: 0
     - rid: 7932463389744562243
       type: {class: LocalInputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: c26e80c11766fbb4e85c424f770166ba
+        isValid: 1
         name: LocalInputNode
         expanded: 0
         position: {x: -1269, y: 466.47913}
@@ -2880,11 +2753,11 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
     - rid: 7932463389744562244
       type: {class: LocalOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 2d49c9e5f44a95f4e8b52b638f83d762
+        isValid: 1
         name: LocalOutputNode
         expanded: 0
         position: {x: 442.9999, y: 693.99994}
@@ -2894,12 +2767,12 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         InputName: Trees
     - rid: 7932463389744562245
       type: {class: LocalInputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 3b4f8cf8484dfc1489e6f840fdbc7bc3
+        isValid: 1
         name: LocalInputNode
         expanded: 0
         position: {x: -151.03413, y: 401.62518}
@@ -2909,11 +2782,11 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
     - rid: 7932463389744562246
       type: {class: LocalInputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 307427b692a5aa245973adbc0d2f7928
+        isValid: 1
         name: LocalInputNode
         expanded: 0
         position: {x: -1670, y: 314.47913}
@@ -2923,11 +2796,11 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
     - rid: 7932463389744562247
       type: {class: LocalOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 7d9ec82f9dc8715428b0f7c21ca56961
+        isValid: 1
         name: LocalOutputNode
         expanded: 0
         position: {x: 1809, y: -641}
@@ -2937,12 +2810,12 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         InputName: HeightMap
     - rid: 7932463389744562248
       type: {class: RangeMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 1995d9cfb22e4a546a0a2a28cec10a35
+        isValid: 1
         name: RangeMaskNode
         expanded: 1
         position: {x: -1265, y: 1917.4791}
@@ -2952,13 +2825,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         MinMaxHeight: {x: -10000, y: 60}
         BlendFactor: 60
     - rid: 7932463389744562249
       type: {class: SelectMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 1ef7f5badcaa8c445966f6dad0ab6723
+        isValid: 1
         name: SelectMaskNode
         expanded: 1
         position: {x: -1265, y: 2202.4792}
@@ -2968,13 +2841,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Range: {x: 0.4758621, y: 1}
         BlendFactor: 0.1
     - rid: 7932463389744562250
       type: {class: RangeMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 5bdaab669329a944e95f111a76a7d09b
+        isValid: 1
         name: RangeMaskNode
         expanded: 1
         position: {x: -1282, y: 1712.4791}
@@ -2984,13 +2857,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         MinMaxHeight: {x: -1000, y: 0}
         BlendFactor: 5
     - rid: 7932463389744562251
       type: {class: RangeMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 4d9d6499177c4414cb907dc5b49da1f4
+        isValid: 1
         name: RangeMaskNode
         expanded: 1
         position: {x: -1282, y: 1088.4791}
@@ -3000,13 +2873,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         MinMaxHeight: {x: 100, y: 1000}
         BlendFactor: 5
     - rid: 7932463389744562252
       type: {class: SelectMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 1a9e8dd0696e8ef4b8c039a7a482dfbe
+        isValid: 1
         name: SelectMaskNode
         expanded: 1
         position: {x: -1286, y: 1487.4791}
@@ -3016,13 +2889,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Range: {x: 0, y: 0.30344826}
         BlendFactor: 0.279
     - rid: 7932463389744562253
       type: {class: RangeMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 43a727188a578fa4aba0a59503e5d767
+        isValid: 1
         name: RangeMaskNode
         expanded: 1
         position: {x: -1282, y: 817.4791}
@@ -3032,13 +2905,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         MinMaxHeight: {x: 6, y: 100}
         BlendFactor: 10
     - rid: 7932463389744562254
       type: {class: SelectMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 4394b3a081b04c148a502b19464bc7ae
+        isValid: 1
         name: SelectMaskNode
         expanded: 1
         position: {x: 150.96587, y: 1028.6252}
@@ -3048,13 +2921,13 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Range: {x: 0, y: 0.34580538}
         BlendFactor: 0.066
     - rid: 7932463389744562256
       type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 339fbec920239e1409d48e4807a7d402
+        isValid: 1
         name: CombineNode
         expanded: 1
         position: {x: -1001, y: 486.47913}
@@ -3064,7 +2937,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         CalculateWeights: 0
         BlendFactor: 10
         operation: 0
@@ -3072,6 +2944,7 @@ MonoBehaviour:
       type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 6f78601c21785ac4d85512f83ff64d4a
+        isValid: 1
         name: CombineNode
         expanded: 1
         position: {x: -1001, y: 170.47914}
@@ -3081,7 +2954,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         CalculateWeights: 0
         BlendFactor: 10
         operation: 0
@@ -3089,6 +2961,7 @@ MonoBehaviour:
       type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: fbfcbb1000954fd459f136998da2aa21
+        isValid: 1
         name: CombineNode
         expanded: 1
         position: {x: -987, y: 817.4791}
@@ -3098,7 +2971,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         CalculateWeights: 0
         BlendFactor: 10
         operation: 4
@@ -3106,6 +2978,7 @@ MonoBehaviour:
       type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 3935cbf0d9d94f049b9f1fa1da8b2abc
+        isValid: 1
         name: CombineNode
         expanded: 1
         position: {x: -987, y: 1095.4791}
@@ -3115,7 +2988,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         CalculateWeights: 0
         BlendFactor: 10
         operation: 4
@@ -3123,6 +2995,7 @@ MonoBehaviour:
       type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 4901185794120a341aebb316836e90cf
+        isValid: 1
         name: CombineNode
         expanded: 1
         position: {x: -974, y: 1469.4791}
@@ -3132,7 +3005,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         CalculateWeights: 0
         BlendFactor: 10
         operation: 4
@@ -3140,6 +3012,7 @@ MonoBehaviour:
       type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 568b47a57808abe4991d770dc5db8bc6
+        isValid: 1
         name: CombineNode
         expanded: 1
         position: {x: -998, y: 1879.4791}
@@ -3149,7 +3022,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         CalculateWeights: 0
         BlendFactor: 10
         operation: 4
@@ -3157,6 +3029,7 @@ MonoBehaviour:
       type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: c910253a210f0e94d87c1a868a32346c
+        isValid: 1
         name: CombineNode
         expanded: 1
         position: {x: -742, y: 1915.4791}
@@ -3166,7 +3039,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         CalculateWeights: 0
         BlendFactor: 10
         operation: 0
@@ -3174,6 +3046,7 @@ MonoBehaviour:
       type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 7811dff5f9e85b44c99b1c0c63d732e4
+        isValid: 1
         name: CombineNode
         expanded: 1
         position: {x: -591, y: -867.5209}
@@ -3183,7 +3056,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         CalculateWeights: 0
         BlendFactor: 10
         operation: 0
@@ -3191,6 +3063,7 @@ MonoBehaviour:
       type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: cf2352dab6f58174c8c0f09e29e93a91
+        isValid: 1
         name: CombineNode
         expanded: 1
         position: {x: 171, y: -806.5209}
@@ -3200,7 +3073,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         CalculateWeights: 0
         BlendFactor: 64.32
         operation: 1
@@ -3208,6 +3080,7 @@ MonoBehaviour:
       type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: a1b1b4152ffa9b44daa7c5682b7a239e
+        isValid: 1
         name: CombineNode
         expanded: 1
         position: {x: -81, y: -628.5209}
@@ -3217,7 +3090,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         CalculateWeights: 0
         BlendFactor: 10
         operation: 0
@@ -3225,6 +3097,7 @@ MonoBehaviour:
       type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 24bf94b4b422bfc4c879e340f85a5146
+        isValid: 1
         name: CombineNode
         expanded: 1
         position: {x: -1063, y: -848.5209}
@@ -3234,7 +3107,6 @@ MonoBehaviour:
           listIndex: -1
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         CalculateWeights: 0
         BlendFactor: 21.7
         operation: 1
@@ -3242,6 +3114,7 @@ MonoBehaviour:
       type: {class: AssetsMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 45aea3690b43ae1448790b616e776ea7
+        isValid: 1
         name: AssetsMaskNode
         expanded: 1
         position: {x: 1313, y: -387}
@@ -3251,11 +3124,11 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
     - rid: 8246154174725881863
       type: {class: GlobalInputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: ea4d70d8b5e6a1d4b9512446b969ff56
+        isValid: 1
         name: GlobalInputNode
         expanded: 0
         position: {x: 1076, y: -414.00006}
@@ -3265,12 +3138,12 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         OutputName: Density
     - rid: 8246154174725881864
       type: {class: ConstantNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 7a72031c5affbea499cf19377ce51763
+        isValid: 1
         name: ConstantNode
         expanded: 1
         position: {x: 862, y: -414.00006}
@@ -3280,12 +3153,12 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         Value: 1
     - rid: 8246154232530993193
       type: {class: ApplyMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 27030f64676279349b581374fd494eb8
+        isValid: 1
         name: ApplyMaskNode
         expanded: 1
         position: {x: 1346, y: -558}
@@ -3295,12 +3168,12 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         ValueAtZero: 2
     - rid: 8246154283628363777
       type: {class: PerlinNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 976568ef20ec60e428fbed6d622dfbb8
+        isValid: 1
         name: PerlinNoiseNode
         expanded: 0
         position: {x: -1657.715, y: 1140.1602}
@@ -3310,7 +3183,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         NoiseType: 1
         MinMaxHeight: {x: -50, y: 50}
         TileSize: 100
@@ -3323,6 +3195,7 @@ MonoBehaviour:
       type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
         guid: 9f70a7364d8fa8140b5a1cb7fa4b1614
+        isValid: 1
         name: CombineNode
         expanded: 1
         position: {x: -1509, y: 1088}
@@ -3332,7 +3205,6 @@ MonoBehaviour:
           listIndex: 0
           itemIsRearrangable: 0
           isAddItem: 0
-        isValid: 1
         CalculateWeights: 0
         BlendFactor: 10
         operation: 0

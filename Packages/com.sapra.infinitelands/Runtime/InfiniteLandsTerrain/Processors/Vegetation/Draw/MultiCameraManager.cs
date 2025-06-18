@@ -34,7 +34,7 @@ namespace sapra.InfiniteLands{
             
             if(ArgumentsData.ValidArguments){
                 if((!colorData.lodCrossFade || ArgumentsData.LODLength <= 1) && ArgumentsData.LODLength <= 3)
-                    drawer = new AppendDraw(settings, ArgumentsData);
+                    drawer = new AppendDraw(settings, ArgumentsData, colorData.lodCrossFade);
                 else
                     drawer = new CountedDraw(settings, ArgumentsData);
                 compactor = new IndexCompactor(vegetationAsset, settings);

@@ -40,16 +40,19 @@ namespace sapra.InfiniteLands
 
         private ArgumentsData ArgumentsData;
         private RenderParams[] renderParams;
+        private bool CrossFadeEnabled;
 
-        public AppendDraw(VegetationSettings vegSettings, ArgumentsData argumentsData)
+        public AppendDraw(VegetationSettings vegSettings, ArgumentsData argumentsData, bool CrossFade)
         {
             ArgumentsData = argumentsData;
             settings = vegSettings;
+            CrossFadeEnabled = CrossFade;
             activeDrawers = new();
 
             var materials = argumentsData.Lods.SelectMany(a => a.materials).ToArray();
             renderParams = new RenderParams[materials.Length];
-            for(int i = 0; i < materials.Length; i++){
+            for (int i = 0; i < materials.Length; i++)
+            {
                 RenderParams rParams = new RenderParams(materials[i]);
                 renderParams[i] = rParams;
             }
@@ -121,7 +124,7 @@ namespace sapra.InfiniteLands
             propertyBlock.SetInt(lodCountID, ArgumentsData.LODLength);
             propertyBlock.SetInt(shadowLodOffsetID,-1);
             propertyBlock.SetInt(lodValueID, 0);
-            propertyBlock.SetInt(transitionEnabled, 0);
+            propertyBlock.SetInt(transitionEnabled, CrossFadeEnabled?1:0);
             propertyBlock.SetInt(shadowMode, 0);
 
             int counter = 0;

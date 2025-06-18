@@ -4,18 +4,40 @@ namespace sapra.InfiniteLands{
     [ExecuteAlways]
     public abstract class InfiniteLandsMonoBehaviour : MonoBehaviour, ILandsLifeCycle
     {
-        public virtual void Awake()
+        [SerializeField] protected InfiniteLandsTerrain infiniteLandsTerrain;
+        public void SetInfiniteLandsTerrain(InfiniteLandsTerrain infiniteLandsTerrain)
         {
-            var target = transform.root.GetComponent<IControlTerrain>();
-            if(target != null){
-                target.AddMonoForLifetime(this);
+            this.infiniteLandsTerrain = infiniteLandsTerrain;
+        }
+        public virtual void Start()
+        {
+            if (infiniteLandsTerrain == null)
+            {
+                infiniteLandsTerrain = transform.GetComponentInParent<InfiniteLandsTerrain>();
+            }
+
+            if (infiniteLandsTerrain != null)
+            {
+                infiniteLandsTerrain.AddMonoForLifetime(this);
+            }
+            else
+            {
+                Debug.LogWarning("Infinite Lands Terrain wasn't found on the current hirearchy. Please manually assign it to the field");
             }
         }
         public virtual void OnDestroy()
         {
-            var target = transform.root.GetComponent<IControlTerrain>();
-            if(target != null){
-                target?.RemoveMonoForLifetime(this);
+            if (infiniteLandsTerrain == null)
+            {
+                infiniteLandsTerrain = transform.GetComponentInParent<InfiniteLandsTerrain>();
+            }
+            if (infiniteLandsTerrain != null)
+            {
+                infiniteLandsTerrain?.RemoveMonoForLifetime(this);
+            }
+            else
+            {
+                Debug.LogWarning("Infinite Lands Terrain wasn't found on the current hirearchy. Please manually assign it to the field");
             }
             Disable();
         }

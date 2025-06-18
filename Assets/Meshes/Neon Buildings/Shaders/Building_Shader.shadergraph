@@ -171,17 +171,13 @@
         },
         {
             "m_Id": "2f13c4fbeb4f406ab7448ca2cb0f34c3"
+        },
+        {
+            "m_Id": "0f9ac4547fa44c189657622034daab7e"
         }
     ],
     "m_GroupDatas": [],
-    "m_StickyNoteDatas": [
-        {
-            "m_Id": "f65751bcc717484398be9055cdf7b842"
-        },
-        {
-            "m_Id": "43cbe2cc8cb54f34be8743a15ea69703"
-        }
-    ],
+    "m_StickyNoteDatas": [],
     "m_Edges": [
         {
             "m_OutputSlot": {
@@ -249,6 +245,20 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "9855e26c2c74458e81b96f4586b9f17e"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "0f9ac4547fa44c189657622034daab7e"
+                },
+                "m_SlotId": 1
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "e60ca107a7a04445b95d95d1a4739a67"
                 },
                 "m_SlotId": 0
             }
@@ -612,7 +622,7 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "e60ca107a7a04445b95d95d1a4739a67"
+                    "m_Id": "0f9ac4547fa44c189657622034daab7e"
                 },
                 "m_SlotId": 0
             }
@@ -1076,6 +1086,42 @@
     },
     "m_Keyword": {
         "m_Id": "ff7b3b6369a240b29babab5ced1e9963"
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.RedirectNodeData",
+    "m_ObjectId": "0f9ac4547fa44c189657622034daab7e",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Redirect Node",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -1708.6666259765625,
+            "y": -321.99993896484377,
+            "width": 56.0,
+            "height": 23.999969482421876
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "e4b1698d3aeb4d5ea02377cb8c2da843"
+        },
+        {
+            "m_Id": "b86da1e398554ebdb94792a85bc60548"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
     }
 }
 
@@ -1983,26 +2029,6 @@
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
-    }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
-    "m_ObjectId": "43cbe2cc8cb54f34be8743a15ea69703",
-    "m_Title": "Transitioning",
-    "m_Content": "Applys the correct Dithering to transition between LODs\n",
-    "m_TextSize": 0,
-    "m_Theme": 0,
-    "m_Position": {
-        "serializedVersion": "2",
-        "x": -2232.0,
-        "y": 352.0,
-        "width": 200.0001220703125,
-        "height": 159.99996948242188
-    },
-    "m_Group": {
-        "m_Id": ""
     }
 }
 
@@ -3469,6 +3495,30 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
+    "m_ObjectId": "b86da1e398554ebdb94792a85bc60548",
+    "m_Id": 1,
+    "m_DisplayName": "",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.SubGraphNode",
     "m_ObjectId": "b99a8fe62b654e5e9fc0fb9697969f71",
     "m_Group": {
@@ -4275,6 +4325,30 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
+    "m_ObjectId": "e4b1698d3aeb4d5ea02377cb8c2da843",
+    "m_Id": 0,
+    "m_DisplayName": "",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.BlockNode",
     "m_ObjectId": "e60ca107a7a04445b95d95d1a4739a67",
     "m_Group": {
@@ -4593,26 +4667,6 @@
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
-    }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
-    "m_ObjectId": "f65751bcc717484398be9055cdf7b842",
-    "m_Title": "Blending",
-    "m_Content": "Blends the ground normal with the material normal \n",
-    "m_TextSize": 0,
-    "m_Theme": 0,
-    "m_Position": {
-        "serializedVersion": "2",
-        "x": -1290.666748046875,
-        "y": -404.0,
-        "width": 200.0,
-        "height": 159.99998474121095
-    },
-    "m_Group": {
-        "m_Id": ""
     }
 }
 

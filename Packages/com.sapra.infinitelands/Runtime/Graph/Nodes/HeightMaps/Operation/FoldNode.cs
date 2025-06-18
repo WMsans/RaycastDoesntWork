@@ -3,7 +3,7 @@ using Unity.Jobs;
 
 namespace sapra.InfiniteLands
 {
-    [CustomNode("Fold", docs = "https://ensapra.com/packages/infinite_lands/nodes/heightmap/operations/fold", synonims = new string[]{"Absolute", "Flip"})]
+    [CustomNode("Fold", docs = "https://ensapra.com/packages/infinite_lands/nodes/heightmap/operations/fold", synonims = new string[]{"Absolute", "Flip", "Reverse"})]
     public class FoldNode : InfiniteLandsNode
     {
         public enum Refe{Bottom, Top}

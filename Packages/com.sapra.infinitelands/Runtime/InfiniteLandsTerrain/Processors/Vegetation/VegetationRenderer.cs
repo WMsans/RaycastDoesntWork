@@ -49,6 +49,7 @@ namespace sapra.InfiniteLands
         public List<RenderingSettings> renderingSettings = new();
         public int DensityPerSize = 800;
         public bool RenderVegetation = true;
+        public bool SpawnCollidersAroundCameras = false;
 
         private bool CullingEnabled = true;
         private bool GlobalRendering = true;
@@ -295,8 +296,10 @@ namespace sapra.InfiniteLands
             Initialize(infiniteLands);
         }
 
-        private void Reload(){
+        private void Reload()
+        {
             InitializeProcessor();
+            Debug.Log("called");
         }
 
         protected override void OnProcessAdded(ChunkData chunk)
@@ -385,8 +388,11 @@ namespace sapra.InfiniteLands
                 return;
 
             UnTrackVegetationAssets();
-            var cameras = FilterCameras(renderingManager.GetCurrentCameras());            
-            var transforms = renderingManager.GetCurrentTransforms().Concat(cameras.Select(a => a.transform));
+            var cameras = FilterCameras(renderingManager.GetCurrentCameras());
+
+            var transforms = new List<Transform>(renderingManager.GetCurrentTransforms());
+            if(SpawnCollidersAroundCameras)
+                transforms.AddRange(transforms.Concat(cameras.Select(a => a.transform)));
 
             VegetationLoaders = new List<MultiCameraManager>();
             Vector2 localGridOffset = MapTools.GetOffsetInGrid(infiniteLands.localGridOffset, settings.MeshScale);

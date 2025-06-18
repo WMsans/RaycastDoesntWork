@@ -361,12 +361,6 @@ void VisibilityCheck(uint3 id: SV_DISPATCHTHREADID)
         #endif
     #endif
 
-
-
-    float3 idHash = randomID(position);
-    float randomness = (idHash.y*2.0f-1.0f) * _DistanceBetween*4;
-    dist += randomness;
-
     uint halfer = 1 << uint(floor(dist / _HalfInstancesDistance));
     bool insideDensityLevel = murmurHash3(index * 12894) % halfer != 0;
 

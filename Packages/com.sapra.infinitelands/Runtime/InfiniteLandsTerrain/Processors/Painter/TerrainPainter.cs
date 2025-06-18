@@ -29,6 +29,7 @@ namespace sapra.InfiniteLands{
         private List<Material> Orphans = new();
         private List<Texture2D> TexturesToArray = new();
         private IHoldTextures[] PreviousTextures;
+        public bool ContainsTextures => PreviousTextures.Length > 0;
 
         public override void OnValidate()
         {

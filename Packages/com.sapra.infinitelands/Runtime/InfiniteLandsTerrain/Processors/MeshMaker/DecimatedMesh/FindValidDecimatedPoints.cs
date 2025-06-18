@@ -47,8 +47,8 @@ namespace sapra.InfiniteLands.MeshProcess
         }
 
 
-        public static JobHandle ScheduleParallel(NativeList<Vertex> validPoints, NativeParallelHashMap<int, ushort> validHashMap, int CoreGridSpacing, int length,
-            MeshSettings meshSettings, WorldFinalData worldFinalData) => new FindValidDecimatedPoints()
+        public static JobHandle ScheduleParallel(NativeList<Vertex> validPoints, NativeParallelHashMap<int, ushort> validHashMap, int length,
+            MeshSettings meshSettings,int CoreGridSpacing, float NormalReduceThreshold, WorldFinalData worldFinalData) => new FindValidDecimatedPoints()
         {
 
             vertices = worldFinalData.FinalPositions,
@@ -56,7 +56,7 @@ namespace sapra.InfiniteLands.MeshProcess
             validHashMap = validHashMap.AsParallelWriter(),
             MeshResolution = meshSettings.Resolution,
             CoreGridSpacing = CoreGridSpacing,
-            NormalReduceThreshold = meshSettings.NormalReduceThreshold,
+            NormalReduceThreshold = NormalReduceThreshold,
         }.ScheduleParallel(length, meshSettings.Resolution, default);
 
         public static unsafe int AddWithIndex<T>(ref NativeList<T>.ParallelWriter list, in T element)

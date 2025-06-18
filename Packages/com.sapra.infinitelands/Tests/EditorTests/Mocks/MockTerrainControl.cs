@@ -97,5 +97,10 @@ namespace sapra.InfiniteLands.Tests{
         {
             throw new NotImplementedException();
         }
+
+        public ViewSettings GetViewSettings()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

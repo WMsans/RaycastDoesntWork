@@ -23,7 +23,6 @@ namespace sapra.InfiniteLands
                 Resolution = EditorResolution,
                 MeshScale = MeshScale,
                 Seed = Seed,
-                meshType = MeshSettings.MeshType.Normal
             };
 
             //DeepRestart();

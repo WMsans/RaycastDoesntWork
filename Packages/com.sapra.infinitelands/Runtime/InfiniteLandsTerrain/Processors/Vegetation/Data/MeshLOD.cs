@@ -25,8 +25,8 @@ namespace sapra.InfiniteLands{
 
         public List<GraphicsBuffer.IndirectDrawIndexedArgs> InitializeMeshLOD(int MaxSubMeshCount, string assetName = ""){
             SubMeshCount = mesh.subMeshCount;
-            if(!valid)
-                materials = new Material[0];
+/*             if(!valid)
+                materials = new Material[0]; */
 
             if(!valid){
                 if(mesh != null){

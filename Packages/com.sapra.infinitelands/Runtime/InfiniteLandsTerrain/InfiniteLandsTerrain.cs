@@ -26,7 +26,7 @@ namespace sapra.InfiniteLands{
         [Tooltip("Setup a Chunk Prefab for infinite generation when using a the Custom template")]
         [EnableIf(nameof(showPrefab))] [SerializeField] private GameObject ChunkPrefab;
         [field: SerializeField] public MeshSettings meshSettings { get; private set; } = MeshSettings.Default;
-        [SerializeField] public ViewSettings viewSettings = new();
+        [SerializeField] protected ViewSettings viewSettings = new();
         public IGraph graph => _graph;
         
         public Vector2 localGridOffset => visualizer.localGridOffset;
@@ -42,6 +42,7 @@ namespace sapra.InfiniteLands{
         [HideInInspector] public LandsTemplate ProcessorTemplate = LandsTemplate.Default;
         [HideInInspector] public LandsTemplate previousTemplate = LandsTemplate.Custom;
         private Vector3 _previousPosition;
+        private Vector3 _previousRotation;
 
         [SerializeReference] public List<InfiniteLandsComponent> EnabledComponents = new();
         private HashSet<InfiniteLandsMonoBehaviour> EnabledMonobehaviours = new();
@@ -61,8 +62,8 @@ namespace sapra.InfiniteLands{
 
         public void Initialize(bool generate = true){
             _previousPosition = transform.position;
-
-            if(Initialized)
+            _previousRotation = transform.eulerAngles;
+            if (Initialized)
                 Disable();
             ChangeGenerator(terrainGenerator);
             ChangeVisualizer(infiniteMode, false);
@@ -88,7 +89,7 @@ namespace sapra.InfiniteLands{
         }
         private void CollectLifeCyclers(){
             EnabledComponents.RemoveAll(a => a == null);
-            EnabledMonobehaviours.UnionWith(FindObjectsByType<InfiniteLandsMonoBehaviour>(sortMode: FindObjectsSortMode.None));
+            EnabledMonobehaviours.UnionWith(GetComponentsInChildren<InfiniteLandsMonoBehaviour>());
             EnabledMonobehaviours.RemoveWhere(a => a == null);
 
             InfiniteLandsStuff.Clear();
@@ -113,8 +114,9 @@ namespace sapra.InfiniteLands{
                     il.OnGraphUpdated();
                 }
             }
-            
+
             _previousPosition = transform.position;
+            _previousRotation = transform.eulerAngles;
         }
         public void Disable(){ 
             Initialized = false;
@@ -158,7 +160,7 @@ namespace sapra.InfiniteLands{
 
         public IRenderChunk GetChunkRenderer() => chunkRenderer;
         public ILayoutChunks GetChunkLayout() => chunkLayout;
-
+        public ViewSettings GetViewSettings() => viewSettings;
         public void ChangeVisualizer(bool infiniteMode, bool byEditor){
             bool shouldChange = infiniteMode != this.infiniteMode || visualizer == null || GenerationSettings == null;
             if(infiniteMode != this.infiniteMode){
@@ -208,7 +210,7 @@ namespace sapra.InfiniteLands{
             SelectedLayout = selectedLayout;
         }
 
-        public void SetChunkRenderer<T>(bool forced) where T : MonoBehaviour, IRenderChunk
+        public void SetChunkRenderer<T>(bool forced) where T : InfiniteLandsMonoBehaviour, IRenderChunk
         {
             if(forced){ //If we force it we want to delete all of the existing ones since we will generate one
                 ChunkPrefab = null;
@@ -241,6 +243,9 @@ namespace sapra.InfiniteLands{
             }
 
             chunkRenderer.DisableChunk();
+            T created = (T)chunkRenderer;
+            created.SetInfiniteLandsTerrain(this);
+            
             var TargetGameObject = chunkRenderer.gameObject;
             var floatingPoint = TargetGameObject.GetComponent<FloatingPoint>();
             if(floatingPoint == null && GetComponent<FloatingOrigin>() != null){
@@ -426,7 +431,8 @@ namespace sapra.InfiniteLands{
         {
             if(!Initialized || chunkRenderer.Equals(null)) return;
                 
-            if (transform.position != _previousPosition 
+            if ((transform.position != _previousPosition 
+                || transform.eulerAngles != _previousRotation)
                 && graph != null && (graph._autoUpdate || infiniteMode)){
                 
                 OnGraphUpdated();

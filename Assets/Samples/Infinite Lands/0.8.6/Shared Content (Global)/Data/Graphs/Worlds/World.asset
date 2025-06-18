@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: World
   m_EditorClassIdentifier: 
   AutoUpdate: 1
-  position: {x: 280, y: 273.33334}
-  scale: {x: 0.8695652, y: 0.8695652}
+  position: {x: 732, y: 585}
+  scale: {x: 0.7561437, y: 0.7561437}
   output:
     rid: 8246154232530993153
   nodes:
@@ -2147,7 +2147,7 @@ MonoBehaviour:
         guid: c63c3d492775c1f4ca5334f038828536
         name: PerlinNoiseNode
         expanded: 0
-        position: {x: -155.99998, y: 21.99997}
+        position: {x: -143.49248, y: 33.999954}
         previewPort:
           nodeGuid: 
           fieldName: 

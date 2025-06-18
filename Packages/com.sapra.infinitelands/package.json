@@ -1,7 +1,7 @@
 {
   "name": "com.sapra.infinitelands",
   "displayName": "Infinite Lands",
-  "version": "0.8.6",
+  "version": "0.8.7",
   "description": "This package will provide the tools necessary to build an optimized procedural world. It makes use of Jobs and the Burst Compiler to generate the different meshes needed for the generation of the world, making use of a simple Node Editor while also providing an optimized Vegetation Placer that uses GPU instancing to stay light-weight.",
   "samples": [
     {

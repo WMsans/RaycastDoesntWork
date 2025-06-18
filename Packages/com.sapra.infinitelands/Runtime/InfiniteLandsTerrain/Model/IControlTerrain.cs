@@ -22,6 +22,8 @@ namespace sapra.InfiniteLands{
         public IRenderChunk GetChunkRenderer();
         public ILayoutChunks GetChunkLayout();
 
+
+        public ViewSettings GetViewSettings();
         public void ChangeGenerator(IGraph generator);
         public void ChangeVisualizer(bool infiniteMode, bool byEditor);
         public void ChangeLayout(LandsLayout selectedLayout);

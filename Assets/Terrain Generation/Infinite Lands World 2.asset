@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Infinite Lands World 2
   m_EditorClassIdentifier: 
   AutoUpdate: 1
-  position: {x: -2204.6667, y: -2692}
-  scale: {x: 1.3225, y: 1.3225}
+  position: {x: 252.66667, y: -124}
+  scale: {x: 0.49717674, y: 0.49717674}
   output:
     rid: 8515386934871982080
   nodes:
@@ -260,18 +260,6 @@ MonoBehaviour:
       fieldName: Input
       listIndex: -1
       itemIsRearrangable: 0
-      isAddItem: 0
-  - outputPort:
-      nodeGuid: d1572a5d80236284caae03e50bb8b1b6
-      fieldName: Output
-      listIndex: -1
-      itemIsRearrangable: 0
-      isAddItem: 0
-    inputPort:
-      nodeGuid: ca2a4cc3a5d5f2e438c6f0d8e884408b
-      fieldName: Input
-      listIndex: 2
-      itemIsRearrangable: 1
       isAddItem: 0
   - outputPort:
       nodeGuid: ca2a4cc3a5d5f2e438c6f0d8e884408b

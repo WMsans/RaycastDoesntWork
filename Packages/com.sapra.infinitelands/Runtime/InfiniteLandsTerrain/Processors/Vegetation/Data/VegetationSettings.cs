@@ -68,7 +68,8 @@ namespace sapra.InfiniteLands{
         public void Reset(){
             UpdateRenderingDistance(AssetViewDistance);
         }
-        public void UpdateRenderingDistance(float viewDistance){
+        public void UpdateRenderingDistance(float viewDistance)
+        {
             Render = viewDistance > 0;
             ViewDistance = Mathf.Min(AssetViewDistance, viewDistance);
             ChunksVisible = Mathf.CeilToInt(ViewDistance / ChunkSize);

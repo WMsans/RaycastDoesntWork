@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PlainBiome
   m_EditorClassIdentifier: 
   AutoUpdate: 1
-  position: {x: -683.3333, y: 299.33334}
-  scale: {x: 0.7561437, y: 0.7561437}
+  position: {x: 863.3333, y: -85.333336}
+  scale: {x: 0.8695652, y: 0.8695652}
   output:
     rid: 8515386966036447297
   nodes:
@@ -324,9 +324,9 @@ MonoBehaviour:
         expanded: 1
         position: {x: -97.84415, y: 40.87471}
         previewPort:
-          nodeGuid: 
-          fieldName: 
-          listIndex: 0
+          nodeGuid: 8d1a8e7b6e3e7484ba2c07836d7c2382
+          fieldName: Output
+          listIndex: -1
           itemIsRearrangable: 0
           isAddItem: 0
         isValid: 1
@@ -344,9 +344,9 @@ MonoBehaviour:
         expanded: 1
         position: {x: -371.17746, y: 40.87471}
         previewPort:
-          nodeGuid: 
-          fieldName: 
-          listIndex: 0
+          nodeGuid: 3c1a27b5926ece0469cb7ff21fce2d9e
+          fieldName: Output
+          listIndex: -1
           itemIsRearrangable: 0
           isAddItem: 0
         isValid: 1

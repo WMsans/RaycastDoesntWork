@@ -39,7 +39,6 @@ namespace sapra.InfiniteLands.Editor{
                 Resolution = graphSettings.Resolution,
                 MeshScale = graphSettings.MeshScale,
                 Seed = graphSettings.Seed,
-                meshType = MeshSettings.MeshType.Normal
             };
             var activeNodes = outputPreviews.Select(a => a.Node);
             if (activeNodes.Any())

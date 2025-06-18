@@ -8,12 +8,6 @@ namespace sapra.InfiniteLands.MeshProcess
 {
     public static class MeshBuilder
     {
-        public enum MeshType
-        {
-            Normal,
-            Decimated
-        };
-        
         public static MeshGenerationData ScheduleParallel(List<MeshProcess> data)
         {
             int count = data.Count;
@@ -24,9 +18,9 @@ namespace sapra.InfiniteLands.MeshProcess
             {
                 MeshProcess process = data[i];
                 JobHandle jobHandle;
-                switch (process.meshSettings.meshType)
+                switch (process.meshType)
                 {
-                    case MeshSettings.MeshType.Decimated:
+                    case MeshMaker.MeshType.Decimated:
                         jobHandle = DecimatedMesh(process, allocatedData[i]);
                         break;
                     default:
@@ -47,13 +41,14 @@ namespace sapra.InfiniteLands.MeshProcess
             MeshSettings settings = meshProcess.meshSettings;
             int vertexCount = (settings.Resolution+1) * (settings.Resolution+1);
             int triangleCountHalf = settings.Resolution * settings.Resolution;
-            int patchCountPerLine = Mathf.CeilToInt(settings.Resolution / (float)settings.coreGridSpacing);
+            int coreGridSpacing = Mathf.CeilToInt(settings.Resolution / (float)Mathf.CeilToInt(settings.Resolution / (float)meshProcess.CoreGridSpacing));
+            int patchCountPerLine = Mathf.CeilToInt(settings.Resolution / (float)coreGridSpacing);
 
             NativeList<Vertex> validPoints = new NativeList<Vertex>(vertexCount, Allocator.Persistent);
             NativeParallelHashMap<int, ushort> validHashMap = new NativeParallelHashMap<int, ushort>(vertexCount, Allocator.Persistent);
             NativeList<ushort3> triangles = new NativeList<ushort3>(triangleCountHalf * 2, Allocator.Persistent);
 
-            JobHandle applyToTheMesh = FindValidDecimatedPoints.ScheduleParallel(validPoints, validHashMap,settings.coreGridSpacing, vertexCount, settings, meshProcess.worldFinalData);
+            JobHandle applyToTheMesh = FindValidDecimatedPoints.ScheduleParallel(validPoints, validHashMap, vertexCount, settings,  coreGridSpacing, meshProcess.NormalReduceThreshold, meshProcess.worldFinalData);
             JobHandle triangulationHandle = TriangulationJob.ScheduleParallel(validHashMap, triangles, settings, patchCountPerLine, applyToTheMesh);
             JobHandle meshingHandle = DecimatedMeshJob.ScheduleParallel(meshData, meshProcess.ObjectBounds, validPoints, triangles, triangulationHandle);
 

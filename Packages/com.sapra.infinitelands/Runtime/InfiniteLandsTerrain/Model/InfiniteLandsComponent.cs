@@ -55,8 +55,6 @@ namespace sapra.InfiniteLands{
 
         public static T Instantiate<T>(T original, Transform parent) where T : Object => GameObject.Instantiate(original, parent);
         public static T[] FindObjectsByType<T>(FindObjectsSortMode sortMode) where T : Object => GameObject.FindObjectsByType<T>(sortMode);
-        public static T FindAnyObjectByType<T>() where T : Object => (T)GameObject.FindAnyObjectByType(typeof(T), FindObjectsInactive.Exclude);
-        public static T FindFirstObjectByType<T>() where T : Object => (T)GameObject.FindFirstObjectByType(typeof(T), FindObjectsInactive.Exclude);
         #endregion
     }
 }

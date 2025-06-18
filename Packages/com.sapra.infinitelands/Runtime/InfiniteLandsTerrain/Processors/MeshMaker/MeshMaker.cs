@@ -12,9 +12,22 @@ namespace sapra.InfiniteLands.MeshProcess{
     {
         public Action<MeshResult> onProcessDone{get;set;}
         public Action<MeshResult> onProcessRemoved{get;set;}
+        public enum MeshType
+        {
+            Normal,
+            Decimated
+        };
+        public bool DecimatedForNonCloseLOD;
+        [ShowIf(nameof(DecimatedForNonCloseLOD))][Min(1)] public int DecimatedLOD = 2;
+        public MeshType meshType = MeshType.Normal;
+        [ShowIf(nameof(isDecimated))][Min(1)] public int CoreGridSpacing = 6;
+        [ShowIf(nameof(isDecimated))][Range(0,1)]public float NormalReduceThreshold = 0.5f;
+
+        //public int coreGridSpacing => Mathf.CeilToInt(Resolution / (float)Mathf.CeilToInt(Resolution / (float)CoreGridSpacing));
+        private bool isDecimated => meshType == MeshType.Decimated;
 
         [Min(1)] public int MaxMeshesPerFrame = 1;
-        [Min(-1)] public int MaxLODWithPhysics = 0;
+        [Min(-1)] public int MaxLODWithColliders = 0;
 
         private ObjectPool<Mesh> meshPool;
         private Dictionary<Vector3Int, MeshResult> meshResults = new();
@@ -53,7 +66,11 @@ namespace sapra.InfiniteLands.MeshProcess{
                 return;
 
             worldFinalData.AddProcessor(this);
-            MeshProcess process = new MeshProcess(chunk, worldFinalData);
+
+            var ID = chunk.ID;
+            MeshType target = ID.z >= DecimatedLOD ? MeshType.Decimated : meshType;
+            target = DecimatedForNonCloseLOD ? target : meshType;
+            MeshProcess process = new MeshProcess(chunk, worldFinalData, target, CoreGridSpacing, NormalReduceThreshold);
             chunksToProcess.Add(process);
             if(infiniteLands.InstantProcessors)
                 UpdateRequests(true);
@@ -159,7 +176,7 @@ namespace sapra.InfiniteLands.MeshProcess{
                     for(int m = 0; m < toConsolidate.Count; m++){
                         MeshProcess chunk = _meshData.generatedChunks[m];
                         MeshResult finalMesh = new MeshResult(chunk.terrainConfiguration.ID, toConsolidate[m], false);
-                        if(chunk.terrainConfiguration.ID.z <= MaxLODWithPhysics && ApplicationPlaying){
+                        if(chunk.terrainConfiguration.ID.z <= MaxLODWithColliders && ApplicationPlaying){
                             physicsToProcess.Add(finalMesh);
                         }
                         else

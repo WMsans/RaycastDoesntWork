@@ -34,10 +34,11 @@ namespace sapra.InfiniteLands{
             if(Transform == null){
                 return;
             }
-            
+           
             var position = infiniteLandsController.WorldToLocalPoint(Transform.position);
             Vector2Int positionInGrid = Vector2Int.RoundToInt((new Vector2(position.x, position.z)-Offset)/size);
-            if(!positionInGrid.Equals(LastValidPosition) || VisibleChunksCount != visibleChunks){
+            if (!positionInGrid.Equals(LastValidPosition) || VisibleChunksCount != visibleChunks)
+            {
                 RetrieveChunksAround(positionInGrid, visibleChunks, ref toEnable, ref toDisable);
                 return;
             }

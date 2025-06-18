@@ -15,10 +15,13 @@ namespace sapra.InfiniteLands.Editor{
 
             // Create the fields
             var force = new PropertyField(property.FindPropertyRelative(nameof(ViewSettings.ForceStayGameMode)));
+            var fetCam = new PropertyField(property.FindPropertyRelative(nameof(ViewSettings.AutomaticallyFetchCameras)));
+            var fetTran = new PropertyField(property.FindPropertyRelative(nameof(ViewSettings.AutomaticallyFetchTransforms)));
+
             var baCa = new PropertyField(property.FindPropertyRelative(nameof(ViewSettings.BaseCameras)));
             var baTa = new PropertyField(property.FindPropertyRelative(nameof(ViewSettings.BaseTransforms)));
-            var allCa = new PropertyField(property.FindPropertyRelative(nameof(ViewSettings.AllCameras)));
-            var allTra = new PropertyField(property.FindPropertyRelative(nameof(ViewSettings.AllTransforms)));
+            var allCa = new PropertyField(property.FindPropertyRelative("AllCameras"));
+            var allTra = new PropertyField(property.FindPropertyRelative("AllTransforms"));
 
             // Disable fields as before
             allCa.SetEnabled(false);
@@ -26,6 +29,9 @@ namespace sapra.InfiniteLands.Editor{
 
             // Add fields to the foldout (this will indent them)
             foldout.Add(force);
+            foldout.Add(fetCam);
+            foldout.Add(fetTran);
+
             foldout.Add(baCa);
             foldout.Add(baTa);
             foldout.Add(allCa);

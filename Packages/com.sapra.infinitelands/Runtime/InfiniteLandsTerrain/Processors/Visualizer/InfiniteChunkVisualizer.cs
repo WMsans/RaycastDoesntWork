@@ -12,9 +12,7 @@ namespace sapra.InfiniteLands{
         [Layer] public int CreateChunksAtLayer;
 
         [Header("World generation")] [Tooltip("Distance to stop generating chunks")]
-        public bool DecimatedForNonCloseLOD;
         public bool FastInitialization = true;
-        [ShowIf("DecimatedForNonCloseLOD")][Min(1)] public int DecimatedLOD = 2;
         public int MaxStepsInTree = 500;
 
         public float GenerationDistance = 10000;
@@ -53,7 +51,6 @@ namespace sapra.InfiniteLands{
         [Disabled] public bool CompletedInitalization;
 
         [SerializeField] private bool DrawChunks;
-        [SerializeField] private bool DrawDistances;
 
         public Vector2 localGridOffset => new Vector2(infiniteLands.meshSettings.MeshScale / 2, infiniteLands.meshSettings.MeshScale / 2);
         public Matrix4x4 localToWorldMatrix{get; private set;}
@@ -185,7 +182,7 @@ namespace sapra.InfiniteLands{
                 toDisable.Add(id);
             }
 
-            foreach(var camera in viewSettings.AllCameras){
+            foreach(var camera in viewSettings.GetCurrentCameras()){
                 cameraPositions.Add(worldToLocalMatrix.MultiplyPoint(camera.transform.position));
             }
             foreach(var position in cameraPositions){
@@ -320,8 +317,6 @@ namespace sapra.InfiniteLands{
             {
                 Vector3Int ID = requests[i].ID;
                 MeshSettings selected = ChunkLayout.GetMeshSettingsFromID(infiniteLands.meshSettings, ID);
-                MeshSettings.MeshType target = ID.z >= DecimatedLOD ? MeshSettings.MeshType.Decimated : selected.meshType;
-                selected.meshType = DecimatedForNonCloseLOD ? target : selected.meshType;
                 settings.Add(selected);
             }
         }
@@ -336,15 +331,19 @@ namespace sapra.InfiniteLands{
         }
         public int Compare(TerrainConfiguration a, TerrainConfiguration b)
         {
-            var currentCameras = viewSettings.AllCameras;
+            var currentCameras = viewSettings.GetCurrentCameras();
             Vector3 posA = infiniteLands.LocalToWorldPoint(a.Position);
             Vector3 posB = infiniteLands.LocalToWorldPoint(b.Position);
             float minDistaA = float.MaxValue;
             float minDistaB = float.MaxValue;
+            
+            for (int i = 0; i < currentCameras.Count; i++)
+            {
+                var cam = currentCameras[i];
+                if (cam == null) continue;
 
-            for(int i = 0; i < currentCameras.Count; i++){
-                minDistaA = MathF.Min(minDistaA, Vector3.Distance(currentCameras[i].transform.position, posA));
-                minDistaB = MathF.Min(minDistaB, Vector3.Distance(currentCameras[i].transform.position, posB));
+                minDistaA = MathF.Min(minDistaA, Vector3.Distance(cam.transform.position, posA));
+                minDistaB = MathF.Min(minDistaB, Vector3.Distance(cam.transform.position, posB));
             }
 
             if (LoadInViewFirst)
@@ -378,6 +377,7 @@ namespace sapra.InfiniteLands{
         {
             // Check if object is in camera's frustum
             foreach(var cam in cameras){
+                if (cam == null) continue;
                 Vector3 viewportPoint = cam.WorldToViewportPoint(position);
                 bool isInView = viewportPoint.z > 0 && // In front of camera
                             viewportPoint.x >= 0 && viewportPoint.x <= 1 && // Within horizontal bounds
@@ -492,24 +492,5 @@ namespace sapra.InfiniteLands{
             Traveller.DisableTraveller(false);
         }
         #endregion
-
-#if UNITY_EDITOR
-        public override void OnDrawGizmos()
-        {
-            /*             if(DrawDistances){
-                            Handles.DrawWireDisc(Camera.transform.position,Vector3.up, GenerationDistance);
-                            List<Vector3> cornerns = new List<Vector3>();
-                            Triangle[] FrustrumTriangles = new Triangle[12];
-                            Vector3[] frustumCornersNear = new Vector3[4];
-                            Vector3[] frustumCornersFar = new Vector3[4];
-                            RuntimeTools.GetTriangles(Camera, ref cornerns,ref FrustrumTriangles, ref frustumCornersNear, ref frustumCornersFar);
-                            foreach(Triangle triangle in FrustrumTriangles){
-                                Debug.DrawLine(triangle.C1, triangle.C2, Color.red);
-                                Debug.DrawLine(triangle.C2, triangle.C3, Color.red);
-                                Debug.DrawLine(triangle.C3, triangle.C1, Color.red);
-                            }                
-                        }     */
-        }
-        #endif
     }
 }

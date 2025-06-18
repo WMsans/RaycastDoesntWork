@@ -30,10 +30,13 @@ namespace sapra.InfiniteLands{
         //Mesh configuration
                 //GPU
             public bool GenerateColliders;
+            public ColliderMode ColliderMode;
+            private bool isByDistance => ColliderMode == ColliderMode.ByDistance;
+            [ShowIf(nameof(isByDistance))][Min(1)] public float CollisionDistance;
             public Collider ColliderObject;
             public LODGroup LodGroups;
             public MeshLOD[] LOD;
-            public float HighLodDistance = 50;
+            [ShowIf(nameof(HasLods))] public float HighLodDistance = 50;
             public bool CrossFadeLODDithering = true;
 
                 //CPU   
@@ -69,6 +72,16 @@ namespace sapra.InfiniteLands{
        
         [Header("Debugging")] 
         public bool DrawDistances;
+        private bool GPUDrawMode => spawnMode == SpawnMode.GPUInstancing && DrawDistances;
+        [ShowIf(nameof(GPUDrawMode))] public bool DrawLODBoundaries;
+        private bool GPUTransitionMode => GPUDrawMode && CrossFadeLODDithering;
+        [ShowIf(nameof(GPUTransitionMode))] public bool DrawTransitions;
+        private bool GpuShadowMode => GPUDrawMode && DrawDistances && CastShadows;
+        [ShowIf(nameof(GpuShadowMode))] public bool DrawShadowBoundaries;
+        private bool GpuColliderMode => GPUDrawMode && DrawDistances && ColliderObject != null && GenerateColliders;
+        [ShowIf(nameof(GpuColliderMode))] public bool DrawSpawnedColliders;
+
+        [ShowIf(nameof(DrawDistances))] public bool DrawItAsSpheres;
         public bool drawBoundingBox;
 
         private Vector3 MaxMeshBounds;
@@ -79,15 +92,17 @@ namespace sapra.InfiniteLands{
 
         public bool SkipRendering() => skipRendering;
         public bool DrawBoundingBox() => drawBoundingBox;
+        public bool DrawColliderData() => GpuColliderMode && DrawSpawnedColliders;
 
         public ObjectData GetObjectData()
         {
-            switch(spawnMode){
+            switch (spawnMode)
+            {
                 case SpawnMode.GPUInstancing:
                     var targetGameobject = (GenerateColliders && ColliderObject != null) ? ColliderObject.gameObject : null;
-                    return new ObjectData(ColliderObject != null, targetGameobject, false);
+                    return new ObjectData(ColliderObject != null, targetGameobject, ColliderMode, CollisionDistance);
                 default:
-                    return new ObjectData(true, InstanceObject, true);
+                    return new ObjectData(true, InstanceObject, ColliderMode.AllObjects, -1);
             }
         }
 
@@ -144,8 +159,8 @@ namespace sapra.InfiniteLands{
             if(spawnMode == SpawnMode.GPUInstancing){
                 return GPUInitialize();
             }
-
-            return CPUInitalize();
+            else
+                return CPUInitalize();
         }
 
         private ArgumentsData GPUInitialize(){
@@ -212,49 +227,114 @@ namespace sapra.InfiniteLands{
         #endregion
         
         public void GizmosDrawDistances(Vector3 position){
-            if(DrawDistances){
-                #if UNITY_EDITOR
-                Handles.color = Color.yellow;
-                Handles.DrawWireDisc(position, Vector3.up, ViewDistance);
-                if(spawnMode == SpawnMode.GPUInstancing){
-                    Handles.color = Color.red;
-                    Handles.DrawWireDisc(position, Vector3.up, ShadowDistance);
-                    Handles.color = Color.green;
-                    Handles.DrawWireDisc(position, Vector3.up, HighLodDistance);
+            if (DrawDistances)
+            {
+#if UNITY_EDITOR
+                switch (spawnMode)
+                {
+                    case SpawnMode.GPUInstancing:
+                        DrawGPUDistances(position);
+                        break;
+                    case SpawnMode.CPUInstancing:
+                        DrawCPUDistances(position);
+                        break;
                 }
-                #endif
+#endif
             }
         }
 
-        public VisualElement Preview(bool BigPreview)
-        {   
-            #if UNITY_EDITOR
-            Object targetObject = null;
-            if(spawnMode == SpawnMode.CPUInstancing)
-                targetObject = InstanceObject;
-            else{
-                if(LodGroups != null)
-                    targetObject = LodGroups;
-                else if(LOD != null && LOD.Length > 0)
-                    targetObject = LOD[0].mesh;
-            }     
+        private void DrawGPUDistances(Vector3 position)
+        {
+            DrawCircleWithName(position, string.Format("View Distance and LOD {0}", LOD.Length-1), ViewDistance, Color.yellow, DrawItAsSpheres);
+            if (CrossFadeLODDithering && DrawTransitions)
+                DrawCircleWithName(position, "Start Disabling Asset", ViewDistance * 0.75f, new Color(0.7f, 0.52f, 0.016f, 1), DrawItAsSpheres);
+            if (CastShadows && DrawShadowBoundaries)
+            {
+                DrawCircleWithName(position, "Shadow Distance", ShadowDistance, Color.red, DrawItAsSpheres);
+                if (CrossFadeLODDithering && DrawTransitions)
+                    DrawCircleWithName(position, "Start Disabling Shadow", ShadowDistance * 0.75f, new Color(0.7f, 0, 0.2f, 1), DrawItAsSpheres);
 
-            if(gameObjectEditor != null && gameObjectEditor.target != targetObject){
-                RuntimeTools.CallOnDisableINTERNAL(gameObjectEditor);  
+            }
+            if (DrawLODBoundaries)
+            {
+                for (int i = 0; i < LOD.Length - 1; i++)
+                {
+                    var edge = HighLodDistance * Mathf.Pow(2, i);
+                    if (i > 0)
+                        edge += HighLodDistance * Mathf.Pow(2, i - 1);
+                    DrawCircleWithName(position, string.Format("LOD {0}", i), edge, Color.green, DrawItAsSpheres);
+                    if (DrawTransitions && CrossFadeLODDithering)
+                    {
+                        GetDistanceRangeForLOD(edge, out var min, out var max);
+                        DrawCircleWithName(position, string.Format("Fully LOD {0}", i), min, new Color(0, 0.62f, 0.2f, 1), DrawItAsSpheres);
+                        DrawCircleWithName(position, string.Format("Fully LOD {0}", i + 1), max, new Color(0, 0.62f, 0.2f, 1), DrawItAsSpheres);
+                    }
+                }
+            }
+        }
+        private void DrawCPUDistances(Vector3 position)
+        {
+            DrawCircleWithName(position, string.Format("View Distance and LOD {0}", LOD.Length-1), ViewDistance, Color.yellow, DrawItAsSpheres);
+
+        }
+        void GetDistanceRangeForLOD(in float edge, out float distMin, out float distMax) {
+            var amountToSwap = edge / 10.0f;
+            distMin = edge - amountToSwap;
+            distMax = edge + amountToSwap;
+        }
+
+        private void DrawCircleWithName(Vector3 position, string labelName, float radiousSize, Color color, bool fullSphere = false)
+        {
+#if UNITY_EDITOR
+            Handles.color = color;
+            GUI.color = color;
+            var labelPos = position + Vector3.right * radiousSize;
+            if (fullSphere)
+            {
+                Handles.DrawWireDisc(position, Vector3.up, radiousSize);
+                Handles.DrawWireDisc(position, Vector3.right, radiousSize);
+                Handles.DrawWireDisc(position, Vector3.forward, radiousSize);
+            }
+            else
+                Handles.DrawWireDisc(position, Vector3.up, radiousSize);
+            Handles.Label(labelPos, labelName);
+#endif
+        }
+
+        public VisualElement Preview(bool BigPreview)
+        {
+#if UNITY_EDITOR
+            Object targetObject = null;
+            if (spawnMode == SpawnMode.CPUInstancing)
+                targetObject = InstanceObject;
+            else
+            {
+                if (LodGroups != null)
+                    targetObject = LodGroups;
+                else if (LOD != null && LOD.Length > 0)
+                    targetObject = LOD[0].mesh;
+            }
+
+            if (gameObjectEditor != null && gameObjectEditor.target != targetObject)
+            {
+                RuntimeTools.CallOnDisableINTERNAL(gameObjectEditor);
                 gameObjectEditor = null;
             }
 
-            if(targetObject != null){
-                if(BigPreview){
+            if (targetObject != null)
+            {
+                if (BigPreview)
+                {
                     return new IMGUIContainer(() => { OnInspectorGUI(targetObject); });
                 }
-                else{
+                else
+                {
                     var imagePreview = new Image();
                     imagePreview.image = AssetPreview.GetAssetPreview(targetObject);
                     return imagePreview;
                 }
             }
-            #endif
+#endif
             return null;
         }
 
