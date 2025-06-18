@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Infinite Lands World 2
   m_EditorClassIdentifier: 
   AutoUpdate: 1
-  position: {x: -1116, y: -1687.3334}
-  scale: {x: 1.15, y: 1.15}
+  position: {x: -2204.6667, y: -2692}
+  scale: {x: 1.3225, y: 1.3225}
   output:
     rid: 8515386934871982080
   nodes:

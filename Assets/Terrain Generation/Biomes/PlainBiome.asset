@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PlainBiome
   m_EditorClassIdentifier: 
   AutoUpdate: 1
-  position: {x: 208.66667, y: 244.66667}
-  scale: {x: 0.43232757, y: 0.43232757}
+  position: {x: -683.3333, y: 299.33334}
+  scale: {x: 0.7561437, y: 0.7561437}
   output:
     rid: 8515386966036447297
   nodes:
@@ -35,6 +35,7 @@ MonoBehaviour:
   - rid: 8515386966036447321
   - rid: 8515386966036447322
   - rid: 8515386966036447323
+  - rid: 8515387009518534917
   groups: []
   stickyNotes: []
   edges:
@@ -227,6 +228,18 @@ MonoBehaviour:
     inputPort:
       nodeGuid: 898c9aa914507374eab7b462eb27e0ab
       fieldName: HeightMap
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 3bd61d981e01d8343b2fd08804618657
+      fieldName: Output
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: 1b66cdfaab3e6dc4cba265bc09fb8240
+      fieldName: Mask
       listIndex: -1
       itemIsRearrangable: 0
       isAddItem: 0
@@ -586,3 +599,17 @@ MonoBehaviour:
           isAddItem: 0
         isValid: 1
         ValueAtZero: 0
+    - rid: 8515387009518534917
+      type: {class: AssetsMaskNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: 1b66cdfaab3e6dc4cba265bc09fb8240
+        name: AssetsMaskNode
+        expanded: 1
+        position: {x: 1018.33325, y: 138.66669}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1

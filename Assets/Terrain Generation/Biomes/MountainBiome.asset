@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: MountainBiome
   m_EditorClassIdentifier: 
   AutoUpdate: 1
-  position: {x: 1467.3334, y: 312.66666}
-  scale: {x: 0.65751624, y: 0.65751624}
+  position: {x: -254.66667, y: 119.333336}
+  scale: {x: 0.7561437, y: 0.7561437}
   output:
     rid: 8515386967779442688
   nodes:
@@ -37,7 +37,6 @@ MonoBehaviour:
   - rid: 8515386967779442704
   - rid: 8515386967779442705
   - rid: 8515386967779442706
-  - rid: 8515386967779442707
   - rid: 8515386967779442708
   - rid: 8515386967779442709
   - rid: 8515386967779442710
@@ -174,18 +173,6 @@ MonoBehaviour:
       isAddItem: 0
     inputPort:
       nodeGuid: 3761a2bb72634fb43ac488a2122fce93
-      fieldName: Input
-      listIndex: -1
-      itemIsRearrangable: 0
-      isAddItem: 0
-  - outputPort:
-      nodeGuid: 2cae74c4e34d6fd439b6604c76c98dbb
-      fieldName: Output
-      listIndex: -1
-      itemIsRearrangable: 0
-      isAddItem: 0
-    inputPort:
-      nodeGuid: 6046f46f7ddf63d4fb6ab1dd11655be5
       fieldName: Input
       listIndex: -1
       itemIsRearrangable: 0
@@ -676,21 +663,6 @@ MonoBehaviour:
           isAddItem: 0
         isValid: 1
         FeatureMode: 0
-    - rid: 8515386967779442707
-      type: {class: LocalOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
-      data:
-        guid: 6046f46f7ddf63d4fb6ab1dd11655be5
-        name: LocalOutputNode
-        expanded: 0
-        position: {x: -1052.6108, y: -242.62466}
-        previewPort:
-          nodeGuid: 
-          fieldName: 
-          listIndex: 0
-          itemIsRearrangable: 0
-          isAddItem: 0
-        isValid: 1
-        InputName: BaseGround
     - rid: 8515386967779442708
       type: {class: CombineNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:

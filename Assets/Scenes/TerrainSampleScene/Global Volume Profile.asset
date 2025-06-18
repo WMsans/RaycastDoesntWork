@@ -60,6 +60,7 @@ MonoBehaviour:
   - {fileID: 2020717484411928659}
   - {fileID: 2694137199952513317}
   - {fileID: 2685323552902999684}
+  - {fileID: 1669634441404900927}
 --- !u!114 &946219799727933371
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -88,6 +89,97 @@ MonoBehaviour:
   rounded:
     m_OverrideState: 0
     m_Value: 0
+--- !u!114 &1669634441404900927
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa0faded47ee1147b00b1a7d602d3fd, type: 3}
+  m_Name: CRTVolumeComponent
+  m_EditorClassIdentifier: 
+  active: 1
+  screenBend:
+    m_OverrideState: 1
+    m_Value: 8
+  screenOverscan:
+    m_OverrideState: 1
+    m_Value: 2
+  vignetteSize:
+    m_OverrideState: 1
+    m_Value: 5.7
+  vignetteSmooth:
+    m_OverrideState: 1
+    m_Value: 2.8
+  vignetteRound:
+    m_OverrideState: 1
+    m_Value: 70
+  blur:
+    m_OverrideState: 1
+    m_Value: 0.8
+  bleed:
+    m_OverrideState: 1
+    m_Value: 0
+  smidge:
+    m_OverrideState: 1
+    m_Value: 0
+  scanlinesStrength:
+    m_OverrideState: 1
+    m_Value: 4
+  apertureStrength:
+    m_OverrideState: 1
+    m_Value: 1
+  shadowlines:
+    m_OverrideState: 1
+    m_Value: 1
+  shadowlinesSpeed:
+    m_OverrideState: 1
+    m_Value: 1
+  shadowlinesAlpha:
+    m_OverrideState: 1
+    m_Value: 0.05
+  noiseSize:
+    m_OverrideState: 1
+    m_Value: 0
+  noiseSpeed:
+    m_OverrideState: 1
+    m_Value: 0
+  noiseAlpha:
+    m_OverrideState: 1
+    m_Value: 0
+  brightness:
+    m_OverrideState: 0
+    m_Value: 1
+  contrast:
+    m_OverrideState: 0
+    m_Value: 1
+  gamma:
+    m_OverrideState: 0
+    m_Value: 1
+  red:
+    m_OverrideState: 0
+    m_Value: 1
+  green:
+    m_OverrideState: 0
+    m_Value: 1
+  blue:
+    m_OverrideState: 0
+    m_Value: 1
+  chromaticAberration:
+    m_OverrideState: 1
+    m_Value: 0.5
+  redOffset:
+    m_OverrideState: 1
+    m_Value: {x: 0.05, y: 0.05}
+  blueOffset:
+    m_OverrideState: 1
+    m_Value: {x: 0, y: -0.07}
+  greenOffset:
+    m_OverrideState: 1
+    m_Value: {x: -0.05, y: 0.05}
 --- !u!114 &2020717484411928659
 MonoBehaviour:
   m_ObjectHideFlags: 3
