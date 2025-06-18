@@ -42,12 +42,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMixTiling: 1
+    - _ColorNoiseScale: 1
     - _ColorNoiseTiling: 1
-    - _DensityMultiplier: 0.3
-    - _DensityThreshold: 1.9
+    - _DensityMultiplier: 0.1
+    - _DensityThreshold: 1.8
     - _LightScattering: 0.2
     - _MaxDistance: 1000
-    - _MaxHeight: 100
+    - _MaxHeight: 90.71
     - _MinDistance: 160
     - _MixNoiseTiling: 1
     - _NoiseOffset: 2
@@ -55,8 +56,8 @@ Material:
     - _StepSize: 2
     m_Colors:
     - _AmbientColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
-    - _Color: {r: 0.10132108, g: 0.21890941, b: 0.29559743, a: 1}
-    - _Color2: {r: 0.521566, g: 0.15782599, b: 0.5283019, a: 1}
+    - _Color: {r: 0.036356017, g: 0.26585343, b: 0.43400002, a: 1}
+    - _Color2: {r: 0.533, g: 0.06833333, b: 0.28973326, a: 1}
     - _LightContribution: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

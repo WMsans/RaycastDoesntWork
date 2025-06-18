@@ -16,4 +16,6 @@ MonoBehaviour:
     keys: []
     values: []
   bookmarks: []
-  bookmarkedScenePaths: []
+  bookmarkedScenePaths:
+  - Assets/Scenes/SampleScene.unity
+  - Assets/Scenes/TerrainSampleScene.unity

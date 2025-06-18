@@ -15,8 +15,7 @@ Shader "Unlit/VolumetricFox"
         _NoiseTiling("Noise tiling", float) = 1
         _DensityThreshold("Density threshold", Range(0, 10)) = 0.1
          
-        _ColorMixNoise("Color Mix Noise", 3D) = "white" {} 
-        _ColorMixTiling("Color Mix Tiling", float) = 1    
+        _ColorNoiseScale("Color Noise Scale", float) = 1    
 
         [HDR]_LightContribution("Light contribution", Color) = (1, 1, 1, 1)
         _LightScattering("Light scattering", Range(0, 1)) = 0.2
@@ -37,6 +36,7 @@ Shader "Unlit/VolumetricFox"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
             #include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
+            #include "Packages/jp.keijiro.noiseshader/Shader/SimplexNoise2D.hlsl"
 
             float4 _Color;
             float4 _Color2; 
@@ -47,10 +47,9 @@ Shader "Unlit/VolumetricFox"
             float _MaxHeight;
             float _MinDistance;
             TEXTURE3D(_FogNoise);
-            TEXTURE3D(_ColorMixNoise); 
             float _DensityThreshold;
             float _NoiseTiling;
-            float _ColorMixTiling; 
+            float _ColorNoiseScale; 
             float4 _LightContribution;
             float _LightScattering;
 
@@ -100,9 +99,14 @@ Shader "Unlit/VolumetricFox"
                     
                     if (density > 0)
                     {
-                        // --- Color Mixing Logic ---
-                        float4 colorNoise = _ColorMixNoise.SampleLevel(sampler_TrilinearRepeat, rayPos * 0.01 * _ColorMixTiling, 0);
-                        float4 pointColor = lerp(_Color, _Color2, step(0.5, colorNoise.r));
+                        // --- Color Mixing Logic using 2D Simplex Noise ---
+                        float2 colorNoiseCoord = rayPos.xz * 0.01 * _ColorNoiseScale;
+                        float colorNoiseVal = SimplexNoise(colorNoiseCoord); // Returns a value in [-1, 1] range
+                        
+                        // Use step to create a hard transition, similar to the original shader.
+                        // We check if the noise value is > 0.
+                        float mixFactor = step(0.0, colorNoiseVal);
+                        float4 pointColor = lerp(_Color, _Color2, mixFactor);
                         
                         // Accumulate the color weighted by its density to find an average color later
                         accumulatedColorWeight += pointColor * density;

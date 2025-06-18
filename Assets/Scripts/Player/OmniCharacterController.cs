@@ -92,7 +92,7 @@ public class OmniCharacterController : BaseCharacterController
                 _burstDown = false;
                 currentVelocity += Camera.main.transform.forward * BurstSpeed;
             }
-            currentVelocity += Camera.main.transform.forward * BurstAcceleration;
+            currentVelocity += Camera.main.transform.forward * (BurstAcceleration * deltaTime);
 
             // Stop bursting if the button is released or the duration expires
             if ((!_dashHold && Time.time - _burstSustainTime > 0.1f) || Time.time - _burstSustainTime >= SustainedBurstDuration)
