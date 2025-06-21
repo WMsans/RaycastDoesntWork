@@ -33,12 +33,19 @@ MonoBehaviour:
     - AllIn1VfxAssmebly
     - AllIn1VfxDemoScriptAssemblies
     - AllIn1VfxTexDemoAssembly
+    - andywiecko.BurstTriangulator
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
+    - AstarPathfindingProject
     - ComponentNames
+    - Drawing
     - Lofelt.NiceVibrations
     - Lofelt.NiceVibrations.Demo
     - MoreMountains.Tools
+    - Opsive.BehaviorDesigner.Runtime
+    - Opsive.GraphDesigner.Runtime.Wrappers
+    - Opsive.Shared.Runtime
+    - PackageTools
     - sapra.InfiniteLands
     - sapra.InfiniteLands.GenerationBuiltin
     - sapra.InfiniteLands.PlayTests
