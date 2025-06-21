@@ -15,6 +15,8 @@ MonoBehaviour:
   skipRendering: 0
   spawnMode: 1
   GenerateColliders: 1
+  ColliderMode: 0
+  CollisionDistance: 0
   ColliderObject: {fileID: 7884710657276134403, guid: d0c84dd0b9bb2024195b7f643893f105, type: 3}
   LodGroups: {fileID: 0}
   LOD:
@@ -29,11 +31,11 @@ MonoBehaviour:
   InstanceObject: {fileID: 1901537234494504, guid: d0c84dd0b9bb2024195b7f643893f105, type: 3}
   Materials: []
   ViewDistance: 500
-  DistanceBetweenItems: 45
+  DistanceBetweenItems: 48
   PositionRandomness: 0
   VerticalPosition: -5
   AlignToGround: 1
-  HeightVariation: 1
+  HeightVariation: 0
   SimplexNoiseSize: 1
   DensityAffectsHeight: 0
   MinimumScale: 1
@@ -47,4 +49,9 @@ MonoBehaviour:
   SamplingRandomness: 0
   RemoveAtTextures: []
   DrawDistances: 0
+  DrawLODBoundaries: 0
+  DrawTransitions: 0
+  DrawShadowBoundaries: 0
+  DrawSpawnedColliders: 0
+  DrawItAsSpheres: 0
   drawBoundingBox: 0

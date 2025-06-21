@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c0eef85b7bf50a4ca45eddcaeaf22bc, type: 3}
-  m_Name: CityVegetation01
+  m_Name: CityVegetation09
   m_EditorClassIdentifier: 
   skipRendering: 0
   spawnMode: 1
   GenerateColliders: 1
   ColliderMode: 0
   CollisionDistance: 0
-  ColliderObject: {fileID: 29138489412221081, guid: 102f7e4b9a9e8c146b84f2bdbc94b69d, type: 3}
+  ColliderObject: {fileID: 2557907133800782481, guid: 5955f14f91ce8c640af25df03d15ce27, type: 3}
   LodGroups: {fileID: 0}
   LOD:
-  - mesh: {fileID: 19178292735365542, guid: 61b51620960ade3479a0da3526182658, type: 3}
+  - mesh: {fileID: 3695341830369867392, guid: 61b51620960ade3479a0da3526182658, type: 3}
     materials:
     - {fileID: 2100000, guid: 1d6d9223de0666540bbdb593c42f73f9, type: 2}
     - {fileID: 2100000, guid: dcf995358fdc2e143a38a14926eb73c6, type: 2}
-    - {fileID: 2100000, guid: 0d40f327d63699246a4b74676c56750d, type: 2}
     - {fileID: 2100000, guid: 16815cb3a908bdb45aa319593f14a00b, type: 2}
+    - {fileID: 2100000, guid: 0d40f327d63699246a4b74676c56750d, type: 2}
   HighLodDistance: 1000
   CrossFadeLODDithering: 1
-  InstanceObject: {fileID: 1064093043934796, guid: 102f7e4b9a9e8c146b84f2bdbc94b69d, type: 3}
+  InstanceObject: {fileID: 1253577799735140, guid: 253e1d80442f0e945a193e628f0fc7a8, type: 3}
   Materials: []
   ViewDistance: 500
   DistanceBetweenItems: 48
