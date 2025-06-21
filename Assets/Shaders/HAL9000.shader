@@ -6,7 +6,6 @@ Shader "Unlit/HAL9000"
         _GlowColor("Glow Color", Color) = (1, 0, 0, 1)
         _HotspotColor("Hotspot Color", Color) = (1, 0.9, 0.7, 1)
         _RimColor("Rim Color", Color) = (0.7, 0.7, 0.7, 1)
-        _ReflectionColor("Reflection Color", Color) = (0.9, 0.9, 0.9, 1)
 
         [Header(Shape Falloff)]
         _RimRadius("Rim Radius", Range(0, 1)) = 0.48
@@ -39,13 +38,13 @@ Shader "Unlit/HAL9000"
             {
                 float4 positionHCS  : SV_POSITION;
                 float2 uv           : TEXCOORD0;
+                float3 positionOS   : TEXCOORD1; 
             };
 
             CBUFFER_START(UnityPerMaterial)
                 float4 _GlowColor;
                 float4 _HotspotColor;
                 float4 _RimColor;
-                float4 _ReflectionColor;
                 float _RimRadius;
                 float _RimWidth;
                 float _GlowFalloff;
@@ -59,15 +58,20 @@ Shader "Unlit/HAL9000"
 
                 o.positionHCS = TransformObjectToHClip(v.positionOS.xyz);
                 o.uv = v.uv;
+                o.positionOS = v.positionOS.xyz; 
                 return o;
             }
 
             half4 frag (Varyings i) : SV_Target
             {
 
-                float2 centered_uv = i.uv - 0.5;
+                float3 forwardDir = float3(0, 0, 1); 
+                float3 surfaceDir = normalize(i.positionOS);
 
-                float dist = length(centered_uv) * 2.0;
+                float dot_product = dot(surfaceDir, forwardDir);
+
+                float angle = acos(dot_product);
+                float dist = angle / (3.1415926535 / 2.0); 
 
                 half3 color = half3(0, 0, 0);
 
@@ -99,27 +103,29 @@ Shader "Unlit/HAL9000"
                 if(lens_mask > 0)
                 {
 
+                    float3 upDir = float3(0, 1, 0);
+                    float3 rightDir = float3(1, 0, 0);
+                    float2 reflection_coords = float2(dot(surfaceDir, rightDir), dot(surfaceDir, upDir));
+
                     float arc_y1 = 0.35; 
                     float arc_thickness1 = 0.06;
                     float arc_x_start1 = -0.35; 
                     float arc_x_end1 = 0.35;
-                    float curve1 = 0.8 * centered_uv.x * centered_uv.x;
+                    float curve1 = 0.8 * reflection_coords.x * reflection_coords.x;
 
-                    half band1 = smoothstep(0.0, 0.01, (arc_thickness1 / 2.0) - abs(centered_uv.y - arc_y1 + curve1));
+                    half band1 = smoothstep(0.0, 0.01, (arc_thickness1 / 2.0) - abs(reflection_coords.y - arc_y1 + curve1));
 
-                    half x_mask1 = smoothstep(0.0, 0.02, centered_uv.x - arc_x_start1) * (1.0 - smoothstep(0.0, 0.02, centered_uv.x - arc_x_end1));
+                    half x_mask1 = smoothstep(0.0, 0.02, reflection_coords.x - arc_x_start1) * (1.0 - smoothstep(0.0, 0.02, reflection_coords.x - arc_x_end1));
                     reflection_mask += band1 * x_mask1;
 
                     float arc_y2 = 0.42;
                     float arc_thickness2 = 0.04;
                     float arc_x_start2 = -0.4;
                     float arc_x_end2 = 0.4;
-                    float curve2 = 0.5 * centered_uv.x * centered_uv.x;
-                    half band2 = smoothstep(0.0, 0.01, (arc_thickness2 / 2.0) - abs(centered_uv.y - arc_y2 + curve2));
-                    half x_mask2 = smoothstep(0.0, 0.02, centered_uv.x - arc_x_start2) * (1.0 - smoothstep(0.0, 0.02, centered_uv.x - arc_x_end2));
+                    float curve2 = 0.5 * reflection_coords.x * reflection_coords.x;
+                    half band2 = smoothstep(0.0, 0.01, (arc_thickness2 / 2.0) - abs(reflection_coords.y - arc_y2 + curve2));
+                    half x_mask2 = smoothstep(0.0, 0.02, reflection_coords.x - arc_x_start2) * (1.0 - smoothstep(0.0, 0.02, reflection_coords.x - arc_x_end2));
                     reflection_mask += band2 * x_mask2;
-
-                    color = lerp(color, _ReflectionColor.rgb, saturate(reflection_mask) * lens_mask);
                 }
 
                 return half4(saturate(color), 1.0);

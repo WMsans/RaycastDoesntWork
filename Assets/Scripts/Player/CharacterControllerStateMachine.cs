@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,8 +7,9 @@ using UnityEngine;
 
 public class CharacterControllerStateMachine : MonoBehaviour
 {
-    [SerializeField] private BaseCharacterController defaultCharacterController;
-    [SerializeField] private KinematicCharacterMotor motor;
+    public static CharacterControllerStateMachine Instance { get; private set; }
+    public BaseCharacterController defaultCharacterController;
+    public KinematicCharacterMotor motor;
     private BaseCharacterController _currentCharacterController;
 
     public void SetCharacterController(BaseCharacterController characterController)
@@ -18,6 +20,18 @@ public class CharacterControllerStateMachine : MonoBehaviour
         motor.CharacterController = characterController;
         _currentCharacterController.SetMotor(motor);
         _currentCharacterController.OnEnableController();
+    }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("More than one player statemachine is active");
+            Destroy(this.gameObject);
+            return;
+        }
+
+        Instance = this;
     }
 
     private void Start()
