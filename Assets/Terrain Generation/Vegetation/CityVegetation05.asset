@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: CityVegetation05
   m_EditorClassIdentifier: 
   skipRendering: 0
-  spawnMode: 1
+  spawnMode: 0
   GenerateColliders: 1
-  ColliderMode: 0
-  CollisionDistance: 0
+  ColliderMode: 1
+  CollisionDistance: 125
   ColliderObject: {fileID: 2557907133800782481, guid: 5955f14f91ce8c640af25df03d15ce27, type: 3}
   LodGroups: {fileID: 0}
   LOD:

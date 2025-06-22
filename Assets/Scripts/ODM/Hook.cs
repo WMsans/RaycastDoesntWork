@@ -12,7 +12,7 @@ public class Hook : MonoBehaviour
         Stabilized,
     }
     [SerializeField] private Rigidbody hookRigidbody;
-    [SerializeField] private Collider hookCollider;
+    [SerializeField] private SphereCollider hookCollider;
     [SerializeField] private float hookSpeed = 10f;
     [SerializeField] private float hookDistance = 100f; // Increased distance
     [SerializeField] private LayerMask hookColliderLayers;
@@ -63,6 +63,7 @@ public class Hook : MonoBehaviour
         if (Vector3.Distance(hookRigidbody.position, _startPosition.position) > hookDistance)
         {
             CurrentState = HookState.In;
+            return;
         }
     }
     private void InUpdate()
@@ -79,6 +80,21 @@ public class Hook : MonoBehaviour
     private void StabilizedUpdate()
     {
         hookRigidbody.isKinematic = true;
+    }
+
+    private void FixedUpdate()
+    {
+        var info = new RaycastHit();
+        if (Physics.SphereCast(hookRigidbody.position, hookCollider.radius, hookRigidbody.linearVelocity.normalized,
+                out info, hookRigidbody.linearVelocity.magnitude * Time.fixedDeltaTime, hookColliderLayers, QueryTriggerInteraction.Ignore))
+        {
+            if (CurrentState == HookState.Out && ( hookColliderLayers & (1 << info.collider.gameObject.layer)) != 0)
+            {
+                CurrentState = HookState.Stabilized;
+                _hookController.OnHookHit(hookRigidbody.position);
+                hookRigidbody.linearVelocity = Vector3.zero;
+            }
+        }
     }
 
     public void SetHookState(HookState state)

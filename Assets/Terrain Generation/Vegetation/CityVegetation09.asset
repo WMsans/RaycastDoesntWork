@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: CityVegetation09
   m_EditorClassIdentifier: 
   skipRendering: 0
-  spawnMode: 1
+  spawnMode: 0
   GenerateColliders: 1
-  ColliderMode: 0
-  CollisionDistance: 0
-  ColliderObject: {fileID: 2557907133800782481, guid: 5955f14f91ce8c640af25df03d15ce27, type: 3}
+  ColliderMode: 1
+  CollisionDistance: 125
+  ColliderObject: {fileID: 1782146608944141286, guid: 253e1d80442f0e945a193e628f0fc7a8, type: 3}
   LodGroups: {fileID: 0}
   LOD:
-  - mesh: {fileID: 3695341830369867392, guid: 61b51620960ade3479a0da3526182658, type: 3}
+  - mesh: {fileID: 6797464830336992192, guid: 61b51620960ade3479a0da3526182658, type: 3}
     materials:
     - {fileID: 2100000, guid: 1d6d9223de0666540bbdb593c42f73f9, type: 2}
+    - {fileID: 2100000, guid: 0d40f327d63699246a4b74676c56750d, type: 2}
     - {fileID: 2100000, guid: dcf995358fdc2e143a38a14926eb73c6, type: 2}
     - {fileID: 2100000, guid: 16815cb3a908bdb45aa319593f14a00b, type: 2}
-    - {fileID: 2100000, guid: 0d40f327d63699246a4b74676c56750d, type: 2}
   HighLodDistance: 1000
   CrossFadeLODDithering: 1
   InstanceObject: {fileID: 1253577799735140, guid: 253e1d80442f0e945a193e628f0fc7a8, type: 3}
