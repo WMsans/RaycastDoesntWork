@@ -15,7 +15,7 @@ MonoBehaviour:
   skipRendering: 0
   spawnMode: 0
   GenerateColliders: 1
-  ColliderMode: 1
+  ColliderMode: 2
   CollisionDistance: 125
   ColliderObject: {fileID: 6923098142503451273, guid: e40cfb7b71b9cb64d8198e9ece01e439, type: 3}
   LodGroups: {fileID: 0}

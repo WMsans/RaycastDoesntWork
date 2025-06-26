@@ -4,7 +4,7 @@ using KinematicCharacterController.Examples;
 
 public class Player : MonoBehaviour
 {
-    public ExampleCharacterCamera OrbitCamera;
+    public RotatableCharacterCamera OrbitCamera;
     public Transform CameraFollowPoint;
     public CharacterControllerStateMachine Character;
     public HookController HookController;

@@ -46,10 +46,11 @@ Material:
     - _ColorNoiseTiling: 1
     - _DensityMultiplier: 0.1
     - _DensityThreshold: 1.8
-    - _LightScattering: 0.2
+    - _HeightFadeDistance: 50
+    - _LightScattering: 0.3
     - _MaxDistance: 600
-    - _MaxHeight: 90.71
-    - _MinDistance: 160
+    - _MaxHeight: 100
+    - _MinDistance: 50
     - _MixNoiseTiling: 1
     - _NoiseOffset: 2
     - _NoiseTiling: 0.1
