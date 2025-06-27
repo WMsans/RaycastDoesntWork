@@ -19,6 +19,7 @@ public class EnemyStopMoving : EnemyAction
         // Check if both linear and angular velocities are close to zero
         if (rb.linearVelocity.sqrMagnitude < 0.1f && rb.angularVelocity.sqrMagnitude < 0.1f)
         {
+            rb.linearVelocity = rb.angularVelocity = Vector3.zero;
             return TaskStatus.Success;
         }
 

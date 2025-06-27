@@ -15,6 +15,7 @@ public class Patrol : EnemyAction
     [SerializeField] private float waypointReachedDistance = 2f;
     [Tooltip("The time to wait at a patrol point before moving to the next one.")]
     [SerializeField] private float waitTimeAtPoint = 1f;
+    [SerializeField] private LayerMask groundLayer;
 
     [Header("Movement")]
     [Tooltip("The movement speed of the enemy.")]
@@ -91,8 +92,14 @@ public class Patrol : EnemyAction
     private void SetNewPatrolDestination()
     {
         // Generate a random point within a sphere and add it to the initial position.
-        Vector3 randomDirection = Random.insideUnitSphere * patrolRadius;
-        targetPatrolPosition = initialPosition + randomDirection;
+        var randomDirection = Random.insideUnitSphere * patrolRadius;
+        var newTarget = initialPosition + randomDirection;
+        if (Physics.Linecast(rb.position, newTarget, out var info, groundLayer, QueryTriggerInteraction.UseGlobal))
+        {
+            newTarget = info.distance * info.distance > randomDirection.sqrMagnitude ? initialPosition : Vector3.MoveTowards(newTarget, (rb.position - newTarget).normalized, info.distance + 2f);
+        }
+
+        targetPatrolPosition = newTarget;
     }
 
     /// <summary>
@@ -103,7 +110,7 @@ public class Patrol : EnemyAction
     private void HandleMovement(Vector3 targetPosition)
     {
         // 1. Determine the ideal direction towards the target patrol point.
-        Vector3 desiredDirection = (targetPosition - transform.position).normalized;
+        var desiredDirection = (targetPosition - transform.position).normalized;
         
         // Note: For more advanced behavior, obstacle avoidance logic (like the SphereCast
         // from your reference script) could be added here.
@@ -112,7 +119,7 @@ public class Patrol : EnemyAction
         // Smoothly rotate to look in the direction of travel.
         if (desiredDirection != Vector3.zero)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(desiredDirection);
+            var targetRotation = Quaternion.LookRotation(desiredDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
 

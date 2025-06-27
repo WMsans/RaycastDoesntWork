@@ -5,7 +5,6 @@ public abstract class EnemyAction : Action
 {
     protected Rigidbody rb;
     protected Animator animator;
-    protected bool FacingRight => Mathf.Abs(Mathf.DeltaAngle(transform.rotation.y, 0f)) < 1f;
 
     public override void OnAwake()
     {

@@ -41,6 +41,7 @@ public class CanSeePlayer : EnemyConditional
 
         if (angleToPlayer > fieldOfView / 2)
         {
+            Debug.Log(angleToPlayer + " " + fieldOfView);
             return TaskStatus.Failure;
         }
 

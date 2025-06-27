@@ -51,6 +51,7 @@ Material:
     - _MaxDistance: 600
     - _MaxHeight: 100
     - _MinDistance: 50
+    - _MinHeight: -10
     - _MixNoiseTiling: 1
     - _NoiseOffset: 2
     - _NoiseTiling: 0.1

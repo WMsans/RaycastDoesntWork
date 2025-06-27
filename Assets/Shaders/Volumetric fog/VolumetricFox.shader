@@ -9,8 +9,10 @@ Shader "Unlit/VolumetricFox"
         _DensityMultiplier("Density multiplier", Range(0, 10)) = 1
         _NoiseOffset("Noise offset", float) = 0
         _MaxHeight("Max height", float) = 100
+        _MinHeight("Min height", float) = 90
         _HeightFadeDistance("Height fade distance", float) = 10
         _MinDistance("Min distance from fog", float) = 15
+        _DistanceFadeDistance("Fade distance when too far", float) = 10
          
         _FogNoise("Fog noise", 3D) = "white" {}
         _NoiseTiling("Noise tiling", float) = 1
@@ -46,6 +48,7 @@ Shader "Unlit/VolumetricFox"
             float _StepSize;
             float _NoiseOffset;
             float _MaxHeight;
+            float _MinHeight;
             float _HeightFadeDistance;
             float _MinDistance;
             TEXTURE3D(_FogNoise);
@@ -68,12 +71,16 @@ Shader "Unlit/VolumetricFox"
 
                 float fadeStart = _MaxHeight - _HeightFadeDistance;
                 float t = saturate((worldPos.y - fadeStart) / _HeightFadeDistance);
-                float height_multiplier = lerp(1.0, 0.0, t);
+                float max_height_multiplier = lerp(1.0, 0.0, t);
+
+                fadeStart = _MinHeight + _HeightFadeDistance;
+                t = saturate((fadeStart - worldPos.y) / _HeightFadeDistance);
+                float min_height_multiplier = lerp(1.0, 0.0, t);
 
                 float dist_to_cam = distance(worldPos, _WorldSpaceCameraPos.xyz);
                 float distance_multiplier = step(_MinDistance, dist_to_cam);
 
-                return density * height_multiplier * distance_multiplier;
+                return density * max_height_multiplier * min_height_multiplier * distance_multiplier;
             }
 
             half4 frag(Varyings IN) : SV_Target
