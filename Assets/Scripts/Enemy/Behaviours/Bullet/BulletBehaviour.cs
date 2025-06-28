@@ -21,7 +21,7 @@ public class BulletBehaviour : MonoBehaviour
     {
         rb.angularVelocity = Vector3.zero;
         rb.linearVelocity = transform.forward * velocity;
-        _destroySelfCoroutine = Timing.RunCoroutine(SelfDestructionCoroutine(bulletLastTime));
+        _destroySelfCoroutine = Timing.RunCoroutine(SelfDestructionCoroutine(bulletLastTime).CancelWith(gameObject));
     }
 
     private void OnCollisionEnter(Collision other)

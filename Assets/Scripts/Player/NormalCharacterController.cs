@@ -21,15 +21,14 @@ public class NormalCharacterController : BaseCharacterController
     public float JumpPreGroundingGraceTime = 0f;
     public float JumpPostGroundingGraceTime = 0f;
 
-    [Header("Burst")]
-    public float BurstSpeed = 20f;
-    public float BurstAcceleration = 10f;
-    public float SustainedBurstDuration = 0.4f; // How long the burst can be sustained
-    
-    // Burst state variables
-    private bool _isBursting = false;
-    private bool _burstDown = false;
-    private float _burstSustainTime = 0f;
+    [Header("Attacking")]
+    public float AttackBurstSpeed = 20f;
+    public float BurstGravityModifier = 0.4f;
+    public float BurstGravityDuration = 0.6f;
+
+    private bool _canAttackBurst = false;
+    private float _burstGravityTimer = 0f;
+    private bool _attackDown;
 
     [Header("Misc")]
     public Vector3 Gravity = new Vector3(0, -30f, 0);
@@ -42,20 +41,21 @@ public class NormalCharacterController : BaseCharacterController
     private bool _jumpedThisFrame = false;
     private float _timeSinceJumpRequested = Mathf.Infinity;
     private float _timeSinceLastAbleToJump = 0f;
-    // private bool _doubleJumpConsumed = false;
     private bool _canWallJump = false;
     private Vector3 _wallJumpNormal;
-    private Vector3 _internalVelocityAdd = Vector3.zero;
+    
     private bool _shouldBeCrouching = false;
     private bool _isCrouching = false;
 
-    // Input state
-    private bool _jumpHold = false;
-    private bool _dashHold = false;
+    public override void OnEnableController()
+    {
+        // Recharge burst when the controller is enabled
+        _canAttackBurst = true;
+    }
 
     /// <summary>
     /// (Called by KinematicCharacterMotor during its update cycle)
-    /// This is where you tell your character what its rotation should be right now. 
+    /// This is where you tell your character what its rotation should be right now.
     /// This is the ONLY place where you should set the character's rotation
     /// </summary>
     public override void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
@@ -78,48 +78,27 @@ public class NormalCharacterController : BaseCharacterController
 
     /// <summary>
     /// (Called by KinematicCharacterMotor during its update cycle)
-    /// This is where you tell your character what its velocity should be right now. 
+    /// This is where you tell your character what its velocity should be right now.
     /// This is the ONLY place where you can set the character's velocity
     /// </summary>
     public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
     {
-        // Handle Sustained Burst
-        if (_isBursting)
-        {
-            if (_burstDown)
-            {
-                _burstDown = false;
-                currentVelocity += Camera.main.transform.forward * BurstSpeed;
-            }
-            // Set velocity to burst in the look direction
-            currentVelocity += Camera.main.transform.forward * (BurstAcceleration * deltaTime);
-
-            // Stop bursting if the button is released or the duration expires
-            if ((!_dashHold && Time.time - _burstSustainTime > 0.1f) || Time.time - _burstSustainTime >= SustainedBurstDuration)
-            {
-                _isBursting = false;
-            }
-
-            // If we are bursting, skip the rest of the velocity logic for this frame
-            return;
-        }
-        
+        base.UpdateVelocity(ref currentVelocity, deltaTime);
         Vector3 targetMovementVelocity;
         if (Motor.GroundingStatus.IsStableOnGround)
         {
-            // Reorient velocity on slope
-            currentVelocity = Motor.GetDirectionTangentToSurface(currentVelocity, Motor.GroundingStatus.GroundNormal) * currentVelocity.magnitude;
+            // ⭐ REMOVED: All ground-sticking and slope-reorientation logic.
+            // This prevents the character from being pushed down, allowing a burst to launch them off the ground.
+            
+            // Calculate target velocity as if on a flat plane
+            targetMovementVelocity = _moveInputVector * MaxStableMoveSpeed;
 
-            // Calculate target velocity
-            Vector3 inputRight = Vector3.Cross(_moveInputVector, Motor.CharacterUp);
-            Vector3 reorientedInput = Vector3.Cross(Motor.GroundingStatus.GroundNormal, inputRight).normalized * _moveInputVector.magnitude;
-            targetMovementVelocity = reorientedInput * MaxStableMoveSpeed;
-
-            // Smooth movement Velocity
+            // Smoothly interpolate to target velocity
             currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity, 1 - Mathf.Exp(-StableMovementSharpness * deltaTime));
         }
         else
         {
+            // Air movement
             if (_moveInputVector.sqrMagnitude > 0f)
             {
                 targetMovementVelocity = _moveInputVector * Mathf.Max(MaxAirMoveSpeed, currentVelocity.magnitude);
@@ -136,7 +115,18 @@ public class NormalCharacterController : BaseCharacterController
             }
 
             // Gravity
-            currentVelocity += Gravity * deltaTime;
+            if (_burstGravityTimer > 0f)
+            {
+                // Apply modified gravity
+                currentVelocity += Gravity * BurstGravityModifier * deltaTime;
+                _burstGravityTimer -= deltaTime;
+            }
+            else
+            {
+                // Apply regular gravity
+                currentVelocity += Gravity * deltaTime;
+            }
+
 
             // Drag
             currentVelocity *= (1f / (1f + (Drag * deltaTime)));
@@ -163,7 +153,7 @@ public class NormalCharacterController : BaseCharacterController
                         jumpDirection = Motor.GroundingStatus.GroundNormal;
                     }
 
-                    // Makes the character skip ground probing/snapping on its next update. 
+                    // Makes the character skip ground probing/snapping on its next update.
                     Motor.ForceUnground(0.1f);
 
                     // Add to the return velocity and reset jump state
@@ -177,13 +167,6 @@ public class NormalCharacterController : BaseCharacterController
             // Reset wall jump
             _canWallJump = false;
         }
-
-        // Take into account additive velocity
-        if (_internalVelocityAdd.sqrMagnitude > 0f)
-        {
-            currentVelocity += _internalVelocityAdd;
-            _internalVelocityAdd = Vector3.zero;
-        }
     }
 
     /// <summary>
@@ -192,12 +175,6 @@ public class NormalCharacterController : BaseCharacterController
     /// </summary>
     public override void AfterCharacterUpdate(float deltaTime)
     {
-        // Make sure we stay ungrounded while bursting
-        if (_isBursting)
-        {
-            Motor.ForceUnground();
-        }
-
         // Handle jump-related values
         {
             // Handle jumping pre-ground grace period
@@ -211,10 +188,12 @@ public class NormalCharacterController : BaseCharacterController
                 // If we're on a ground surface, reset jumping values
                 if (!_jumpedThisFrame)
                 {
-                    // _doubleJumpConsumed = false;
                     _jumpConsumed = false;
                 }
                 _timeSinceLastAbleToJump = 0f;
+                
+                // Recharge attack burst on landing
+                _canAttackBurst = true;
             }
             else
             {
@@ -257,34 +236,15 @@ public class NormalCharacterController : BaseCharacterController
         }
     }
 
-    public override void AddVelocity(Vector3 velocity)
-    {
-        _internalVelocityAdd += velocity;
-    }
-
     public override void SetInputs(ref Player.PlayerCharacterInputs inputs)
     {
         base.SetInputs(ref inputs);
-        
-        // Store jump and dash hold state
-        _jumpHold = inputs.JumpHold;
-        _dashHold = inputs.DashHold;
-        
-        // Handle Jump and Burst inputs
+
+        // Handle Jump inputs
         if (inputs.JumpDown)
         {
-            // Regular jump
             _timeSinceJumpRequested = 0f;
             _jumpRequested = true;
-        }
-        
-        // Handle Burst inputs
-        if (inputs.DashDown)
-        {
-            _isBursting = true;
-            _burstSustainTime = Time.time;
-            _jumpRequested = false; 
-            _burstDown = true;
         }
 
         // Crouching input
@@ -303,5 +263,26 @@ public class NormalCharacterController : BaseCharacterController
         {
             _shouldBeCrouching = false;
         }
+    }
+
+    public override void OnUseWeapon(Weapon weapon)
+    {
+        UseAttackBurst();
+    }
+
+    private void UseAttackBurst()
+    {
+        _burstGravityTimer = BurstGravityDuration;
+
+        if (_canAttackBurst)
+        {
+            // Add an instant velocity burst
+            this.SetVelocity(Camera.main.transform.forward * AttackBurstSpeed);
+                
+            // Consume the burst
+            _canAttackBurst = false;
+        }
+        _attackDown = true;
+        _jumpRequested = false;
     }
 }

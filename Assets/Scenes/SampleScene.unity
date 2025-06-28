@@ -464,9 +464,9 @@ MonoBehaviour:
   JumpSpeed: 10
   JumpPreGroundingGraceTime: 0.5
   JumpPostGroundingGraceTime: 0.3
-  BurstSpeed: 50
-  BurstAcceleration: 10
-  SustainedBurstDuration: 2
+  AttackBurstSpeed: 20
+  BurstGravityModifier: 0.15
+  BurstGravityDuration: 0.6
   Gravity: {x: 0, y: -30, z: 0}
   OrientTowardsGravity: 1
   MeshRoot: {fileID: 823913181}
@@ -2159,6 +2159,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingWeapon: {fileID: 2462825}
   weaponHoldSocket: {fileID: 2462824}
+  OnUseWeapon:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1208883867}
+        m_TargetAssemblyTypeName: CharacterControllerStateMachine, Assembly-CSharp
+        m_MethodName: OnUseWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1388547991 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4387430920638898, guid: d0c84dd0b9bb2024195b7f643893f105, type: 3}

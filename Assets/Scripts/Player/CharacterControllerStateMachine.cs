@@ -21,6 +21,11 @@ public class CharacterControllerStateMachine : MonoSingleton<CharacterController
         CurrentCharacterController.OnEnableController();
     }
 
+    public void OnUseWeapon(Weapon weapon)
+    {
+        CurrentCharacterController.OnUseWeapon(weapon);
+    }
+
     private void Start()
     {
         SetCharacterController(defaultCharacterController);

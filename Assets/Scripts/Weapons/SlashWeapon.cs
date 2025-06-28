@@ -31,10 +31,10 @@ public class SlashWeapon : Weapon
 
     public override void OnAttackDown()
     {
-        Debug.Log("Down");
         // Check if the cooldown has passed and no attack is currently active
         if (Time.time >= _nextAttackTime && _attackCoroutine == null)
         {
+            UsedWeapon();
             _nextAttackTime = Time.time + attackCooldown;
             _attackCoroutine = StartCoroutine(AttackCoroutine());
         }

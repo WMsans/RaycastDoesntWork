@@ -9,12 +9,38 @@ public abstract class BaseCharacterController : MonoBehaviour, ICharacterControl
     
     protected Vector3 _moveInputVector;
     protected Vector3 _lookInputVector;
+    
+    protected Vector3 _internalVelocityAdd = Vector3.zero;
+    protected Vector3 _internalVelocityChange = Vector3.zero;
 
     public virtual void OnEnableController() {}
     public virtual void OnDisableController(){}
     
     // This new method allows external scripts to add velocity to the controller.
-    public virtual void AddVelocity(Vector3 velocity) {}
+    public virtual void AddVelocity(Vector3 velocity)
+    {
+        _internalVelocityAdd += velocity;
+    }
+
+    public virtual void SetVelocity(Vector3 velocity)
+    {
+        _internalVelocityChange = velocity;
+    }
+
+    protected void HandleInternalVelocityChange(ref Vector3 currentVelocity)
+    {
+        // Take into account additive velocity
+        if (_internalVelocityChange.sqrMagnitude > 0f)
+        {
+            currentVelocity = _internalVelocityChange;
+            _internalVelocityChange = Vector3.zero;
+        }
+        if (_internalVelocityAdd.sqrMagnitude > 0f)
+        {
+            currentVelocity += _internalVelocityAdd;
+            _internalVelocityAdd = Vector3.zero;
+        }
+    }
     
     public virtual void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
     {
@@ -22,6 +48,7 @@ public abstract class BaseCharacterController : MonoBehaviour, ICharacterControl
 
     public virtual void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
     {
+        HandleInternalVelocityChange(ref currentVelocity);
     }
 
     public virtual void BeforeCharacterUpdate(float deltaTime)
@@ -58,6 +85,7 @@ public abstract class BaseCharacterController : MonoBehaviour, ICharacterControl
     public virtual void OnDiscreteCollisionDetected(Collider hitCollider)
     {
     }
+    public virtual void OnUseWeapon(Weapon weapon){}
     public virtual void SetInputs(ref Player.PlayerCharacterInputs inputs)
     {
         // Clamp input

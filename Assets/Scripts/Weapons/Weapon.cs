@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -6,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public abstract class Weapon : MonoBehaviour
 {
+    public event Action<Weapon> OnWeaponUsed;
+
     protected WeaponController Owner { get; private set; }
 
     /// <summary>
@@ -35,4 +38,9 @@ public abstract class Weapon : MonoBehaviour
     /// Called when this weapon is no longer the active weapon.
     /// </summary>
     public virtual void OnDisabledWeapon() { }
+
+    protected virtual void UsedWeapon()
+    {
+        OnWeaponUsed?.Invoke(this);
+    }
 }

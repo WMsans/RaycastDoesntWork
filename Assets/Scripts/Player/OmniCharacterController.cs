@@ -22,7 +22,6 @@ public class OmniCharacterController : BaseCharacterController
     private Vector3 _hookPoint;
     private bool _isReeling = false;
     private float _ropeDistance; // The current length of the rope tether
-    private Vector3 _internalVelocityAdd = Vector3.zero; // Stores velocity to be added
     
     // Burst state
     private bool _isBursting = false;
@@ -53,15 +52,10 @@ public class OmniCharacterController : BaseCharacterController
             _burstSustainTime = Time.time;
         }
     }
-    
-    public override void AddVelocity(Vector3 velocity)
-    {
-        // Store the velocity to be applied in the next update
-        _internalVelocityAdd += velocity;
-    }
 
     public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
     {
+        base.UpdateVelocity(ref currentVelocity, deltaTime);
         // Apply any externally added velocity (from the state transition)
         if (_internalVelocityAdd.sqrMagnitude > 0f)
         {

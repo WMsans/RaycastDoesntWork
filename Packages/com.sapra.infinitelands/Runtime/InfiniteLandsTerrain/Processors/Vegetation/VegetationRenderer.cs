@@ -299,7 +299,6 @@ namespace sapra.InfiniteLands
         private void Reload()
         {
             InitializeProcessor();
-            Debug.Log("called");
         }
 
         protected override void OnProcessAdded(ChunkData chunk)
