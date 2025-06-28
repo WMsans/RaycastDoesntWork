@@ -87,7 +87,7 @@ public class Hook : MonoBehaviour
         if (Physics.SphereCast(hookRigidbody.position, hookCollider.radius, hookRigidbody.linearVelocity.normalized,
                 out var hit, hookRigidbody.linearVelocity.magnitude * Time.fixedDeltaTime, hookColliderLayers, QueryTriggerInteraction.Ignore))
         {
-            OnHitObjects(hit.collider);
+            OnHitObjects(hit.collider, hit.point);
         }
     }
 
@@ -99,16 +99,17 @@ public class Hook : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.isTrigger) return;
-        OnHitObjects(other);
+        OnHitObjects(other, hookRigidbody.position);
     }
 
-    private void OnHitObjects(Collider other)
+    private void OnHitObjects(Collider other, Vector3 hitPosition)
     {
         if (CurrentState == HookState.Out && ( hookColliderLayers & (1 << other.gameObject.layer)) != 0)
         {
             CurrentState = HookState.Stabilized;
             _hookController.OnHookHit(hookRigidbody.position);
             hookRigidbody.linearVelocity = Vector3.zero;
+            hookRigidbody.position = hitPosition;
         }
     }
 

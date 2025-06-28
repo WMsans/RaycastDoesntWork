@@ -104,7 +104,7 @@ public class NormalCharacterController : BaseCharacterController
             return;
         }
         
-        var targetMovementVelocity = Vector3.zero;
+        Vector3 targetMovementVelocity;
         if (Motor.GroundingStatus.IsStableOnGround)
         {
             // Reorient velocity on slope

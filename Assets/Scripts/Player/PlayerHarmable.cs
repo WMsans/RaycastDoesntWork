@@ -1,24 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using KinematicCharacterController;
 using UnityEngine;
 using UnityEngine.Events;
 
-/// <summary>
-/// A component for any GameObject that can take damage and has health.
-/// Provides events for taking damage, healing, and dying.
-/// </summary>
-public class Harmable : MonoBehaviour,IHarmable
+public class PlayerHarmable : MonoSingleton<PlayerHarmable>, IHarmable
 {
-    [Tooltip("The maximum health of this object.")]
-    [SerializeField] private float maxHealth = 100;
-
-    [SerializeField] private bool dieOnDeath = true;
-
-    // The current health of the object. Readonly property to prevent outside modification.
+    [SerializeField] private float maxHealth;
+    [SerializeField] private bool decreaseSpeedAfterHit;
+    [SerializeField] private KinematicCharacterMotor motor;
+    public float MaxHealth => maxHealth;
     public float CurrentHealth { get; private set; }
-
-    // --- UNITY EVENTS ---
-    // These events allow you to hook up other scripts and effects in the Unity Editor
-    // without writing any extra code.
-
+    
     /// <summary>
     /// Event invoked when the object takes damage.
     /// Passes the amount of damage taken and the new current health.
@@ -41,18 +34,11 @@ public class Harmable : MonoBehaviour,IHarmable
     public UnityEvent OnDeath;
 
 
-    private void Awake()
+    private void Start()
     {
         // Initialize current health to the maximum health when the object is created.
         CurrentHealth = maxHealth;
     }
-
-    public float MaxHealth => maxHealth;
-
-    /// <summary>
-    /// Reduces the object's health by a specified amount.
-    /// </summary>
-    /// <param name="damageAmount">The amount of damage to inflict. Must be positive.</param>
     public void TakeDamage(float damageAmount)
     {
         // Ensure damage is not negative.
@@ -71,12 +57,17 @@ public class Harmable : MonoBehaviour,IHarmable
 
         // Invoke the OnDamage event, passing the damage amount and the new health.
         OnDamage?.Invoke(damageAmount, CurrentHealth);
+        if (decreaseSpeedAfterHit)
+        {
+            var controller = CharacterControllerStateMachine.Instance.CurrentCharacterController;
+            var currentVelocity = CharacterControllerStateMachine.Instance.motor.Velocity;
+            controller.AddVelocity(currentVelocity * -0.7f);
+        }
 
         // Check if the object has died.
         if (CurrentHealth <= 0)
         {
             OnDeath?.Invoke();
-            if(dieOnDeath) Destroy(gameObject);
         }
     }
 

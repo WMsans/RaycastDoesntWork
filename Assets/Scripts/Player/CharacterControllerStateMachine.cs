@@ -5,33 +5,20 @@ using System.Linq;
 using KinematicCharacterController;
 using UnityEngine;
 
-public class CharacterControllerStateMachine : MonoBehaviour
+public class CharacterControllerStateMachine : MonoSingleton<CharacterControllerStateMachine>
 {
-    public static CharacterControllerStateMachine Instance { get; private set; }
     public BaseCharacterController defaultCharacterController;
     public KinematicCharacterMotor motor;
-    private BaseCharacterController _currentCharacterController;
+    public BaseCharacterController CurrentCharacterController { get; private set; }
 
     public void SetCharacterController(BaseCharacterController characterController)
     {
-        if (_currentCharacterController == characterController || characterController == null) return;
-        _currentCharacterController?.OnDisableController();
-        _currentCharacterController = characterController;
+        if (CurrentCharacterController == characterController || characterController == null) return;
+        CurrentCharacterController?.OnDisableController();
+        CurrentCharacterController = characterController;
         motor.CharacterController = characterController;
-        _currentCharacterController.SetMotor(motor);
-        _currentCharacterController.OnEnableController();
-    }
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Debug.LogWarning("More than one player statemachine is active");
-            Destroy(this.gameObject);
-            return;
-        }
-
-        Instance = this;
+        CurrentCharacterController.SetMotor(motor);
+        CurrentCharacterController.OnEnableController();
     }
 
     private void Start()
@@ -41,6 +28,6 @@ public class CharacterControllerStateMachine : MonoBehaviour
 
     public virtual void SetInputs(ref Player.PlayerCharacterInputs inputs)
     {
-        _currentCharacterController.SetInputs(ref inputs);
+        CurrentCharacterController.SetInputs(ref inputs);
     }
 }

@@ -10,6 +10,7 @@ public class DroneTelegraphAttack : EnemyAction
 
     public override TaskStatus OnUpdate()
     {
+        // Shoot
         Object.Instantiate(bulletPrefab, ShootPoint.position, ShootPoint.rotation);
         return TaskStatus.Success;
     }

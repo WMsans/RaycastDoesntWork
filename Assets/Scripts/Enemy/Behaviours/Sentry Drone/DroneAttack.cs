@@ -10,6 +10,7 @@ public class DroneAttack : EnemyAction
 
     public override TaskStatus OnUpdate()
     {
+        // Shoot bullet
         Object.Instantiate(bulletPrefab, ShootPoint.position, ShootPoint.rotation);
         return TaskStatus.Success;
     }

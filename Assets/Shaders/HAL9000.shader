@@ -3,9 +3,9 @@ Shader "Unlit/HAL9000"
     Properties
     {
         [Header(Colors)]
-        _GlowColor("Glow Color", Color) = (1, 0, 0, 1)
-        _HotspotColor("Hotspot Color", Color) = (1, 0.9, 0.7, 1)
-        _RimColor("Rim Color", Color) = (0.7, 0.7, 0.7, 1)
+        [HDR]_GlowColor("Glow Color", Color) = (1, 0, 0, 1)
+        [HDR]_HotspotColor("Hotspot Color", Color) = (1, 0.9, 0.7, 1)
+        [HDR]_RimColor("Rim Color", Color) = (0.7, 0.7, 0.7, 1)
 
         [Header(Shape Falloff)]
         _RimRadius("Rim Radius", Range(0, 1)) = 0.48

@@ -70,13 +70,13 @@ public class SlashWeapon : Weapon
         // 1. Instantiate the slash effect
         if (slashPrefab != null)
         {
-            Transform spawnTransform = transform; 
+            var spawnTransform = transform; 
             _activeSlashInstance = Instantiate(slashPrefab, spawnTransform.position, spawnTransform.rotation, spawnTransform);
         }
 
         // 2. Perform hit detection over the slash duration
-        List<Harmable> alreadyHit = new List<Harmable>();
-        float startTime = Time.time;
+        var alreadyHit = new List<Harmable>();
+        var startTime = Time.time;
 
         while (Time.time - startTime < slashDuration)
         {
@@ -98,20 +98,18 @@ public class SlashWeapon : Weapon
     /// <param name="alreadyHit">A list of enemies already hit by this slash to prevent multi-hits.</param>
     private void DetectAndDamageEnemies(List<Harmable> alreadyHit)
     {
-        Vector3 boxCenter = transform.position + transform.rotation * slashOffset;
-        Collider[] hits = Physics.OverlapBox(boxCenter, slashHalfExtents, transform.rotation, enemyLayers);
+        var boxCenter = transform.position + transform.rotation * slashOffset;
+        var hits = Physics.OverlapBox(boxCenter, slashHalfExtents, transform.rotation, enemyLayers);
 
         foreach (var hit in hits)
         {
-            if(!hit.CompareTag("Enemy")) continue;
-            Harmable harmable = hit.GetComponent<Harmable>();
+            if(!hit.transform.root.CompareTag("Enemy")) continue;
+            var harmable = hit.transform.root.GetComponent<Harmable>();
 
             // Check if the object is harmable and hasn't been hit by this slash yet
-            if (harmable != null && !alreadyHit.Contains(harmable))
-            {
-                harmable.TakeDamage(damage);
-                alreadyHit.Add(harmable); // Add to the list to prevent hitting it again
-            }
+            if (harmable == null || alreadyHit.Contains(harmable)) continue;
+            harmable.TakeDamage(damage);
+            alreadyHit.Add(harmable); // Add to the list to prevent hitting it again
         }
     }
 
