@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RotatableCharacterCamera : MonoBehaviour
@@ -44,6 +45,19 @@ public class RotatableCharacterCamera : MonoBehaviour
     public LayerMask ObstructionLayers = -1;
     public float ObstructionSharpness = 10000f;
     public List<Collider> IgnoredColliders = new List<Collider>();
+    
+    [Header("Speed Effects")]
+    [Tooltip("The forward speed above which speed effects will kick in.")]
+    [SerializeField] private float highVelocityThreshold = 10f;
+
+    [Tooltip("How much the FOV increases at high speeds. This is a multiplier.")]
+    [SerializeField] private float fovIncreaseMultiplier = 1.2f;
+
+    [Tooltip("How much the camera distance increases at high speeds. This is a multiplier.")]
+    [SerializeField] private float distanceIncreaseMultiplier = 1.1f;
+    
+    [Tooltip("How smoothly the camera transitions to the speed-based FOV and distance. Higher is faster.")]
+    [SerializeField] private float velocityEffectSmoothness = 5f;
 
     public Transform Transform { get; private set; }
     public Transform FollowTransform { get; private set; }
@@ -64,6 +78,11 @@ public class RotatableCharacterCamera : MonoBehaviour
     private float _currentRollAngle;
     private Vector3 _lastFollowPosition;
 
+    // Fields for Speed Effects
+    private float _originalFOV;
+    private float _originalDistance;
+    private float _targetFOV;
+
     private const int MaxObstructions = 32;
 
     void OnValidate()
@@ -83,6 +102,14 @@ public class RotatableCharacterCamera : MonoBehaviour
         // Initialize roll state
         _currentRollAngle = 0f;
         _lastFollowPosition = Vector3.zero;
+        
+        // Initialize speed effects state
+        if (Camera)
+        {
+            _originalFOV = Camera.fieldOfView;
+            _targetFOV = _originalFOV;
+        }
+        _originalDistance = DefaultDistance;
 
         PlanarDirection = Vector3.forward;
     }
@@ -97,14 +124,12 @@ public class RotatableCharacterCamera : MonoBehaviour
         _lastFollowPosition = FollowTransform.position;
     }
 
-    public void UpdateWithInput(float deltaTime, float zoomInput, Vector3 rotationInput)
+    public void UpdateWithInput(float deltaTime, Vector3 rotationInput)
     {
         if (FollowTransform)
         {
-            // === CAMERA ROLL LOGIC START ===
-            
             // Calculate FollowTransform's velocity
-            Vector3 velocity = Vector3.zero;
+            var velocity = Vector3.zero;
             if (deltaTime > 0f)
             {
                 velocity = (FollowTransform.position - _lastFollowPosition) / deltaTime;
@@ -112,17 +137,38 @@ public class RotatableCharacterCamera : MonoBehaviour
             _lastFollowPosition = FollowTransform.position;
             
             // Calculate the sideways speed relative to the camera's orientation on the character's horizontal plane
-            Vector3 cameraPlanarRight = Vector3.Cross(FollowTransform.up, Vector3.ProjectOnPlane(Transform.forward, FollowTransform.up).normalized);
-            float sidewaysSpeed = Vector3.Dot(velocity, cameraPlanarRight);
+            var cameraPlanarRight = Vector3.Cross(FollowTransform.up, Vector3.ProjectOnPlane(Transform.forward, FollowTransform.up).normalized);
+            var sidewaysSpeed = Vector3.Dot(velocity, cameraPlanarRight);
 
             // Calculate the desired roll angle based on the sideways speed
-            float targetRollAngle = -sidewaysSpeed * rollSpeed; // Negative to roll in the direction of movement
+            var targetRollAngle = -sidewaysSpeed * rollSpeed; // Negative to roll in the direction of movement
             targetRollAngle = Mathf.Clamp(targetRollAngle, -maxRollAngle, maxRollAngle);
 
             // Smoothly interpolate the current roll angle towards the target
             _currentRollAngle = Mathf.Lerp(_currentRollAngle, targetRollAngle, 1f - Mathf.Exp(-smoothness * deltaTime));
             
-            // === CAMERA ROLL LOGIC END ===
+            // Calculate forward speed for FOV and distance effects
+            var forwardSpeed = velocity.sqrMagnitude;
+
+            // Determine target FOV and distance based on speed
+            if (forwardSpeed > highVelocityThreshold * highVelocityThreshold)
+            {
+                _targetFOV = _originalFOV * fovIncreaseMultiplier;
+                TargetDistance = _originalDistance * distanceIncreaseMultiplier;
+            }
+            else
+            {
+                _targetFOV = _originalFOV;
+                TargetDistance = _originalDistance;
+            }
+            
+            // Smoothly interpolate FOV and distance
+            if (Camera)
+            {
+                Camera.fieldOfView = Mathf.Lerp(Camera.fieldOfView, _targetFOV, 1f - Mathf.Exp(-velocityEffectSmoothness * deltaTime));
+            }
+            TargetDistance = Mathf.Clamp(TargetDistance, MinDistance, MaxDistance);
+
 
             if (InvertX)
             {
@@ -134,59 +180,35 @@ public class RotatableCharacterCamera : MonoBehaviour
             }
 
             // Process rotation input
-            Quaternion rotationFromInput = Quaternion.Euler(FollowTransform.up * (rotationInput.x * RotationSpeed));
+            var rotationFromInput = Quaternion.Euler(FollowTransform.up * (rotationInput.x * RotationSpeed));
             PlanarDirection = rotationFromInput * PlanarDirection;
             PlanarDirection = Vector3.Cross(FollowTransform.up, Vector3.Cross(PlanarDirection, FollowTransform.up));
-            Quaternion planarRot = Quaternion.LookRotation(PlanarDirection, FollowTransform.up);
+            var planarRot = Quaternion.LookRotation(PlanarDirection, FollowTransform.up);
 
             _targetVerticalAngle -= (rotationInput.y * RotationSpeed);
             _targetVerticalAngle = Mathf.Clamp(_targetVerticalAngle, MinVerticalAngle, MaxVerticalAngle);
-            Quaternion verticalRot = Quaternion.Euler(_targetVerticalAngle, 0, 0);
+            var verticalRot = Quaternion.Euler(_targetVerticalAngle, 0, 0);
             
             // Create the roll rotation
-            Quaternion rollRot = Quaternion.Euler(0, 0, _currentRollAngle);
+            var rollRot = Quaternion.Euler(0, 0, _currentRollAngle);
             
             // Combine all rotations (Yaw, Pitch, and Roll) and smoothly apply them
-            Quaternion targetRotation = Quaternion.Slerp(Transform.rotation, planarRot * verticalRot * rollRot, 1f - Mathf.Exp(-RotationSharpness * deltaTime));
+            var targetRotation = Quaternion.Slerp(Transform.rotation, planarRot * verticalRot * rollRot, 1f - Mathf.Exp(-RotationSharpness * deltaTime));
 
             // Apply rotation
             Transform.rotation = targetRotation;
-
-            // Process distance input
-            if (_distanceIsObstructed && Mathf.Abs(zoomInput) > 0f)
-            {
-                TargetDistance = _currentDistance;
-            }
-            TargetDistance += zoomInput * DistanceMovementSpeed;
-            TargetDistance = Mathf.Clamp(TargetDistance, MinDistance, MaxDistance);
-
+            
             // Find the smoothed follow position
             _currentFollowPosition = Vector3.Lerp(_currentFollowPosition, FollowTransform.position, 1f - Mathf.Exp(-FollowingSharpness * deltaTime));
 
             // Handle obstructions
             {
-                RaycastHit closestHit = new RaycastHit();
+                var closestHit = new RaycastHit();
                 closestHit.distance = Mathf.Infinity;
                 _obstructionCount = Physics.SphereCastNonAlloc(_currentFollowPosition, ObstructionCheckRadius, -Transform.forward, _obstructions, TargetDistance, ObstructionLayers, QueryTriggerInteraction.Ignore);
-                for (int i = 0; i < _obstructionCount; i++)
+                for (var i = 0; i < _obstructionCount; i++)
                 {
-                    bool isIgnored = false;
-                    for (int j = 0; j < IgnoredColliders.Count; j++)
-                    {
-                        if (IgnoredColliders[j] == _obstructions[i].collider)
-                        {
-                            isIgnored = true;
-                            break;
-                        }
-                    }
-                    for (int j = 0; j < IgnoredColliders.Count; j++)
-                    {
-                        if (IgnoredColliders[j] == _obstructions[i].collider)
-                        {
-                            isIgnored = true;
-                            break;
-                        }
-                    }
+                    var isIgnored = IgnoredColliders.Any(t => t == _obstructions[i].collider) || IgnoredColliders.Any(t => t == _obstructions[i].collider);
 
                     if (!isIgnored && _obstructions[i].distance < closestHit.distance && _obstructions[i].distance > 0)
                     {
@@ -209,7 +231,7 @@ public class RotatableCharacterCamera : MonoBehaviour
             }
 
             // Find the smoothed camera orbit position
-            Vector3 targetPosition = _currentFollowPosition - ((targetRotation * Vector3.forward) * _currentDistance);
+            var targetPosition = _currentFollowPosition - ((targetRotation * Vector3.forward) * _currentDistance);
 
             // Handle framing
             targetPosition += Transform.right * FollowPointFraming.x;

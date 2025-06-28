@@ -56,13 +56,6 @@ public class OmniCharacterController : BaseCharacterController
     public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
     {
         base.UpdateVelocity(ref currentVelocity, deltaTime);
-        // Apply any externally added velocity (from the state transition)
-        if (_internalVelocityAdd.sqrMagnitude > 0f)
-        {
-            currentVelocity += _internalVelocityAdd;
-            _internalVelocityAdd = Vector3.zero;
-        }
-
         if (!_isReeling)
         {
             currentVelocity += Gravity * deltaTime; // Apply gravity if not hooked

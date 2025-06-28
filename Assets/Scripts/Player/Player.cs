@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
             lookInputVector = Vector3.zero;
         }
         
-        OrbitCamera.UpdateWithInput(Time.deltaTime, 0f, lookInputVector);
+        OrbitCamera.UpdateWithInput(Time.deltaTime, lookInputVector);
     }
 
     private void HandleCharacterInput()

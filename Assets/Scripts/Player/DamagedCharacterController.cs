@@ -16,11 +16,6 @@ public class DamagedCharacterController : BaseCharacterController
     public Transform MeshRoot;
     
     private bool _decelerated = false;
-    private Vector3 _internalVelocityAdd;
-    public override void AddVelocity(Vector3 velocity)
-    {
-        _internalVelocityAdd += velocity;
-    }
     public override void OnEnableController()
     {
         _decelerated = false;
@@ -35,6 +30,7 @@ public class DamagedCharacterController : BaseCharacterController
 
     public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
     {
+        base.UpdateVelocity(ref currentVelocity, deltaTime);
         if(!_decelerated)
         {
             _decelerated = true;
@@ -54,13 +50,6 @@ public class DamagedCharacterController : BaseCharacterController
         {
             // Gravity
             currentVelocity += Gravity * deltaTime;
-        }
-
-        // Take into account additive velocity
-        if (_internalVelocityAdd.sqrMagnitude > 0f)
-        {
-            currentVelocity += _internalVelocityAdd;
-            _internalVelocityAdd = Vector3.zero;
         }
     }
     public override void UpdateRotation(ref Quaternion currentRotation, float deltaTime)

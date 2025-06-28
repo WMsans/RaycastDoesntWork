@@ -482,7 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ef6ba8b4a648aaa2c72061b442f9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReelInSpeed: 60
+  ReelInSpeed: 50
   ReelOutSpeed: 50
   BurstReelInSpeed: 25
   RedirectSpeed: 12
@@ -2007,6 +2007,10 @@ MonoBehaviour:
     m_Bits: 65
   ObstructionSharpness: 10000
   IgnoredColliders: []
+  highVelocityThreshold: 45
+  fovIncreaseMultiplier: 1.3
+  distanceIncreaseMultiplier: 1.2
+  velocityEffectSmoothness: 5
 --- !u!1 &1208883860
 GameObject:
   m_ObjectHideFlags: 0
