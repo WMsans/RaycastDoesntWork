@@ -58,8 +58,6 @@ public class HookController : MonoBehaviour
     {
         omniCCharacterController.StopReeling();
         controllerStateMachine.SetCharacterController(normalCharacterController);
-        /*Vector3 lastVelocity = motor.BaseVelocity;
-        normalCharacterController.AddVelocity(lastVelocity * 0.5f);*/
         _hook?.SetHookState(Hook.HookState.In);
         _hook = null;
     }

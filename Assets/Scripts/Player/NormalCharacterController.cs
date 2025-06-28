@@ -13,6 +13,7 @@ public class NormalCharacterController : BaseCharacterController
     public float MaxAirMoveSpeed = 10f;
     public float AirAccelerationSpeed = 5f;
     public float Drag = 0.1f;
+    public float DirectionChangeThreshold = 0.5f;
 
     [Header("Jumping")]
     public bool AllowJumpingWhenSliding = false;
@@ -20,6 +21,8 @@ public class NormalCharacterController : BaseCharacterController
     public float JumpSpeed = 10f;
     public float JumpPreGroundingGraceTime = 0f;
     public float JumpPostGroundingGraceTime = 0f;
+    public float EndJumpSpeedThreshold = 60f;
+    public float EndJumpSpeed = 30f;
 
     [Header("Attacking")]
     public float AttackBurstSpeed = 20f;
@@ -46,11 +49,17 @@ public class NormalCharacterController : BaseCharacterController
     
     private bool _shouldBeCrouching = false;
     private bool _isCrouching = false;
+    private bool _jumpHold;
 
     public override void OnEnableController()
     {
         // Recharge burst when the controller is enabled
         _canAttackBurst = true;
+        var horizontalVelocity = Vector3.ProjectOnPlane(Motor.Velocity, Motor.CharacterUp).magnitude;
+        if (horizontalVelocity > EndJumpSpeedThreshold && _jumpHold)
+        {
+            AddVelocity(Motor.CharacterUp * EndJumpSpeed);
+        }
     }
 
     /// <summary>
@@ -101,7 +110,27 @@ public class NormalCharacterController : BaseCharacterController
             // Air movement
             if (_moveInputVector.sqrMagnitude > 0f)
             {
-                targetMovementVelocity = _moveInputVector * Mathf.Max(MaxAirMoveSpeed, currentVelocity.magnitude);
+                float currentSpeed = currentVelocity.magnitude;
+                Vector3 currentDirection = currentVelocity.normalized;
+
+                // Dot product between the current velocity direction and the input direction.
+                float dot = Vector3.Dot(currentDirection, _moveInputVector);
+
+                float targetAirSpeed;
+
+                // If the player is trying to move in a significantly different direction,
+                // then cap the speed to MaxAirMoveSpeed.
+                if (dot < DirectionChangeThreshold)
+                {
+                    targetAirSpeed = MaxAirMoveSpeed;
+                }
+                else
+                {
+                    // Otherwise, allow the speed to be maintained.
+                    targetAirSpeed = Mathf.Max(MaxAirMoveSpeed, currentSpeed);
+                }
+
+                targetMovementVelocity = _moveInputVector * targetAirSpeed;
 
                 // Prevent climbing on un-stable slopes with air movement
                 if (Motor.GroundingStatus.FoundAnyGround)
@@ -239,6 +268,7 @@ public class NormalCharacterController : BaseCharacterController
     public override void SetInputs(ref Player.PlayerCharacterInputs inputs)
     {
         base.SetInputs(ref inputs);
+        _jumpHold = inputs.JumpHold;
 
         // Handle Jump inputs
         if (inputs.JumpDown)
@@ -277,7 +307,7 @@ public class NormalCharacterController : BaseCharacterController
         if (_canAttackBurst)
         {
             // Add an instant velocity burst
-            this.SetVelocity(Camera.main.transform.forward * AttackBurstSpeed);
+            this.AddVelocity(Camera.main.transform.forward * AttackBurstSpeed);
                 
             // Consume the burst
             _canAttackBurst = false;

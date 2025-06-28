@@ -148,13 +148,13 @@ public class RotatableCharacterCamera : MonoBehaviour
             _currentRollAngle = Mathf.Lerp(_currentRollAngle, targetRollAngle, 1f - Mathf.Exp(-smoothness * deltaTime));
             
             // Calculate forward speed for FOV and distance effects
-            var forwardSpeed = velocity.sqrMagnitude;
+            var forwardSpeed = velocity.magnitude;
 
             // Determine target FOV and distance based on speed
-            if (forwardSpeed > highVelocityThreshold * highVelocityThreshold)
+            if (forwardSpeed > highVelocityThreshold )
             {
-                _targetFOV = _originalFOV * fovIncreaseMultiplier;
-                TargetDistance = _originalDistance * distanceIncreaseMultiplier;
+                _targetFOV = _originalFOV * fovIncreaseMultiplier * Mathf.Pow((forwardSpeed / highVelocityThreshold), 0.1f);
+                TargetDistance = _originalDistance * distanceIncreaseMultiplier * Mathf.Pow((forwardSpeed / highVelocityThreshold), 0.1f);
             }
             else
             {
