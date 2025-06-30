@@ -61,14 +61,21 @@ namespace sapra.InfiniteLands{
         public bool GetAllPoints(float size, Vector3 origin, out List<PointTransform> AllPoints){
             return GetPoints(size, origin, out AllPoints); 
         }
+        
+        public bool GetAllPoints(PointGenerationSettings settings, out List<PointTransform> AllPoints){
+            return GetPoints(settings.CheckupSize, settings.Origin, out AllPoints); 
+        }
 
-        public bool GetNewPoints(float size, Vector3 origin, out List<PointTransform> NewPoints){
-            if(!StoreNewPoints){
+
+        public bool GetNewPoints(float size, Vector3 origin, out List<PointTransform> NewPoints)
+        {
+            if (!StoreNewPoints)
+            {
                 Debug.LogWarning("Retrieving new points where it's not allowed!");
                 NewPoints = new();
                 return true;
             }
-            var isCompleted = GetPoints(size, origin, out _); 
+            var isCompleted = GetPoints(size, origin, out _);
             NewPoints = new List<PointTransform>(this.NewPoints);
             this.NewPoints.Clear();
             return isCompleted;
@@ -173,8 +180,11 @@ namespace sapra.InfiniteLands{
                 
                 PointsInGrid.Add(value.id, new List<PointTransform>(value.awaitable.Result));
                 FoundPoints.AddRange(value.awaitable.Result);
-                if(StoreNewPoints)
+
+                if (StoreNewPoints)
                     NewPoints.AddRange(value.awaitable.Result);
+
+                value.awaitable.Result.Clear();
                 ProcessingPoints.Remove(value.id);
                 return true;
             }

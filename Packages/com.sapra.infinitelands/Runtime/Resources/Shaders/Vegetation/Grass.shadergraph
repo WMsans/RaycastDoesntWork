@@ -31,11 +31,7 @@
             "m_Id": "5640be69ffa44707995b8fe6cd97c2d1"
         }
     ],
-    "m_Keywords": [
-        {
-            "m_Id": "1c1fc910bf884550881cba5ceda23a54"
-        }
-    ],
+    "m_Keywords": [],
     "m_Dropdowns": [],
     "m_CategoryData": [
         {
@@ -1768,31 +1764,6 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     }
-}
-
-{
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
-    "m_ObjectId": "1c1fc910bf884550881cba5ceda23a54",
-    "m_Guid": {
-        "m_GuidSerialized": "0257fa82-9798-48b4-929a-23f5ab953647"
-    },
-    "m_Name": "InstancingKey",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "InstancingKey",
-    "m_DefaultReferenceName": "_INSTANCINGKEY",
-    "m_OverrideReferenceName": "PROCEDURAL_INSTANCING_ON",
-    "m_GeneratePropertyBlock": false,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_KeywordType": 0,
-    "m_KeywordDefinition": 1,
-    "m_KeywordScope": 1,
-    "m_KeywordStages": 63,
-    "m_Entries": [],
-    "m_Value": 0,
-    "m_IsEditable": true
 }
 
 {
@@ -4353,9 +4324,6 @@
     "m_Name": "",
     "m_ChildObjectList": [
         {
-            "m_Id": "1c1fc910bf884550881cba5ceda23a54"
-        },
-        {
             "m_Id": "b744502ddef9429ebb4e04025be2fc84"
         },
         {
@@ -4394,7 +4362,7 @@
     "m_TessellationBackFaceCullEpsilon": -0.25,
     "m_TessellationMaxDisplacement": 0.009999999776482582,
     "m_Version": 1,
-    "inspectorFoldoutMask": 9
+    "inspectorFoldoutMask": 1
 }
 
 {

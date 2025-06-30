@@ -32,7 +32,7 @@ namespace sapra.InfiniteLands.Tests
                 // Check if docs is empty
                 if (string.IsNullOrEmpty(attribute.docs))
                 {
-                    Debug.LogError($"Class {type.Name} has empty docs URL");
+                    Debug.Log($"Class {type.Name} has empty docs URL");
                     allValid = false;
                     continue;
                 }
@@ -40,7 +40,7 @@ namespace sapra.InfiniteLands.Tests
                 // Basic URL format check
                 if (!attribute.docs.StartsWith("http://") && !attribute.docs.StartsWith("https://"))
                 {
-                    Debug.LogError($"Class {type.Name} has invalid docs URL format: {attribute.docs}");
+                    Debug.Log($"Class {type.Name} has invalid docs URL format: {attribute.docs}");
                     allValid = false;
                     continue;
                 }
@@ -54,17 +54,17 @@ namespace sapra.InfiniteLands.Tests
                 {
                     if (request.responseCode == 404)
                     {
-                        Debug.LogError($"Class {type.Name} docs URL returned 404: {attribute.docs}");
+                        Debug.Log($"Class {type.Name} docs URL returned 404: {attribute.docs}");
                     }
                     else
                     {
-                        Debug.LogError($"Class {type.Name} docs URL failed with {request.responseCode}: {attribute.docs}");
+                        Debug.Log($"Class {type.Name} docs URL failed with {request.responseCode}: {attribute.docs}");
                     }
                     allValid = false;
                 }
                 else
                 {
-                    Debug.Log($"Valid docs URL for {type.Name}: {attribute.docs}");
+                    //Debug.Log($"Valid docs URL for {type.Name}: {attribute.docs}");
                 }
             }
 

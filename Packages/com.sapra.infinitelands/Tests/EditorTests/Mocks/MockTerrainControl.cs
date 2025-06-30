@@ -27,7 +27,7 @@ namespace sapra.InfiniteLands.Tests{
 
         public bool ShouldDoThat => throw new NotImplementedException();
 
-        public bool InstantProcessors => throw new NotImplementedException();
+        public bool InstantProcessors => false;
 
         public void ChangeLayout(LandsLayout selectedLayout){
             switch(selectedLayout){

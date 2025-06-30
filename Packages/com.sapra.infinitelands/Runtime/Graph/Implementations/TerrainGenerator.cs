@@ -39,9 +39,10 @@ namespace sapra.InfiniteLands
             ValidateThatItHasOutput();
         }
         public void ValidateThatItHasOutput(){
-            #if UNITY_EDITOR
-            if(output == null && EditorUtility.IsPersistent(this)){
-                output = CreateNode<HeightOutputNode>(new Vector2(200, 0));
+#if UNITY_EDITOR
+            if ((output == null && EditorUtility.IsPersistent(this)) || nodes.Count <= 0)
+            {
+                output = CreateNode<HeightOutputNode>(new Vector2(0, 0), false);
             }
             #endif
         }
@@ -54,6 +55,8 @@ namespace sapra.InfiniteLands
 
         public void ValidationCheck()
         {
+            ValidateThatItHasOutput();
+
             current_count = 0;
             nodes.RemoveAll(a => a == null);
             stickyNotes.RemoveAll(a => a == null);
@@ -186,27 +189,37 @@ namespace sapra.InfiniteLands
             NotifyValuesChanged();
             return result;
         }
-        public T CreateNode<T>(Vector2 position) where T : InfiniteLandsNode, new()
+        public T CreateNode<T>(Vector2 position, bool record = true) where T : InfiniteLandsNode, new()
         {  
-            return CreateNode(typeof(T), position) as T;
+            return CreateNode(typeof(T), position, record) as T;
         }
 
-        public InfiniteLandsNode CreateNode(Type type, Vector2 position)
+        public InfiniteLandsNode CreateNode(Type type, Vector2 position, bool record = true)
         {  
             if(typeof(InfiniteLandsNode).IsEquivalentTo(type))
                 return null;
-            Undo.IncrementCurrentGroup();
-            var curGroupID = Undo.GetCurrentGroup();
+
+            var curGroupID = 0;
+            if (record)
+            {
+                Undo.IncrementCurrentGroup();
+                curGroupID = Undo.GetCurrentGroup();
+            }
 
             var attribute = type.GetCustomAttribute<CustomNodeAttribute>();
             InfiniteLandsNode node = Activator.CreateInstance(type) as InfiniteLandsNode;
             node.expanded = !attribute.startCollapsed;
            
-            RecordAction("Created Node");
-            ConfigureAsset(node, position);
+            if(record)
+                RecordAction("Created Node");
+            ConfigureAsset(node, position, record);
 
-            Undo.SetCurrentGroupName(string.Format("{0}: Creating {1}", this.name, type.Name));
-            Undo.CollapseUndoOperations(curGroupID);
+            if (record)
+            {
+                Undo.SetCurrentGroupName(string.Format("{0}: Creating {1}", this.name, type.Name));
+                Undo.CollapseUndoOperations(curGroupID);
+            }
+
             NotifyValuesChanged();
             return node;
         }
@@ -336,7 +349,7 @@ namespace sapra.InfiniteLands
             GroupBlock block = new GroupBlock
             {
                 Name = name,
-                elementGuids = elementsGUIDS,
+                elementGuids = new List<string>(elementsGUIDS),
             };
             ConfigureAsset(block, position);
 
@@ -356,7 +369,7 @@ namespace sapra.InfiniteLands
             group.elementGuids.AddRange(guids);
         }
 
-        public void RemoveElementsToGroup(GroupBlock group, IEnumerable<string> guids)
+        public void RemoveElementsFromGroup(GroupBlock group, IEnumerable<string> guids)
         {
             RecordAction("Removed item from group");
             foreach(string guid in guids){
@@ -401,11 +414,13 @@ namespace sapra.InfiniteLands
         #endregion
 
         #region Configure
-        private void ConfigureAsset(InfiniteLandsNode node, Vector2 position){
-            RecordAction("Configuring it");
+        private void ConfigureAsset(InfiniteLandsNode node, Vector2 position, bool record = true){
+            if(record)
+                RecordAction("Configuring it");
             node.SetupNode(this, GUID.Generate().ToString(), position);
-            
-            RecordAction("Added Node "+ node.GetType().Name);
+
+            if (record)
+                RecordAction("Added Node " + node.GetType().Name);
             nodes.Add(node);
             nodesByGuid.Add(node.guid, node);
         }
@@ -433,11 +448,11 @@ namespace sapra.InfiniteLands
             EditorUtility.SetDirty(this);
         }
 
-		[MenuItem("Assets/Create/Infinite Lands/Simple World", priority = 102)]
-        public static void CreateDefaultWorld(){
+		[MenuItem("Assets/Create/Infinite Lands/Simple Biome", priority = 102)]
+        public static void CreateDefaultBiome(){
             ProjectWindowUtil.StartNameEditingIfProjectWindowExists(0, 
                 CreateInstance<OnceCreated>(), 
-                "Infinite Lands World.asset", EditorGUIUtility.IconContent("ScriptableObject Icon").image as Texture2D, null);
+                "Infinite Biome.asset", EditorGUIUtility.IconContent("ScriptableObject Icon").image as Texture2D, null);
         }
 
         public void CopyDataFromTo(InfiniteLandsNode from, InfiniteLandsNode to)
@@ -479,11 +494,11 @@ namespace sapra.InfiniteLands
         {
             public override void Action(int instanceId, string pathName, string resourceFile)
             {
-                WorldTree world = CreateInstance<WorldTree>();
-                world.name = Path.GetFileName(pathName);
-                AssetDatabase.CreateAsset(world, pathName);
-                PreconfigureDefaultGraph(world);
-                ProjectWindowUtil.ShowCreatedAsset(world);
+                BiomeTree biome = CreateInstance<BiomeTree>();
+                biome.name = Path.GetFileName(pathName);
+                AssetDatabase.CreateAsset(biome, pathName);
+                PreconfigureDefaultGraph(biome);
+                ProjectWindowUtil.ShowCreatedAsset(biome);
             } 
         }
         #endif

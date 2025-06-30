@@ -50,47 +50,54 @@ namespace sapra.InfiniteLands.Editor{
             var styleSheet =
                 AssetDatabase.LoadAssetAtPath<StyleSheet>(
                     "Packages/com.sapra.infinitelands/Editor/UIBuilder/InfiniteLandsGraphEditor.uss");
-            if(styleSheets != null && styleSheet != null)
+            if (styleSheets != null && styleSheet != null)
                 styleSheets.Add(styleSheet);
             else
                 return;
 
-            UnregisterCallback<KeyDownEvent>(OnKeyDown);
+            UnregisterCallback<KeyDownEvent>(OnShortcutPressed);
             UnregisterCallback<MouseMoveEvent>(MouseMove);
+            UnregisterCallback<GeometryChangedEvent>(FocusAfterCreation);
 
             canPasteSerializedData -= DataSerializer.CanPaste;
-            serializeGraphElements -= SerializeWithGraph; 
+            serializeGraphElements -= SerializeWithGraph;
             unserializeAndPaste -= UnserializeAndPaste;
             deleteSelection -= DeleteSelection;
-            
 
-            SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale*4f);
+
+            SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale * 4f);
             this.AddManipulator(new ContentDragger());
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());
             this.AddManipulator(new DragAndDropManipulator(this));
-            
-            RegisterCallback<MouseMoveEvent>(MouseMove);
-            RegisterCallback<KeyDownEvent>(OnKeyDown);
 
-            serializeGraphElements += SerializeWithGraph; 
+            RegisterCallback<MouseMoveEvent>(MouseMove);
+            RegisterCallback<KeyDownEvent>(OnShortcutPressed);
+            RegisterCallback<GeometryChangedEvent>(FocusAfterCreation);
+
+            serializeGraphElements += SerializeWithGraph;
             canPasteSerializedData += DataSerializer.CanPaste;
             unserializeAndPaste += UnserializeAndPaste;
-            deleteSelection += DeleteSelection;
+            deleteSelection += DeleteSelection;           
         }
 
+        public void FocusAfterCreation(GeometryChangedEvent changedEvent)
+        {
+            if (tree.position == Vector2.zero)
+                FrameAll();
+        }
 
         public void ReloadView()
         {
             graphViewChanged -= OnGraphViewChanged;
             elementsAddedToGroup -= OnElementsAddedToGroup;
-            elementsRemovedFromGroup -= OnElementsRemovedToGroup;
+            elementsRemovedFromGroup -= OnElementsRemovedFromGroup;
             viewTransformChanged -= UpdateGraphViewPosition;
             DeleteElements(graphElements);
 
             graphViewChanged += OnGraphViewChanged;
             elementsAddedToGroup += OnElementsAddedToGroup;
-            elementsRemovedFromGroup += OnElementsRemovedToGroup;
+            elementsRemovedFromGroup += OnElementsRemovedFromGroup;
             viewTransformChanged += UpdateGraphViewPosition;
 
             LoadTreeView();
@@ -126,17 +133,19 @@ namespace sapra.InfiniteLands.Editor{
             MousePosition = moveEvent.mousePosition;
         }
         
-        private void OnKeyDown(KeyDownEvent evt)
+        private void OnShortcutPressed(KeyDownEvent evt)
         {
             if (evt.keyCode == KeyCode.N && !evt.ctrlKey)
             {
                 contextualMenu.CreateNodeWindow(MousePosition);
                 evt.StopPropagation();
-            }else if (evt.keyCode == KeyCode.S && !evt.ctrlKey)
+            }
+            else if (evt.keyCode == KeyCode.S && !evt.ctrlKey)
             {
                 contextualMenu.CreateStickyNote(MousePosition);
-                evt.StopPropagation(); 
-            }else if (evt.keyCode == KeyCode.G && !evt.ctrlKey) 
+                evt.StopPropagation();
+            }
+            else if (evt.keyCode == KeyCode.G && !evt.ctrlKey)
             {
                 contextualMenu.CreateGroup(MousePosition);
                 evt.StopPropagation();
@@ -148,6 +157,9 @@ namespace sapra.InfiniteLands.Editor{
                 {
                     selectedNode.OpenDocumentation();
                 }
+            }else if (evt.keyCode == KeyCode.Q && selection.Count > 0)
+            {
+                FrameSelection();
             }
         }
         public NodeView FindNodeView(string guid)
@@ -171,19 +183,21 @@ namespace sapra.InfiniteLands.Editor{
             return null;
         }
 
-        private void LoadTreeView(){
+        private void LoadTreeView()
+        {
             ElementsByGuid.Clear();
-            if(tree.scale==Vector2.zero)
+            if (tree.scale == Vector2.zero)
                 tree.scale = Vector2.one;
-            
-            tree.ValidationCheck();
-            UpdateViewTransform(tree.position, tree.scale);
 
+            tree.ValidationCheck();
             DrawData(tree.nodes, tree.edges, tree.stickyNotes, tree.groups);
+            UpdateViewTransform(tree.position, tree.scale);
         }
 
-        public void DrawData(IEnumerable<InfiniteLandsNode> nodes, IEnumerable<EdgeConnection> edges, IEnumerable<StickyNoteBlock> stickyNotes, IEnumerable<GroupBlock> groups, HashSet<NodeView> toRedraw = null){
-            foreach(InfiniteLandsNode node in nodes.Reverse()){
+        public void DrawData(IEnumerable<InfiniteLandsNode> nodes, IEnumerable<EdgeConnection> edges, IEnumerable<StickyNoteBlock> stickyNotes, IEnumerable<GroupBlock> groups, HashSet<NodeView> toRedraw = null)
+        {
+            foreach (InfiniteLandsNode node in nodes.Reverse())
+            {
                 NodeView nodeView = GraphViewersFactory.CreateNodeView(this, node);
                 AddNode(nodeView);
             }
@@ -197,12 +211,14 @@ namespace sapra.InfiniteLands.Editor{
             {
                 ConnectEdge(edge);
             }
-            
-            foreach(StickyNoteBlock note in stickyNotes){
+
+            foreach (StickyNoteBlock note in stickyNotes)
+            {
                 AddStickyNoteView(GraphViewersFactory.CreateStickyNoteView(note));
             }
 
-            foreach(GroupBlock group in groups){
+            foreach (GroupBlock group in groups)
+            {
                 List<GraphElement> elements = group.elementGuids.Select(a => GetElementViewByGuid(a)).ToList();
                 GroupView groupView = GraphViewersFactory.CreateGroupView(group, elements);
                 AddGroupView(groupView);
@@ -288,11 +304,11 @@ namespace sapra.InfiniteLands.Editor{
             tree.AddElementsToGroup(groupView.group, guids);
         }
 
-        private void OnElementsRemovedToGroup(Group group, IEnumerable<GraphElement> elements)
+        private void OnElementsRemovedFromGroup(Group group, IEnumerable<GraphElement> elements)
         {
             GroupView groupView = group as GroupView;
             List<string> guids = elements.Select(a => a.viewDataKey).ToList();
-            tree.RemoveElementsToGroup(groupView.group, guids);
+            tree.RemoveElementsFromGroup(groupView.group, guids);
         }
 
         public void OnAssetDropped(InfiniteLandsAsset asset, Vector2 position){           
@@ -578,6 +594,7 @@ namespace sapra.InfiniteLands.Editor{
             evt.menu.AppendAction("View/Collapse Preview", a => HidePreviews());
             evt.menu.AppendSeparator("View/");
             evt.menu.AppendAction("View/Fit _A", a => FrameAll());
+            evt.menu.AppendAction("View/Fit Selection _Q", a => FrameSelection());
 
             evt.StopImmediatePropagation();
         }

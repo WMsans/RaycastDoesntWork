@@ -13,19 +13,26 @@ namespace sapra.InfiniteLands{
         public JobHandle finalJob{get; private set;}
 
         private ReturnablePack returnablePack;
-        public void ReuseData(TreeData treeData, WorldFinalData worldFinalData, JobHandle combinedJob, MeshSettings meshSettings, TerrainConfiguration terrainConfiguration){
-            int length = MapTools.LengthFromResolution(meshSettings.Resolution);
-            var returnableManager = treeData.GlobalStore.GetData<ReturnableManager>();
-
-            this.terrainConfiguration = terrainConfiguration;
+        public void ReuseData(ReturnableManager returnableManager, WorldFinalData worldFinalData, JobHandle combinedJob, MeshSettings meshSettings, TerrainConfiguration terrainConfiguration){
             this.meshSettings = meshSettings;
+            this.terrainConfiguration = terrainConfiguration;
+            this.MinMaxHeight = worldFinalData.MinMaxHeight;
 
             returnablePack = GenericPoolLight<ReturnablePack>.Get().Reuse();
-            points = returnableManager.GetData<CoordinateData>(returnablePack, length);
+            points = returnableManager.GetData<CoordinateData>(returnablePack, worldFinalData.FinalPositions.Length);
             finalJob = CoordinateDataJob.ScheduleParallel(worldFinalData.FinalPositions,
                 points, terrainConfiguration.Position, tr(terrainConfiguration.ID), meshSettings.Resolution, combinedJob);
+        }
 
-            this.MinMaxHeight = worldFinalData.MinMaxHeight;
+        public CoordinateDataHolder(){}
+        public CoordinateDataHolder(NativeArray<CoordinateData> data, MeshSettings meshSettings, TerrainConfiguration terrainConfiguration)
+        {
+            this.meshSettings = meshSettings;
+            this.terrainConfiguration = terrainConfiguration;
+
+            returnablePack = GenericPoolLight<ReturnablePack>.Get().Reuse();
+            points = data;
+            finalJob = default;
         }
 
         protected override void OnFinalisedProcessors()

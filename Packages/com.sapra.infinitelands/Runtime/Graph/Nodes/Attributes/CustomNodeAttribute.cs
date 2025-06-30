@@ -19,10 +19,13 @@ namespace sapra.InfiniteLands
 
         private Type[] ValidOnlyIn;
 
-        public bool IsValidInTree(Type treeTyp){
-            if(ValidOnlyIn.Length <= 0)
+        public bool IsValidInTree(Type treeTyp, out bool alwaysTrue){
+            if (ValidOnlyIn.Length <= 0)
+            {
+                alwaysTrue = true;
                 return true;
-
+            }
+            alwaysTrue = false;
             return ValidOnlyIn.Contains(treeTyp);    
         }
 

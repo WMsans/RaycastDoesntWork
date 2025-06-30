@@ -32,6 +32,7 @@ namespace sapra.InfiniteLands{
 
             floatingOrigin = GetComponent<FloatingOrigin>();
             previousOffset = infiniteLands.localGridOffset;
+            ToCreate.Clear();
         }
 
         public override void OnGraphUpdated()
@@ -71,20 +72,22 @@ namespace sapra.InfiniteLands{
         public override void Update()
         {
             int currentCount = 0;
-            for(int t = ToCreate.Count-1; t >= 0; t--){
-                var land = ToCreate[t];    
+            for (int t = ToCreate.Count - 1; t >= 0; t--)
+            {
+                var land = ToCreate[t];
                 var pnts = land.newPoints;
                 var prefab = land.prefab;
-                if(prefab == null || pnts == null) continue;
+                if (prefab == null || pnts == null) continue;
 
                 var finalPoints = land.newPoints;
                 LandmarkManager prefabManager = GetPrefabParent(prefab, land.PrefabName, land.AlignWithTerrain);
-                for(int i = finalPoints.Count-1; i >= 0; i--){
+                for (int i = finalPoints.Count - 1; i >= 0; i--)
+                {
                     PointTransform point = finalPoints[i];
                     prefabManager.CreateObject(point, infiniteLands.localToWorldMatrix);
                     finalPoints.RemoveAt(i);
                     currentCount++;
-                    if(currentCount >= ConsecutiveSpawns)
+                    if (currentCount >= ConsecutiveSpawns)
                         return;
                 }
                 ToCreate.RemoveAt(t);

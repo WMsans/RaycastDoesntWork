@@ -1,3 +1,30 @@
+# [0.8.8] - 2025-06-21
+## Added
+- NEW NODE! Scale Node: Scale the input noise proportionally
+- NEW NODE! Spawn Around Node: Create points around the origin of some previous points
+- Graph: New shortcut, pressing Q will focus on the selected items
+- Backend: Mesh Maker tests have been recovered and reimplemented
+- Backend: More debugging options
+- Documentation: New docs for the nodes created
+- Documentation: Docs for Show in LOD and Auto Organize Terrains have been created
+
+## Changed
+- Graph: Nodes inside a graph will be in the center of the screen the first time the graph is created
+- Samples: Snowy Mountains sample also includes a bottom grass part
+- Documentation: Updated Roadmap
+
+## Fixed
+- Core: Landmark Placer will no longer create extra objects after domain reload
+- Graph: Prefabs placed with Place Prefab node will have the prefab rotation taken into account
+- Graph: Opening the "Create Node" window will be way faster than before
+- Rendering: Unity 6.0 or higher will not throw errors from the vegetation shaders
+- Backend: Opening a sample in unity 6.0 wil no longer lose references to textures and vegetation
+- Backend: Undo after a graph is created will no longer delete the Height Output node
+- Backend: Vegetation and Textures won't be lost after a domain reload
+
+## Removed
+- Samples: Cameras will no longer include missing scripts
+  
 # [0.8.7] - 2025-06-17
 ## Added
 - Core: New debugging options for Vegetation Asset, including labels with better information

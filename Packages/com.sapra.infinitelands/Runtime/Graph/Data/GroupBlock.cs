@@ -11,6 +11,6 @@ namespace sapra.InfiniteLands
         public string guid;
         public string Name;
         public Vector2 position;
-        [FormerlySerializedAs("nodeGuids")] public List<string> elementGuids;
+        public List<string> elementGuids;
     }
 }

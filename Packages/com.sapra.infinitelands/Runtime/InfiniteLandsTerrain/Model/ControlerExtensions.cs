@@ -25,14 +25,14 @@ namespace sapra.InfiniteLands{
             var chunkLayout = controlTerrain.GetChunkLayout();
             for(int i = 0; i <= controlTerrain.maxLodGenerated; i++){
                 Vector3Int id = chunkLayout.TransformPositionToID(localFlatPosition, i, internalGridOffset, controlTerrain.meshSettings.MeshScale);
-                if(searchIn.TryGetValue(id, out data)){
+                if (searchIn.TryGetValue(id, out data))
+                {
                     return true;
                 }
             }
             data = default;
             return false;
         }
-
         public static bool GetChunkDataAtPosition<Z>(this IControlTerrain controlTerrain, Vector3 position, Dictionary<Vector3Int, Z> searchIn, out Z data){
             Vector3 flattened = controlTerrain.worldToLocalMatrix.MultiplyPoint(position);
             return controlTerrain.TryGetChunkDataAtGridPosition(new Vector2(flattened.x, flattened.z), searchIn, out data);

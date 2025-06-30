@@ -28,7 +28,7 @@ namespace sapra.InfiniteLands{
             Vector3 position = localToWorldMatrix.MultiplyPoint(pointTransform.Position);
             Quaternion rotation = Quaternion.Euler(0, pointTransform.YRotation, 0);
             Vector3 worldEuler = (localToWorldMatrix.rotation * rotation).eulerAngles;
-            rotation = Quaternion.Euler(worldEuler);
+            rotation = Quaternion.Euler(worldEuler+prefab.transform.eulerAngles);
             var generatedInstance = GameObject.Instantiate(prefab, position, rotation, parent);
 
             Vector3 baseScale = prefab.transform.localScale;

@@ -45,9 +45,6 @@
     ],
     "m_Keywords": [
         {
-            "m_Id": "1c1fc910bf884550881cba5ceda23a54"
-        },
-        {
             "m_Id": "74d469b1ee4a4aa3a4183e89ea16158f"
         },
         {
@@ -2192,31 +2189,6 @@
         "x": 127.0,
         "y": -518.0
     }
-}
-
-{
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
-    "m_ObjectId": "1c1fc910bf884550881cba5ceda23a54",
-    "m_Guid": {
-        "m_GuidSerialized": "0257fa82-9798-48b4-929a-23f5ab953647"
-    },
-    "m_Name": "InstancingKey",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "InstancingKey",
-    "m_DefaultReferenceName": "_INSTANCINGKEY",
-    "m_OverrideReferenceName": "PROCEDURAL_INSTANCING_ON",
-    "m_GeneratePropertyBlock": false,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_KeywordType": 0,
-    "m_KeywordDefinition": 1,
-    "m_KeywordScope": 1,
-    "m_KeywordStages": 63,
-    "m_Entries": [],
-    "m_Value": 0,
-    "m_IsEditable": true
 }
 
 {
@@ -5632,9 +5604,6 @@
     "m_Name": "",
     "m_ChildObjectList": [
         {
-            "m_Id": "1c1fc910bf884550881cba5ceda23a54"
-        },
-        {
             "m_Id": "b744502ddef9429ebb4e04025be2fc84"
         }
     ]
@@ -6565,7 +6534,7 @@
     "m_Title": "Transitioning",
     "m_Position": {
         "x": 242.0,
-        "y": 380.9999694824219
+        "y": 381.0
     }
 }
 

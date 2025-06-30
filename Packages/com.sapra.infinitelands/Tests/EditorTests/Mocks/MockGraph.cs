@@ -137,5 +137,10 @@ namespace sapra.InfiniteLands.Tests{
             current_count++;
             return tmp;
         }
+
+        public InfiniteLandsNode CreateNode(Type type, Vector2 position, bool record = true)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

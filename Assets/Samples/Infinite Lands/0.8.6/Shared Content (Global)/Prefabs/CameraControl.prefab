@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6884205492231234078}
   - component: {fileID: 9218977037163488700}
   - component: {fileID: 8639390076769925104}
-  - component: {fileID: 2737432397855322181}
   - component: {fileID: 8884311629487229621}
   m_Layer: 0
   m_Name: Main Camera As Player
@@ -94,20 +93,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542330929885757304}
   m_Enabled: 1
---- !u!114 &2737432397855322181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 542330929885757304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e40ba4349668c045b7ea056f9ec3b47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DepthTexture: {fileID: 0}
-  Override: 0
 --- !u!124 &8884311629487229621
 Behaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +213,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7492243518333412484}
   - component: {fileID: 4589229304034412532}
-  - component: {fileID: 1353046700724675158}
   m_Layer: 0
   m_Name: Far Camera
   m_TagString: Untagged
@@ -302,17 +286,3 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &1353046700724675158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6752375606003999669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e40ba4349668c045b7ea056f9ec3b47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DepthTexture: {fileID: 0}
-  Override: 0

@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Unity.Collections;
 using Unity.Mathematics;
+using sapra.InfiniteLands.MeshProcess.Tests;
 
 namespace sapra.InfiniteLands.Tests
 {
@@ -34,12 +35,13 @@ namespace sapra.InfiniteLands.Tests
 
         private PointStore _pointStore;
         private MockTerrainControl infiniteLandsTerrain;
-
+        private ReturnableManager manager;
         [SetUp]
         public void Setup()
         {
             infiniteLandsTerrain = new MockTerrainControl();
             _pointStore = new PointStore();
+            manager = new ReturnableManager(new StringObjectStore<object>());
         }
 
         [TearDown]
@@ -92,20 +94,28 @@ namespace sapra.InfiniteLands.Tests
             
             MeshSettings chunkSettings = layout.GetMeshSettingsFromID(settings, terrainIndex);
             TerrainConfiguration config = new TerrainConfiguration(terrainIndex, Vector3.up, chunkSettings.MeshScale);
-            infiniteLandsTerrain.localGridOffset =new Vector2(config.Position.x, config.Position.z);
+            il.localGridOffset = new Vector2(config.Position.x, config.Position.z);
 
-            var data = GenerateCoordinateData(settings.Resolution);
-            CoordinateDataHolder coordinateData = new CoordinateDataHolder(data, config, chunkSettings, default, "");
-            ChunkData tempData = new ChunkData(config, chunkSettings, new Vector2(0,1), default, default);
-            tempData.AddData(coordinateData);
+            //var data = GenerateCoordinateData(settings.Resolution);
+            TypeStore<ProcessableData> store1 = new();
+            var tempData = new ChunkData();
+            CoordinateDataHolder coordinateData = new CoordinateDataHolder(GenerateCoordinateData(settings.Resolution), chunkSettings, config);
+            WorldFinalData finalData = GetWorldFinalData(manager, new Vector2Int(0, 1), chunkSettings.Resolution, 1);
+            coordinateData.finalJob.Complete();
+
+
+            store1.AddData(coordinateData);
+            store1.AddData(finalData);
+
+            tempData.Reuse(config, chunkSettings, default, store1, default);
 
             store.AddChunk(tempData);
             store.AddChunk(tempData);
 
             float unit = chunkSettings.MeshScale/(chunkSettings.Resolution+1);
             float half = chunkSettings.MeshScale/2.0f-unit;
-            Debug.Log(half);
             
+
             //Center
             AssertChunkRetrieve(config.Position, config, il, store, coordinateData,chunkSettings.Resolution/2,chunkSettings.Resolution/2);
 
@@ -115,12 +125,40 @@ namespace sapra.InfiniteLands.Tests
             AssertChunkRetrieve(config.Position+new Vector3(-half, 0, half), config, il, store, coordinateData,01,chunkSettings.Resolution-1);
             AssertChunkRetrieve(config.Position+new Vector3(half, 0, -half), config, il, store, coordinateData,chunkSettings.Resolution-1,01);
 
-            //store.RemoveChunk(tempData);
             store.RemoveChunk(tempData);
-            data.Dispose();
+            //data.Dispose();
+        }
+        
+        private WorldFinalData GetWorldFinalData(ReturnableManager manager, Vector2Int minMaxValue, int Resolution, float valToAssign){
+            Resolution = Mathf.Max(Resolution, 1);
+            ReturnablePack holdReturnableData = new ReturnablePack();
+            var minmax = manager.GetData<float>(holdReturnableData, 2);
+            minmax[0] = minMaxValue.x;
+            minmax[1] = minMaxValue.y;
+            WorldFinalData worldFinalData = new WorldFinalData();
+            worldFinalData.ReuseData(holdReturnableData, minmax, default, minMaxValue, default);
+            return worldFinalData;
+        }
+        
+        public NativeArray<CoordinateData> GenerateCoordinateData(int resolution)
+        {
+            NativeArray<CoordinateData> data = new NativeArray<CoordinateData>((resolution + 1) * (resolution + 1), Allocator.TempJob);
+            for (int x = 0; x <= resolution; x++)
+            {
+                for (int z = 0; z <= resolution; z++)
+                {
+                    CoordinateData newData = new CoordinateData()
+                    {
+                        position = new float3(x, x + z * resolution, z)
+                    };
+                    data[x + z * (resolution + 1)] = newData;
+                }
+            }
+            return data;
         }
 
-        private void AssertChunkRetrieve(Vector3 position, TerrainConfiguration config, IControlTerrain infiniteLands, PointStore store, CoordinateDataHolder og, int x, int z){
+        private void AssertChunkRetrieve(Vector3 position, TerrainConfiguration config, IControlTerrain infiniteLands, PointStore store, CoordinateDataHolder og, int x, int z)
+        {
             Debug.LogFormat("Looking at {0}", position);
             Vector3 tp = infiniteLands.LocalToWorldPoint(position);
             CoordinateDataHolder retrieve = store.GetHolderAt(tp);
@@ -130,22 +168,8 @@ namespace sapra.InfiniteLands.Tests
             CoordinateData data = store.GetCoordinateDataAt(tp, out bool found, false, false);
             Assert.IsTrue(found);
 
-            Assert.AreEqual(x,data.position.x);
-            Assert.AreEqual(z,data.position.z);
+            Assert.AreEqual(x, data.position.x);
+            Assert.AreEqual(z, data.position.z);
         }
-
-        public NativeArray<CoordinateData> GenerateCoordinateData(int resolution){
-            NativeArray<CoordinateData> data = new NativeArray<CoordinateData>((resolution+1)*(resolution+1), Allocator.TempJob);
-            for(int x = 0; x <= resolution; x++){
-                for(int z = 0; z <= resolution; z++){
-                    CoordinateData newData = new CoordinateData(){
-                        position = new float3(x, x+z*resolution, z)
-                    };
-                    data[x+z*(resolution+1)] = newData;
-                }
-            }
-            return data;
-        }
-
     }
 } */

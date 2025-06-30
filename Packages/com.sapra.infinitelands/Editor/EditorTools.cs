@@ -12,6 +12,7 @@ namespace sapra.InfiniteLands.Editor
     public static class EditorTools
     {
         public static bool DebugMode;
+        public static bool ForcedValid;
         [MenuItem("Window/Infinite Lands/Debug Mode", false, 10000)]
         public static void ToggleFeature()
         {

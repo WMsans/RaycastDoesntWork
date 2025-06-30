@@ -823,6 +823,7 @@ MonoBehaviour:
           isAddItem: 0
         isValid: 1
         GridSize: 5000
+        Scale: 1
     - rid: 8515386983025213508
       type: {class: SimplexNoiseNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:

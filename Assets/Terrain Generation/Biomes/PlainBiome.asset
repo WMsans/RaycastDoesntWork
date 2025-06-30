@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlainBiome
   m_EditorClassIdentifier: 
   AutoUpdate: 1
-  position: {x: 863.3333, y: -85.333336}
+  position: {x: -808.6667, y: 346}
   scale: {x: 0.8695652, y: 0.8695652}
   output:
     rid: 8515386966036447297
@@ -36,6 +36,7 @@ MonoBehaviour:
   - rid: 8515386966036447322
   - rid: 8515386966036447323
   - rid: 8515387009518534917
+  - rid: 8515387275309220141
   groups: []
   stickyNotes: []
   edges:
@@ -240,6 +241,18 @@ MonoBehaviour:
     inputPort:
       nodeGuid: 1b66cdfaab3e6dc4cba265bc09fb8240
       fieldName: Mask
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+  - outputPort:
+      nodeGuid: 898c9aa914507374eab7b462eb27e0ab
+      fieldName: FinalTerrain
+      listIndex: -1
+      itemIsRearrangable: 0
+      isAddItem: 0
+    inputPort:
+      nodeGuid: e580363ba7adfd5428dd1685c855e376
+      fieldName: Density
       listIndex: -1
       itemIsRearrangable: 0
       isAddItem: 0
@@ -450,6 +463,7 @@ MonoBehaviour:
           isAddItem: 0
         isValid: 1
         GridSize: 140
+        Scale: 1
     - rid: 8515386966036447308
       type: {class: CurveNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
@@ -613,3 +627,19 @@ MonoBehaviour:
           itemIsRearrangable: 0
           isAddItem: 0
         isValid: 1
+    - rid: 8515387275309220141
+      type: {class: AssetOutputNode, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
+      data:
+        guid: e580363ba7adfd5428dd1685c855e376
+        name: AssetOutputNode
+        expanded: 1
+        position: {x: 1420, y: -146.66667}
+        previewPort:
+          nodeGuid: 
+          fieldName: 
+          listIndex: 0
+          itemIsRearrangable: 0
+          isAddItem: 0
+        isValid: 1
+        Asset: {fileID: 11400000, guid: 88d3f0674253b0e4681cf131d35d1859, type: 2}
+        <action>k__BackingField: 0

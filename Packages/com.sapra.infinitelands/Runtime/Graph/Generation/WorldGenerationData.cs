@@ -79,7 +79,7 @@ namespace sapra.InfiniteLands{
                 JobHandle everythingGenerated = JobHandle.CombineDependencies(assetsData.jobHandle, biomeOutput.jobHandle);
                 
                 CoordinateDataHolder coordinate = GenericPoolLight<CoordinateDataHolder>.Get();
-                coordinate.ReuseData(tree, biomeOutput,everythingGenerated, meshSettings, terrain);
+                coordinate.ReuseData(worldGenerator.returnableArrays, biomeOutput,everythingGenerated, meshSettings, terrain);
 
                 LandmarkData landmarkData = GenericPoolLight<LandmarkData>.Get();
                 landmarkData.ReuseData(tree, worldGenerator);

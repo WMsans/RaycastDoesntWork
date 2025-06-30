@@ -599,6 +599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7bf246e6e02c94694c2d39ea2939ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infiniteLandsTerrain: {fileID: 1194235435}
   DrawSpecificChunk: 0
   childs: []
   MeshApplied: 0
@@ -641,15 +642,14 @@ MonoBehaviour:
     CustomSplatMapResolution: 0
     _textureResolution: 255
     MeshScale: 1000
-    meshType: 0
     generationMode: 1
-    CoreGridSpacing: 6
-    NormalReduceThreshold: 0.5
   viewSettings:
     transform: {fileID: 1194235436}
     gameObject: {fileID: 1194235434}
     expanded: 1
     ForceStayGameMode: 0
+    AutomaticallyFetchCameras: 1
+    AutomaticallyFetchTransforms: 1
     BaseCameras: []
     BaseTransforms: []
     AllCameras:
@@ -687,8 +687,13 @@ MonoBehaviour:
         transform: {fileID: 1194235436}
         gameObject: {fileID: 1194235434}
         expanded: 1
+        DecimatedForNonCloseLOD: 0
+        DecimatedLOD: 2
+        meshType: 0
+        CoreGridSpacing: 6
+        NormalReduceThreshold: 0.5
         MaxMeshesPerFrame: 1
-        MaxLODWithPhysics: 0
+        MaxLODWithColliders: 0
     - rid: 999306727638171655
       type: {class: TerrainPainter, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
@@ -710,6 +715,7 @@ MonoBehaviour:
         renderingSettings: []
         DensityPerSize: 800
         RenderVegetation: 1
+        SpawnCollidersAroundCameras: 0
         DisplaceWithMovement: 0
         PlayerCenter: {fileID: 0}
         CullMask:
@@ -740,9 +746,7 @@ MonoBehaviour:
         generationMode: 2
         LoadInViewFirst: 1
         CreateChunksAtLayer: 0
-        DecimatedForNonCloseLOD: 0
         FastInitialization: 1
-        DecimatedLOD: 2
         MaxStepsInTree: 500
         GenerationDistance: 3000
         MaxChunksPerFrame: 1
@@ -751,7 +755,6 @@ MonoBehaviour:
         GenerationCalls: []
         CompletedInitalization: 0
         DrawChunks: 0
-        DrawDistances: 0
 --- !u!4 &1194235436
 Transform:
   m_ObjectHideFlags: 0
@@ -1276,7 +1279,6 @@ GameObject:
   - component: {fileID: 2048690685}
   - component: {fileID: 2048690690}
   - component: {fileID: 2048690689}
-  - component: {fileID: 2048690688}
   - component: {fileID: 2048690687}
   - component: {fileID: 2048690686}
   m_Layer: 0
@@ -1438,20 +1440,6 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048690684}
   m_Enabled: 1
---- !u!114 &2048690688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2048690684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e40ba4349668c045b7ea056f9ec3b47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DepthTexture: {fileID: 0}
-  Override: 0
 --- !u!81 &2048690689
 AudioListener:
   m_ObjectHideFlags: 0

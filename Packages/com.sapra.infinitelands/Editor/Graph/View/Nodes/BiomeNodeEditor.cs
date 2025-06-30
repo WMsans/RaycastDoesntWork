@@ -19,7 +19,8 @@ namespace sapra.InfiniteLands.Editor{
         public void DeleteView(DetachFromPanelEvent e)
         {
             BiomeNode castedNode = (BiomeNode)node;
-            castedNode.tree.OnValuesChanged -= RedrawPorts;
+            if(castedNode.tree != null)
+                castedNode.tree.OnValuesChanged -= RedrawPorts;
         }
         public void NewlyCreated(AttachToPanelEvent e)
         {
@@ -44,7 +45,8 @@ namespace sapra.InfiniteLands.Editor{
             
             if(previousTree != null)
                 previousTree.OnValuesChanged -= RedrawPorts;
-            biomeNode.tree.OnValuesChanged += RedrawPorts;
+            if(biomeNode.tree != null)
+                biomeNode.tree.OnValuesChanged += RedrawPorts;
             previousTree = biomeNode.tree;
             biomeNode.PerformDeepCopy();
 

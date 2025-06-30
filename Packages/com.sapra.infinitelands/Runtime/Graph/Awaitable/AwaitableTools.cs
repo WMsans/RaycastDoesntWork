@@ -147,9 +147,9 @@ namespace sapra.InfiniteLands{
 
         public static bool CopyHeightMapFromBranchTo<R>(BranchData currentBranch, InfiniteLandsNode node,
             string InputFieldName, ref R branchMaker,
-            out HeightData Result, string outputName) where R : struct, IFactory<BranchData>
+            out HeightData Result, string outputName, float scaleFactor = 1) where R : struct, IFactory<BranchData>
         {
-            MoveHeightMapFromToReuser<R> moveHeightMapFromToReuser = new MoveHeightMapFromToReuser<R>(node, currentBranch, InputFieldName, outputName, ref branchMaker);
+            MoveHeightMapFromToReuser<R> moveHeightMapFromToReuser = new MoveHeightMapFromToReuser<R>(node, currentBranch, InputFieldName, outputName, scaleFactor, ref branchMaker);
             return WaitNode<MoveHeightMapFromTo, HeightData, MoveHeightMapFromToReuser<R>>(currentBranch, ref moveHeightMapFromToReuser, out Result, node, outputName);
 
         }
@@ -184,20 +184,22 @@ namespace sapra.InfiniteLands{
             private BranchData branch;
             private string InputName;
             private string OutputName;
+            private float ScaleFactor;
             private R branchMaker;
             public MoveHeightMapFromToReuser(InfiniteLandsNode node, BranchData branch,
-                string InputName, string OutputName, ref R branchMaker)
+                string InputName, string OutputName, float ScaleFactor, ref R branchMaker)
             {
                 this.node = node;
                 this.branch = branch;
                 this.InputName = InputName;
                 this.OutputName = OutputName;
                 this.branchMaker = branchMaker;
+                this.ScaleFactor = ScaleFactor;
             }
             public void Reuse(MoveHeightMapFromTo instance)
             {
                 var fromBranch = branchMaker.Create();
-                instance.Reuse(node, fromBranch, branch, InputName, OutputName);
+                instance.Reuse(node, fromBranch, branch, InputName, OutputName, ScaleFactor);
             }
         }
 
@@ -323,8 +325,9 @@ namespace sapra.InfiniteLands{
             private HeightData InputData;
             private string InputName;
             private string OutputName;
+            private float ScaleFactor;
 
-            public void Reuse(InfiniteLandsNode node, BranchData fromBranch, BranchData toBranch, string inputName, string outputName)
+            public void Reuse(InfiniteLandsNode node, BranchData fromBranch, BranchData toBranch, string inputName, string outputName, float scaleFactor)
             {
                 ToBranch = toBranch;
                 Node = node;
@@ -332,6 +335,7 @@ namespace sapra.InfiniteLands{
                 OutputName = outputName;
                 FromBranch = fromBranch;
                 SubState = 0;
+                ScaleFactor = scaleFactor;
             }
 
             public bool ProcessData()
@@ -353,9 +357,9 @@ namespace sapra.InfiniteLands{
 
                     JobHandle job = CopyToFrom.ScheduleParallel(to, from,
                         targetSpace, InputData.indexData,
-                        InputData.jobHandle);
+                        InputData.jobHandle, ScaleFactor);
 
-                    Result = new HeightData(job, targetSpace, InputData.minMaxValue);
+                    Result = new HeightData(job, targetSpace, InputData.minMaxValue*ScaleFactor);
                     SubState++;
                 }
 

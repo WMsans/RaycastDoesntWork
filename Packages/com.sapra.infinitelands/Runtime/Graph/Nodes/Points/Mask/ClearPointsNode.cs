@@ -74,7 +74,7 @@ namespace sapra.InfiniteLands
             public bool ProcessData()
             {
                 if(SubState == 0){
-                    if(!previousPoints.GetAllPoints(pointSettings.CheckupSize, pointSettings.Origin, out List<PointTransform> foundPoints)) return false;
+                    if(!previousPoints.GetAllPoints(pointSettings, out List<PointTransform> foundPoints)) return false;
                     foreach(var point in foundPoints){
                         MeshSettings meshSettings = new MeshSettings(){
                             Resolution = 3,

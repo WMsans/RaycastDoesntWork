@@ -97,7 +97,7 @@ namespace sapra.InfiniteLands
             public bool ProcessData()
             {
                 if(SubState == 0){
-                    if(!previousPoints.GetAllPoints(pointSettings.CheckupSize, pointSettings.Origin, out var foundPoints)) return false;
+                    if(!previousPoints.GetAllPoints(pointSettings, out var foundPoints)) return false;
 
                     foreach(var point in foundPoints){
                         var currentPoint = point;

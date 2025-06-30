@@ -18,20 +18,21 @@ namespace sapra.InfiniteLands{
 
         IndexAndResolution original;
         IndexAndResolution target;
+        float ScaleFactor;
         public void Execute(int i)
-        {            
+        {
             int index = MapTools.RemapIndex(i, target.Resolution, original.Resolution);
-            targetGlobalMap[target.IndexOffset+i] = originalGlobalMap[original.IndexOffset+index];
+            targetGlobalMap[target.IndexOffset + i] = originalGlobalMap[original.IndexOffset + index]*ScaleFactor;
         }
 
         public static JobHandle ScheduleParallel(NativeArray<float> targetGlobalMap, NativeArray<float> originalGlobalMap,
-            IndexAndResolution target, IndexAndResolution original, JobHandle dependency) => new CopyToFrom()
-        {
-            targetGlobalMap = targetGlobalMap,
-            originalGlobalMap = originalGlobalMap,
-            original = original,
-            target = target,
-
+            IndexAndResolution target, IndexAndResolution original, JobHandle dependency, float ScaleFactor = 1) => new CopyToFrom()
+            {
+                targetGlobalMap = targetGlobalMap,
+                originalGlobalMap = originalGlobalMap,
+                original = original,
+                target = target,
+                ScaleFactor = ScaleFactor,
         }.ScheduleParallel(target.Length, target.Resolution, dependency);
     }
 }

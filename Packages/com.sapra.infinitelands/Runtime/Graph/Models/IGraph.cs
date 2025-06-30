@@ -29,7 +29,7 @@ namespace sapra.InfiniteLands{
 
         public GroupBlock CreateGroup(string name, Vector2 position, List<string> elementsGUIDS);
         public StickyNoteBlock CreateStickyNote(Vector2 position);
-        public InfiniteLandsNode CreateNode(Type type, Vector2 position);
+        public InfiniteLandsNode CreateNode(Type type, Vector2 position, bool record = true);
 
         public StickyNoteBlock CreateStickyNoteFromJson(string JsonData, Vector2 position);
         public GroupBlock CreateGroupFromJson(string JsonData, Vector2 position);

@@ -41,7 +41,7 @@ namespace sapra.InfiniteLands.Editor{
                 string OriginalGuid = serializedItem.guid;
                 if(typeof(InfiniteLandsNode).IsAssignableFrom(targetType)){
                     CustomNodeAttribute attribute = targetType.GetCustomAttribute<CustomNodeAttribute>();
-                    bool validNode = attribute != null && attribute.canCreate && attribute.IsValidInTree(tree.GetType());
+                    bool validNode = attribute != null && attribute.canCreate && attribute.IsValidInTree(tree.GetType(), out _);
                     if(validNode){
                         InfiniteLandsNode node = tree.CreateNodeFromJson(targetType, serializedItem.item, desiredPosition);
                         NewNodesGenerated.Add(OriginalGuid, node);

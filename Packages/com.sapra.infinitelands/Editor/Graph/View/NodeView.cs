@@ -216,36 +216,43 @@ namespace sapra.InfiniteLands.Editor{
         }
 
         private void ValidityCheck(){
-            if (node.isValid)
+            SetValidity(node.isValid);
+        }
+
+        public void SetValidity(bool value)
+        {
+            if (value)
                 RemoveFromClassList("invalid");
             else
                 AddToClassList("invalid");
         }
 
         public void DrawAllProperties()
-        {       
+        {
             var nodeProperty = GetNodeProperty(node);
-            if(nodeProperty == null)
+            if (nodeProperty == null)
                 return;
 
             ValidityCheck();
 
-            if(nodeProperty == null)
+            if (nodeProperty == null)
                 return;
 
             Unbinder(propertiesContainer);
             Unbinder(hiddenProperties);
 
             var currentDepth = nodeProperty.depth;
-            if(nodeProperty.NextVisible(true)){ //Enter item
+            if (nodeProperty.NextVisible(true))
+            { //Enter item
                 DrawHiddenProperties(hiddenProperties, nodeProperty);
-            
-                if(nodeProperty.depth <= currentDepth)
+
+                if (nodeProperty.depth <= currentDepth)
                     return;
 
                 DrawProperties(propertiesContainer, nodeProperty);
             }
-            else{
+            else
+            {
                 Debug.Log("wooot");
             }
         }

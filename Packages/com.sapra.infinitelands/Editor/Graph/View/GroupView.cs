@@ -29,7 +29,8 @@ namespace sapra.InfiniteLands.Editor{
             this.viewDataKey = group.guid;
             this.group = group;
             base.SetPosition(new Rect(group.position, Vector2.zero));
-            capabilities -= Capabilities.Groupable;
+            if(!EditorTools.DebugMode)
+                capabilities -= Capabilities.Groupable;
 
             styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Packages/com.sapra.infinitelands/Editor/UIBuilder/GroupView.uss"));
 

@@ -1512,7 +1512,7 @@
     "m_SourceType": 1,
     "m_FunctionName": "Options",
     "m_FunctionSource": "",
-    "m_FunctionBody": "\rOut = In;\r\n#pragma instancing_options procedural:dummySHCall\r\n\n\n"
+    "m_FunctionBody": "\rOut = In;\n#if UNITY_VERSION <= 6000\n#pragma multi_compile PROCEDURAL_INSTANCING_ON\n#endif\r\r\n#pragma instancing_options procedural:dummySHCall\r\n\n\n"
 }
 
 {

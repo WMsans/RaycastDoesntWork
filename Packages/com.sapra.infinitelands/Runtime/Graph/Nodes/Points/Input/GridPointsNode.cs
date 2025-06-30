@@ -8,13 +8,14 @@ namespace sapra.InfiniteLands
     {
         [Output] public PointInstance Output;
         [Min(40)] public float GridSize = 140;
+        [Min(0.001f)] public float Scale = 1;
 
         public string processorID => guid;
         public AwaitableData<List<PointTransform>> ProcessDataSpace(PointInstance currentPoints, PointGenerationSettings pointSettings)
         {
-            GridPoints findByTag = GenericPoolLight<GridPoints>.Get();
-            findByTag.Reuse(pointSettings);
-            return findByTag;
+            GridPoints gridPoints = GenericPoolLight<GridPoints>.Get();
+            gridPoints.Reuse(pointSettings,Scale);
+            return gridPoints;
         }
 
         protected override void Process(BranchData branch)
@@ -37,11 +38,11 @@ namespace sapra.InfiniteLands
             }
             public bool ProcessData() => true;
 
-            public void Reuse(PointGenerationSettings pointSettings){
+            public void Reuse(PointGenerationSettings pointSettings, float size){
                 Result.Clear();
                 Result.Add(new PointTransform(){
                     Position = pointSettings.Origin,
-                    Scale = 1,
+                    Scale = size,
                     YRotation = 0
                 });   
                 GenericPoolLight.Release(this);

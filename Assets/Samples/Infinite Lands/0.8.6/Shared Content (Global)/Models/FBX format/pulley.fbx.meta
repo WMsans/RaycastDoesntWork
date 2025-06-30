@@ -111,7 +111,7 @@ AssetOrigin:
   serializedVersion: 1
   productId: 276010
   packageName: 'Infinite Lands: Node-Based Procedural World Generator'
-  packageVersion: 0.8.7
+  packageVersion: 0.8.8
   assetPath: Assets/Samples/Infinite Lands/0.8.6/Shared Content (Global)/Models/FBX
     format/pulley.fbx
-  uploadId: 765887
+  uploadId: 766725

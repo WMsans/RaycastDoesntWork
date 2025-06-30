@@ -1795,7 +1795,7 @@ MonoBehaviour:
         Width: 256
         Height: 256
         MipCount: 10
-        TerrainMaterial: {fileID: 2100000, guid: 633167b08a44ff34598a97d88cb76815, type: 2}
+        TerrainMaterial: {fileID: 2100000, guid: ac8f25ae0c60583408a1662abbb1637f, type: 2}
     - rid: 8515386986210263121
       type: {class: VegetationRenderer, ns: sapra.InfiniteLands, asm: sapra.InfiniteLands}
       data:
