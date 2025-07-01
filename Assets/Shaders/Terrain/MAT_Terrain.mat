@@ -13,7 +13,6 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _HEIGHT_MAP_BLEND
-  - _STOCHASTIC_SAMPLING
   - _TRIPLANAR_UV
   m_InvalidKeywords: []
   m_LightmapFlags: 2
@@ -68,16 +67,16 @@ Material:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _BlendOffset: 0.124
-    - _Emission: 1
+    - _Emission: 1.1
     - _FullTextureMultiplier: 8
     - _HEIGHT_MAP_BLEND: 1
     - _HeightBlendRange: 0.25
-    - _MaxDistanceFullTexture: 0
-    - _MinDistanceFullTexture: 0
+    - _MaxDistanceFullTexture: 400
+    - _MinDistanceFullTexture: 150
     - _Power: 0.2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _STOCHASTIC_SAMPLING: 1
+    - _STOCHASTIC_SAMPLING: 0
     - _TRIPLANAR_UV: 1
     m_Colors: []
   m_BuildTextureStacks: []
